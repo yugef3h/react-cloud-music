@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>余歌Yuge blog</title>
+    <meta name="keywords" content="余歌,web前端博客,html5,web前端笔记,web前端开发,JavaScript,jQuery,css3,html,css,余歌的博客">
+    <meta name="description" content="余歌前端博客 beta，个人前端笔记与案例展示、学习经验交流！">
+    <meta name="apple-mobile-web-app-title" content="余歌博客">
+    <meta name="author" content="余歌">
+    <link rel="stylesheet" type="text/css" href="/static/css/font-awesome.min.css"/>
+    <link rel="stylesheet" href="/static/css/reset.css">
+    <link rel="shortcut icon" href="/static/img/favicon.png">
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.runtime.min.js"></script>
+    <script src="https://cdn.bootcss.com/axios/0.16.2/axios.min.js"></script>
+    <script src="https://cdn.bootcss.com/vue-router/3.0.1/vue-router.min.js"></script>
+  </head>
+  <body>
+    <div id="app"></div>
+    <!-- built files will be auto injected -->
+  </body>
+</html>
+<style>
+  body{
+    font-size: 14px;
+    font-family: arial, "Microsoft YaHei", SimHei;
+    background: #f0f2f5;
+  }
+  /*按钮*/
+  .btn{
+    border:1px solid #4187db;
+    color: #4187db;
+    background: #fff;
+    padding: 6px 14px 7px;
+    border-radius: 3px;
+    transition: all 0.5s ease;
+    outline: none;
+    margin-top: 14px;
+    cursor: pointer;
+  }
+  .btn i{
+    margin-right: 4px;
+  }
+  .btn:hover{
+    background: #4187db;
+    color: #fff;
+  }
+
+  /*输入框*/
+  .myinput{
+    border: 1px solid #cad3de;
+    height: 35px;
+    line-height: 35px;
+    margin: 5px 0 10px;
+    border-radius: 3px;
+    padding: 0 10px;
+    outline: none;
+    box-sizing: border-box;
+  }
+  .myinput:focus{
+    border: 1px solid #4289dc;
+  }
+  [v-cloak]{
+    display: none !important;
+  }
+</style>
