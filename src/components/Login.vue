@@ -46,8 +46,8 @@
         this.disablebtn = true;
         this.loginText = "登录中...";
         //this.$reqs就访问到了main.js中绑定的axios
-        //后台接口
-        this.$reqs.post("/users/login",{
+        //后台接口post方法"/users/login"
+        this.$reqs.get("/users/login",{
           username:this.username,
           password:this.password
         }).then(res => {

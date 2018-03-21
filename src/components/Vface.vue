@@ -3,21 +3,16 @@
     <!--大画布+atoms-->
     <div id="header">
       <div class="txt">
-<!--        <p>学习没有捷径</p><br>
-        <p>每天的努力 只为拥抱美好的明天</p><br><br>-->
         <br><br><br><br><br>
         <p>Where are you now</p><br>
         <p>Another dream</p><br><br><br>
         <i class="fa fa-angle-double-down"></i>
       </div>
-      <!--atoms特效-->
       <atoms class="atoms"></atoms>
     </div>
     <!--1级导航-->
     <div id="nav_box" :class="nav_box === true?' scrolled':''">
       <div class="rig">
-        <!--<li class="l2"><a href="">欢迎 {{name}}</a></li>
-          <li class="l2"><a href="#">注销登录</a></li>-->
         <div class="reg tool" @click="chopac()">Tool
           <div class="nothing"></div>
           <ul class="opac0" :class="opac===true?'opac0 opac':'opac0'">
@@ -39,50 +34,43 @@
       </div>
       <a href="http://www.blackatall.cn" class="logo"></a>
       <ul class="nav" :class="nav_mob===true?' _block':''">
-          <!--:class-->
-          <li v-for="(item,index) in menu">
+        <!--:class-->
+        <li v-for="(item,index) in menu">
 
-            <router-link :to="{name:item.router_name}" @click.native="nav_mob=!nav_mob">
-              <i class="fa" :class="item.icon"></i>&nbsp;{{item.name}}
-            </router-link>
-            <!--2级菜单-->
-            <!--<ul v-show="open" class="list" v-for="(item_l,childIndex) in article_kind" >
-              <li>
-                <router-link :to="'/' + item_l.path">
-                  {{item_l.name}}
-                </router-link>
-              </li>
-            </ul>-->
-          </li>
-        </ul>
+          <router-link :to="{name:item.router_name}" @click.native="nav_mob=!nav_mob">
+            <i class="fa" :class="item.icon"></i>&nbsp;{{item.name}}
+          </router-link>
+        </li>
+      </ul>
       <div class="navmenu" @click="nav_mob=!nav_mob">
         <i class="menu fa fa-bars" aria-hidden="true"></i>
       </div>
     </div>
+    <!--mobile by rem-->
+    <nav class="mobile">
+
+    </nav>
     <!--路由内容-->
     <!--正则判断路由中带有yuge的正文 .main 修改背景色-->
     <div class="main" :class="reg.test($route.path)?' wrap_gray':'main'">
       <!-- 展示 -->
       <div class="one_block">
-        <!--缓存在博客中不建议用-->
-        <!--<keep-alive>-->
-          <router-view></router-view>
-        <!--</keep-alive>-->
-      <ft></ft>
+        <router-view></router-view>
+        <ft></ft>
       </div>
     </div>
-    <!--看！飞机-->
+    <!--toTop-->
     <div id="toTop" @click="getTop" v-show="isShow">
       <i class="fa fa-space-shuttle" aria-hidden="true"></i>
     </div>
-</div>
+  </div>
 </template>
 <script type="text/ecmascript-6">
   import atoms from './vmods/atoms.vue'
   import ft from './vmods/footer.vue'
   /* 引入公共方法 */
   export default{
-    name:'index',
+    name:'vface',
     // 传递组件用
     props: {
       scrollmyself: {
@@ -105,7 +93,7 @@
           {name: "主页",router_name:"index",icon:'fa-home'},
           {name: "笔记",router_name:"articles",icon:'fa-list'},
           {name: "案例展示",router_name:"cases",icon:'fa-coffee'},
-/*          {name: "生活隨筆",router_name:"life"},*/
+          /*          {name: "生活隨筆",router_name:"life"},*/
           {name: "关于我",router_name:"aboutMe",icon:'fa-user'}
         ],
         article_kind:[
@@ -152,8 +140,8 @@
           this.nav_box=true
           this.isShow = true
         } else {
-            this.nav_box=false
-            this.isShow = false
+          this.nav_box=false
+          this.isShow = false
         }
       },
       //搜索
@@ -346,11 +334,11 @@
   $width_0:0px;
   @-webkit-keyframes tof /*Safari and Chrome*/
   {
-/*    from {width:0px;}*/
+    /*    from {width:0px;}*/
     to {width:$width_200;}
   }
   @keyframes tof {
-  /*  from {width:0px;}*/
+    /*  from {width:0px;}*/
     to {width:$width_200;}
   }
   @-o-keyframes tof {
@@ -358,7 +346,7 @@
     to {width:$width_200;}
   }
   @-ms-keyframes tof {
-   /* from {width:0px;}*/
+    /* from {width:0px;}*/
     to {width:$width_200;}
   }
 

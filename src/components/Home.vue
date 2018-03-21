@@ -75,6 +75,7 @@
     methods:{
       getArticles () {
         var _this=this;
+        //    post   /users/article
         _this.$reqs.post('/users/article',{
           rows:3
         }).then(res => {

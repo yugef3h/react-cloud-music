@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-const Index = r => require.ensure([], () => r(require('@/components/Index.vue')), 'groupfront1')
+const Vface = r => require.ensure([], () => r(require('@/components/Vface.vue')), 'groupfront1')
 const Home = r => require.ensure([], () => r(require('@/components/Home.vue')), 'groupfront1')
 const Articles = r => require.ensure([], () => r(require('@/components/Articles.vue')), 'groupfront2')
 const Case = r => require.ensure([], () => r(require('@/components/Case.vue')), 'groupfront2')
@@ -27,8 +27,8 @@ const router = new Router({
     },
     {
       path: '/',
-      name: 'index',
-      component: Index,
+      name: 'vface',
+      component: Vface,
       redirect: '/home',
       children: [
         {
