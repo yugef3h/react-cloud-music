@@ -8,7 +8,7 @@ router-link tobe modify
       Copyright © 2017-2018 <a href="http://www.blackatall.cn">Yuge Blog</a><span> All Rights Reserved. 闽ICP备17030754号-1</span>
   </div>
 </template>
-<script type="text/ecmascript-6">
+<script>
   export default {}
 </script>
 <!-- Add "scoped" attribute to limit CSS to this component only -->

@@ -4,7 +4,6 @@ const Vface = r => require.ensure([], () => r(require('@/components/Vface.vue'))
 const Home = r => require.ensure([], () => r(require('@/components/Home.vue')), 'groupfront1')
 const Articles = r => require.ensure([], () => r(require('@/components/Articles.vue')), 'groupfront2')
 const Case = r => require.ensure([], () => r(require('@/components/Case.vue')), 'groupfront2')
-const AboutMe = r => require.ensure([], () => r(require('@/components/AboutMe.vue')), 'groupfront2')
 const ArtDetails = r => require.ensure([], () => r(require('@/components/ArtDetails.vue')), 'groupfront3')
 const Login = r => require.ensure([], () => r(require('@/components/Login.vue')), 'groupback1')
 const BackStage = r => require.ensure([], () => r(require('@/components/BackStage.vue')), 'groupback2')
@@ -45,11 +44,6 @@ const router = new Router({
           path: '/home',
           name: 'home',
           component: Home
-        },
-        {
-          path: '/aboutMe',
-          name: 'aboutMe',
-          component: AboutMe
         },
         {
           path: '/:jump/:random/yuge:id.html',

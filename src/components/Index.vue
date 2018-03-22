@@ -77,7 +77,7 @@
     </div>
 </div>
 </template>
-<script type="text/ecmascript-6">
+<script>
   import atoms from './vmods/atoms.vue'
   import ft from './vmods/footer.vue'
   /* 引入公共方法 */
@@ -104,9 +104,7 @@
         menu:[
           {name: "主页",router_name:"index",icon:'fa-home'},
           {name: "笔记",router_name:"articles",icon:'fa-list'},
-          {name: "案例展示",router_name:"cases",icon:'fa-coffee'},
-/*          {name: "生活隨筆",router_name:"life"},*/
-          {name: "关于我",router_name:"aboutMe",icon:'fa-user'}
+          {name: "案例展示",router_name:"cases",icon:'fa-coffee'}
         ],
         article_kind:[
           {name: "Vue",path:"articles"},

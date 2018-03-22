@@ -74,7 +74,7 @@
   </div>
 </template>
 
-<script type="text/ecmascript-6">
+<script>
   var pageTitleObj = {
     indexContent:"首页",
     adminList:"数据管理",

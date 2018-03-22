@@ -26,7 +26,7 @@
     </div>
   </div>
 </template>
-<script type="text/ecmascript-6">
+<script>
   //export default 之前可以对象字面量
   export default {
     name: 'articles',

@@ -35,7 +35,7 @@
     <button class="btn" @click="toArtlist()">取消</button>
   </div>
 </template>
-<script type="text/ecmascript-6">
+<script>
   import markdown from './markdown.vue'
   export default {
     name: 'essay',
