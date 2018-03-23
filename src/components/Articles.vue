@@ -7,7 +7,7 @@
       </div>
       <div class="article_con">
         <ul class="clearfix list">
-          <li v-for="(item,index) in newest" class="l">
+          <li v-for="(item,index) in newest" class="l"  :key="index">
             <router-link :to="{name:'contents',params:{jump:'articles',random:Math.floor(Math.random()*199301),id:item.id}}">
               <div class="img_con">
                 <img :src="imgUrl+item.ArticleImg" width="259" height="178"/>

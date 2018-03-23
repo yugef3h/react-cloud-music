@@ -6,7 +6,7 @@
       <tr>
         <th>序号</th>
         <!--显示标题-->
-        <th v-for="(item, index) in theadData">{{item.title}}</th>
+        <th v-for="(item, index) in theadData"  :key="index">{{item.title}}</th>
       </tr>
       </thead>
       <tbody>
@@ -15,13 +15,13 @@
       <tr v-if="!listData.length">
         <td>1</td>
         <td>没有数据 . . .</td>
-        <td v-for="(item, index) in theadData" v-if="index<=theadData.length-2"></td>
+        <td v-for="(item, index) in theadData" v-if="index<=theadData.length-2"  :key="index"></td>
       </tr>
 
-      <tr v-for="(item, index) in listData">
+      <tr v-for="(item, index) in listData"  :key="index">
         <td>{{index+1}}</td>
         <!--按照头部的-->
-        <td v-for="(item2, index2) in theadData">
+        <td v-for="(item2, index2) in theadData"  :key="index">
           <span v-if="index2 === 0" style="float: right;">
             <i title="编辑" v-if="ifEdit" class="fa fa-edit" aria-hidden="true"
                @click="editHandler(item)"></i>

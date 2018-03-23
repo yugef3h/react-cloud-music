@@ -54,7 +54,7 @@
               <!-- 显示10篇最新更新文章 -->
               <div class="aside-tab-wrap">
                 <ul class="list-article-title">
-                  <li v-for="tis in tits">
+                  <li v-for="(tis,index) in tits"  :key="index">
                     <router-link :to="{name:'contents',params:{jump:'articles',random:Math.floor(Math.random()*199301),id:tis.id}}"
                       @click.native="getArtDet"
                     >

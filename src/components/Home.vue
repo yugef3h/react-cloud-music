@@ -9,7 +9,7 @@
           <h1>置顶</h1>
         </div>
         <ul class="list">
-          <li v-for="(item,index) in info">
+          <li v-for="(item,index) in info" :key="index">
             <router-link  :to="{name:'contents',params:{jump:'articles',random:Math.floor(Math.random()*199301),id:item.id}}">
               <div>
                 <img class="lazy" :src="imghurl+urlarr1[index]" :data-original="imghurl+urlarr1[index]" alt="随机图标">
@@ -33,7 +33,7 @@
           <h1>文章随笔</h1>
         </div>
         <ul class="list">
-          <li v-for="(item,index) in info">
+          <li v-for="(item,index) in info"  :key="index">
             <router-link  :to="{name:'contents',params:{jump:'articles',random:Math.floor(Math.random()*199301),id:item.id}}">
               <div><img class="lazy" :src="imghurl+urlarr2[index]" :data-original="imghurl+urlarr2[index]" alt="数据库随机图标"></div>
               <h4>{{item.title}}</h4>

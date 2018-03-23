@@ -5,7 +5,7 @@
         <span aria-hidden="true">&laquo;</span>
       </a>
     </li>
-    <li v-for="index in pages" @click="goto(index)" :class="{'active':current == index}" :key="index">
+    <li v-for="index in pages"  @click="goto(index)" :class="{'active':current == index}" :key="index">
       <a href="javascript:;" >{{index}}</a>
     </li>
     <!--<li><a href="javascript:;">10</a></li>-->

@@ -35,7 +35,7 @@
       <a href="http://www.blackatall.cn" class="logo"></a>
       <ul class="nav" :class="nav_mob===true?' _block':''">
         <!--:class-->
-        <li v-for="(item,index) in menu">
+        <li v-for="(item,index) in menu"  :key="index">
 
           <router-link :to="{name:item.router_name}" @click.native="nav_mob=!nav_mob">
             <i class="fa" :class="item.icon"></i>&nbsp;{{item.name}}
