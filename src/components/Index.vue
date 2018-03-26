@@ -3,8 +3,8 @@
     <!--大画布+atoms-->
     <div id="header">
       <div class="txt">
-<!--        <p>学习没有捷径</p><br>
-        <p>每天的努力 只为拥抱美好的明天</p><br><br>-->
+        <!--        <p>学习没有捷径</p><br>
+                <p>每天的努力 只为拥抱美好的明天</p><br><br>-->
         <br><br><br><br><br>
         <p>Where are you now</p><br>
         <p>Another dream</p><br><br><br>
@@ -39,22 +39,22 @@
       </div>
       <a href="http://www.blackatall.cn" class="logo"></a>
       <ul class="nav" :class="nav_mob===true?' _block':''">
-          <!--:class-->
-          <li v-for="(item,index) in menu"  :key="index">
+        <!--:class-->
+        <li v-for="(item,index) in menu"  :key="index">
 
-            <router-link :to="{name:item.router_name}" @click.native="nav_mob=!nav_mob">
-              <i class="fa" :class="item.icon"></i>&nbsp;{{item.name}}
-            </router-link>
-            <!--2级菜单-->
-            <!--<ul v-show="open" class="list" v-for="(item_l,childIndex) in article_kind" >
-              <li>
-                <router-link :to="'/' + item_l.path">
-                  {{item_l.name}}
-                </router-link>
-              </li>
-            </ul>-->
-          </li>
-        </ul>
+          <router-link :to="{name:item.router_name}" @click.native="nav_mob=!nav_mob">
+            <i class="fa" :class="item.icon"></i>&nbsp;{{item.name}}
+          </router-link>
+          <!--2级菜单-->
+          <!--<ul v-show="open" class="list" v-for="(item_l,childIndex) in article_kind" >
+            <li>
+              <router-link :to="'/' + item_l.path">
+                {{item_l.name}}
+              </router-link>
+            </li>
+          </ul>-->
+        </li>
+      </ul>
       <div class="navmenu" @click="nav_mob=!nav_mob">
         <i class="menu fa fa-bars" aria-hidden="true"></i>
       </div>
@@ -66,23 +66,23 @@
       <div class="one_block">
         <!--缓存在博客中不建议用-->
         <!--<keep-alive>-->
-          <router-view></router-view>
+        <router-view></router-view>
         <!--</keep-alive>-->
-      <ft></ft>
+        <ft></ft>
       </div>
     </div>
     <!--看！飞机-->
-    <div id="toTop" @click="getTop" v-show="isShow">
+    <div id="toTop" @click="getTop(); " v-show="isShow">
       <i class="fa fa-space-shuttle" aria-hidden="true"></i>
     </div>
-</div>
+  </div>
 </template>
 <script>
   import atoms from './vmods/atoms.vue'
   import ft from './vmods/footer.vue'
   /* 引入公共方法 */
   export default{
-    name:'index',
+    name:'index2',
     // 传递组件用
     props: {
       scrollmyself: {
@@ -150,8 +150,8 @@
           this.nav_box=true
           this.isShow = true
         } else {
-            this.nav_box=false
-            this.isShow = false
+          this.nav_box=false
+          this.isShow = false
         }
       },
       //搜索
@@ -164,14 +164,16 @@
       },
       //飞机
       getTop () {
-        let timer = setInterval(() => {
+        /*let timer = setInterval(() => {
           let top = this.target.scrollTop
+          console.log(top)
           let speed = Math.ceil(top / 5)
           this.target.scrollTop = top - speed
           if (top === 0) {
             clearInterval(timer)
           }
-        }, 20)
+        }, 20)*/
+        window.location.href = "#index"
       },
       chopac () {
         clearTimeout(this.t)
@@ -344,11 +346,11 @@
   $width_0:0px;
   @-webkit-keyframes tof /*Safari and Chrome*/
   {
-/*    from {width:0px;}*/
+    /*    from {width:0px;}*/
     to {width:$width_200;}
   }
   @keyframes tof {
-  /*  from {width:0px;}*/
+    /*  from {width:0px;}*/
     to {width:$width_200;}
   }
   @-o-keyframes tof {
@@ -356,7 +358,7 @@
     to {width:$width_200;}
   }
   @-ms-keyframes tof {
-   /* from {width:0px;}*/
+    /* from {width:0px;}*/
     to {width:$width_200;}
   }
 

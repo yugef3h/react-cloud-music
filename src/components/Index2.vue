@@ -3,16 +3,21 @@
     <!--大画布+atoms-->
     <div id="header">
       <div class="txt">
+        <!--        <p>学习没有捷径</p><br>
+                <p>每天的努力 只为拥抱美好的明天</p><br><br>-->
         <br><br><br><br><br>
         <p>Where are you now</p><br>
         <p>Another dream</p><br><br><br>
         <i class="fa fa-angle-double-down"></i>
       </div>
+      <!--atoms特效-->
       <atoms class="atoms"></atoms>
     </div>
     <!--1级导航-->
     <div id="nav_box" :class="nav_box === true?' scrolled':''">
       <div class="rig">
+        <!--<li class="l2"><a href="">欢迎 {{name}}</a></li>
+          <li class="l2"><a href="#">注销登录</a></li>-->
         <div class="reg tool" @click="chopac()">Tool
           <div class="nothing"></div>
           <ul class="opac0" :class="opac===true?'opac0 opac':'opac0'">
@@ -40,26 +45,33 @@
           <router-link :to="{name:item.router_name}" @click.native="nav_mob=!nav_mob">
             <i class="fa" :class="item.icon"></i>&nbsp;{{item.name}}
           </router-link>
+          <!--2级菜单-->
+          <!--<ul v-show="open" class="list" v-for="(item_l,childIndex) in article_kind" >
+            <li>
+              <router-link :to="'/' + item_l.path">
+                {{item_l.name}}
+              </router-link>
+            </li>
+          </ul>-->
         </li>
       </ul>
       <div class="navmenu" @click="nav_mob=!nav_mob">
         <i class="menu fa fa-bars" aria-hidden="true"></i>
       </div>
     </div>
-    <!--mobile by rem-->
-    <nav class="mobile">
-
-    </nav>
     <!--路由内容-->
     <!--正则判断路由中带有yuge的正文 .main 修改背景色-->
     <div class="main" :class="reg.test($route.path)?' wrap_gray':'main'">
       <!-- 展示 -->
       <div class="one_block">
+        <!--缓存在博客中不建议用-->
+        <!--<keep-alive>-->
         <router-view></router-view>
+        <!--</keep-alive>-->
         <ft></ft>
       </div>
     </div>
-    <!--toTop-->
+    <!--看！飞机-->
     <div id="toTop" @click="getTop" v-show="isShow">
       <i class="fa fa-space-shuttle" aria-hidden="true"></i>
     </div>
@@ -70,8 +82,8 @@
   import ft from './vmods/footer.vue'
   /* 引入公共方法 */
   export default{
-    name:'vface',
-    // 数据传递
+    name:'index2',
+    // 传递组件用
     props: {
       scrollmyself: {
         type: Boolean,  // 这是选择滚动对象的props值，如果滚动的对象是当前组件的父元素，就设置scrollObj为true.如果没有设置就默认为window对象
