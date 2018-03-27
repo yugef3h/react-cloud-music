@@ -28,7 +28,7 @@
         <!--:previewStatusP="false" 加载时是否显示预览容器（true全屏/false不显示）-->
         <!--:navStatusP="false" 加载时是否显示顶部快速标签栏（true显示/false不显示）-->
         <!--:icoStatusP="false" 加载时是否显示版权标志（true显示/false不显示）,如果取消掉，请勿忘挖井人，谢谢！-->
-        <!--@childevent="childEventHandler" 监听组件的$.emit()方法传回父组件的值，便于父容器保存获取-->
+        <!--@childevent="childEventHandler" 子组件的$.emit()事件触发，便于父组件监听-->
       </div>
     </div>
     <button class="btn uploadBtn" @click="release">发布</button>&nbsp
