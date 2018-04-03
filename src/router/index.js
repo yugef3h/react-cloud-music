@@ -3,6 +3,7 @@ import Router from 'vue-router'
 const Index = r => require.ensure([], () => r(require('@/components/Index.vue')), 'groupfront1')
 const Home = r => require.ensure([], () => r(require('@/components/Home.vue')), 'groupfront1')
 const Articles = r => require.ensure([], () => r(require('@/components/Articles.vue')), 'groupfront2')
+const Read = r => require.ensure([], () => r(require('@/components/Read.vue')), 'groupfront2')
 const Case = r => require.ensure([], () => r(require('@/components/Case.vue')), 'groupfront2')
 const ArtDetails = r => require.ensure([], () => r(require('@/components/ArtDetails.vue')), 'groupfront3')
 const Login = r => require.ensure([], () => r(require('@/components/Login.vue')), 'groupback1')
@@ -40,6 +41,11 @@ const router = new Router({
           name: 'cases',
           component: Case
         },
+          {
+              path: '/read',
+              name: 'read',
+              component: Read
+          },
         {
           path: '/home',
           name: 'home',
