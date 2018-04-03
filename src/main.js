@@ -1,3 +1,5 @@
+//import js or css etc use allpages!
+
 import Vue from 'vue'
 import App from './App'
 import router from './router'
