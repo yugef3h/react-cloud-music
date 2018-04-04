@@ -11,8 +11,6 @@
     </div>
 </template>
 <script>
-    import VueJsonp from 'vue-jsonp'
-    Vue.use(VueJsonp)
     export default {
         name:'read',
         data () {
