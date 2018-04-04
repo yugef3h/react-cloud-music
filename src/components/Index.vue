@@ -105,7 +105,7 @@
                     {name: "HOME",router_name:"index",icon:'fa-home'},
                     {name: "NOTE",router_name:"articles",icon:'fa-list'},
                     {name: "CASE",router_name:"cases",icon:'fa-coffee'},
-                    {name: "READ",router_name:"read",icon:'fa-home'}
+                    {name: "NOVEL",router_name:"novel",icon:'fa-home'}
                 ],
                 article_kind:[
                     {name: "Vue",path:"articles"},
@@ -165,14 +165,9 @@
             },
             //飞机
             getTop () {
-                let timer = setInterval(() => {
-                    let top = this.target.scrollTop
-                    let speed = Math.ceil(top / 5)
-                    this.target.scrollTop = top - speed
-                    if (top === 0) {
-                        clearInterval(timer)
-                    }
-                }, 20)
+                document.body.scrollTop = 0
+                document.documentElement.scrollTop = 0
+                //https://stackoverflow.com/questions/8917921/cross-browser-javascript-not-jquery-scroll-to-top-animation
             },
             chopac () {
                 clearTimeout(this.t)

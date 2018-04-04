@@ -3,6 +3,7 @@
 import Vue from 'vue'
 import App from './App'
 import router from './router'
+
 //ps:这里可以写自定义头
 axios.defaults.withCredentials=true;  // 跨域保存session有用
 axios.defaults.timeout = 5000;
