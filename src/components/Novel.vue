@@ -5,7 +5,7 @@
         <button type="button" @click="search">搜索小说</button>
         <ul>
             <li v-for="(item,index) in menus" :key="index">
-                <a :href="menus[index].url">{{menus[index].title}}</a>
+                <a :href="item.split('+')[1]">{{item.split('+')[0]}}</a>
             </li>
         </ul>
     </div>
@@ -16,7 +16,7 @@
         data () {
             return {
                 keyn: '',
-                menus:''
+                menus:[]
             }
         },
         methods: {
@@ -25,7 +25,8 @@
                     this.$reqs.post('/users/novel',{
                         keyn: this.keyn.trim()
                     }).then( res=> {
-                        this.menus = res.data;
+                        console.log(res.data)
+                        this.menus = res.data.content.split('-');
                     }).catch(err => {
                         console.log(err)
                     })
