@@ -29,18 +29,20 @@
           </ul>
         </div>
 
-        <div class="log"><router-link to="/login">Login</router-link></div>
+        <div class="log">
+          <router-link to="/login">Login</router-link>
+        </div>
         <!--搜索待开发-->
         <div><i class="fa fa-search" @click="search=!search"></i></div>
 
         <div class="search_input" :class="search === true?' linear_200':' linear_0'">
-          <input type="" name="" placeholder="Search..." v-model="searchwhat" @keyup.13="search_handle" />
+          <input type="" name="" placeholder="Search..." v-model="searchwhat" @keyup.13="search_handle"/>
         </div>
       </div>
       <a href="http://www.blackatall.cn" class="logo"></a>
       <ul class="nav" :class="nav_mob===true?' _block':''">
         <!--:class-->
-        <li v-for="(item,index) in menu"  :key="index">
+        <li v-for="(item,index) in menu" :key="index">
 
           <router-link :to="{name:item.router_name}" @click.native="nav_mob=!nav_mob">
             <i class="fa" :class="item.icon"></i>&nbsp;{{item.name}}
@@ -82,7 +84,7 @@
   import ft from './vmods/footer.vue'
   /* 引入公共方法 */
   export default{
-    name:'index2',
+    name: 'index2',
     // 传递组件用
     props: {
       scrollmyself: {
@@ -91,33 +93,33 @@
       }
     },
     data(){
-      return{
-        open:!this.index||false,
+      return {
+        open: !this.index || false,
         nav_box: false,
         isShow: false,
-        reg : /yuge/,
-        nav_mob:false,
-        searchwhat:"",
-        search:false,
-        bool:true,
-        opac:false,
-        menu:[
-          {name: "主页",router_name:"index",icon:'fa-home'},
-          {name: "笔记",router_name:"articles",icon:'fa-list'},
-          {name: "案例展示",router_name:"cases",icon:'fa-coffee'}
+        reg: /yuge/,
+        nav_mob: false,
+        searchwhat: "",
+        search: false,
+        bool: true,
+        opac: false,
+        menu: [
+          {name: "主页", router_name: "index", icon: 'fa-home'},
+          {name: "笔记", router_name: "articles", icon: 'fa-list'},
+          {name: "案例展示", router_name: "cases", icon: 'fa-coffee'}
         ],
-        article_kind:[
-          {name: "Vue",path:"articles"},
-          {name: "Node",path:"articles"},
-          {name: "Javascript",path:"articles"},
-          {name: "HTML5",path:"articles"},
-          {name: "CSS3",path:"articles"},
-          {name: "前端自動化",path:"articles"}
+        article_kind: [
+          {name: "Vue", path: "articles"},
+          {name: "Node", path: "articles"},
+          {name: "Javascript", path: "articles"},
+          {name: "HTML5", path: "articles"},
+          {name: "CSS3", path: "articles"},
+          {name: "前端自動化", path: "articles"}
         ]
       }
     },
     /*监控路由变化 isTab是对应方法*/
-    watch : {
+    watch: {
       //'$route':'isTab'
     },
     mounted(){
@@ -128,7 +130,7 @@
         this.target = document.body
       }
       //nav_box watched
-      window.addEventListener('scroll',this.handleScroll)
+      window.addEventListener('scroll', this.handleScroll)
     },
     beforeDestroy () {
       //  组件销毁的时候，需要删除scroll的监听事件。
@@ -136,21 +138,21 @@
     },
     // 离开该页面需要移除这个监听的事件，不然会报错
     destroyed () {
-      window.removeEventListener('scroll',this.handleScroll)
+      window.removeEventListener('scroll', this.handleScroll)
     },
-    methods:{
+    methods: {
       //双监控
       handleScroll () {
-        var scrollTop = window.pageYOffset || document.documentElement.scrollTop|| document.body.scrollTop
-        var oNav_box=document.querySelector('#nav_box')
+        var scrollTop = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop
+        var oNav_box = document.querySelector('#nav_box')
         var offsetTop = oNav_box.offsetTop
         //this.nav_box = scrollTop > offsetTop
         //console.log(scrollTop,offsetTop)
-        if (scrollTop > offsetTop){
-          this.nav_box=true
+        if (scrollTop > offsetTop) {
+          this.nav_box = true
           this.isShow = true
         } else {
-          this.nav_box=false
+          this.nav_box = false
           this.isShow = false
         }
       },
@@ -160,32 +162,34 @@
         //暴力跳转
         //oMain.scrollIntoView()
         this.$router.push('/users/article')
-        console.log('想搜'+this.searchwhat+'_&^361klg*吗...不好意思，喝断片了,下次再帮你搜吧,先给你张【笔记】飞机票...')
+        console.log('想搜' + this.searchwhat + '_&^361klg*吗...不好意思，喝断片了,下次再帮你搜吧,先给你张【笔记】飞机票...')
       },
       //飞机
       getTop () {
-        let timer = setInterval(() => {
+        let timer = setInterval(() = > {
           let top = this.target.scrollTop
           let speed = Math.ceil(top / 5)
           this.target.scrollTop = top - speed
-          if (top === 0) {
-            clearInterval(timer)
-          }
-        }, 20)
+        if (top === 0) {
+          clearInterval(timer)
+        }
+      },
+        20
+      )
       },
       chopac () {
         clearTimeout(this.t)
         this.opac = !this.opac;
         let self = this;
-        this.t = setTimeout(function(){
-          if (document.querySelector('.opac')){
+        this.t = setTimeout(function () {
+          if (document.querySelector('.opac')) {
             document.querySelector('.opac').className = 'opac0'
             self.opac = false
           }
-        },3000)
+        }, 3000)
       }
     },
-    components:{
+    components: {
       ft,
       atoms
     }
@@ -194,99 +198,113 @@
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style lang="scss" scoped>
 
-  $bottom:5px;
-  #index{
+  $
+  bottom:
+
+  5
+  px
+
+  ;
+  #index {
     padding-top: 580px;
     font-size: 14px;
     font-family: arial, "Microsoft YaHei", SimHei;
 
-    /*头部*/
-    #header{
-      background: #101928 url(/static/img/banner02.jpg) center center no-repeat;
-      height:580px;
-      background-size:auto;
-      position:fixed;
-      top:0;
-      left:0;
-      width:100%;
+  /*头部*/
+  #header {
+    background: #101928 url(/static/img/banner02.jpg) center center no-repeat;
+    height: 580px;
+    background-size: auto;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
 
-      /*canvas*/
-      .atoms{
-        position: absolute;
-        left: 0;
-        top: 0;
-        max-width: 100%;
-      }
-    }
-    /*nav*/
-    #nav_box{
-      height: 80px;
-      line-height: 80px;
-      box-shadow: 0 2px 5px rgba(13,62,73,0.4);
-      position: absolute;
-      top: 580px;
-      width: 100%;
-      min-width: 1200px;
-      transition: height 0.5s ease;
-      background: #fff;
-      z-index: 99;
-    }
-    /*nav fixed*/
-    #nav_box.scrolled{
-      position: fixed;
-      top: 0;
-      width:100%;
-      height:60px;
-      line-height:60px;
-    }
-    /* router content*/
-    .main {
-      padding-top: 80px;
-      position: relative;
-      background: #fff;
+  /*canvas*/
+  .atoms {
+    position: absolute;
+    left: 0;
+    top: 0;
+    max-width: 100%;
+  }
 
-      /*文章content*/
-      .one_block {
-        overflow: hidden;
-      }
-    }
+  }
+  /*nav*/
+  #nav_box {
+    height: 80px;
+    line-height: 80px;
+    box-shadow: 0 2px 5px rgba(13, 62, 73, 0.4);
+    position: absolute;
+    top: 580px;
+    width: 100%;
+    min-width: 1200px;
+    transition: height 0.5s ease;
+    background: #fff;
+    z-index: 99;
+  }
 
-    .main.wrap_gray{
-      /*战时解决方案*/
-      background:#f1f1f1;
-    }
-    /*looktop*/
-    #toTop {
-      position: fixed;
-      right: 30px;
-      bottom: 60px;
-      cursor: pointer;
-      border: 1px solid #F0F2F5;
-      background: #fff;
-      border-radius: 3px;
-      padding: 10px 7px;
-      opacity: 0.5;
-      z-index: 999;
+  /*nav fixed*/
+  #nav_box.scrolled {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    height: 60px;
+    line-height: 60px;
+  }
 
-      /*飞机*/
-      i {
-        display: block;
-        transform: rotate(-90deg);
-        font-size: 24px;
-        color: #32475f;
-      }
-    }
-    #toTop:hover {
-      opacity: 1;
-    }
+  /* router content*/
+  .main {
+    padding-top: 80px;
+    position: relative;
+    background: #fff;
+
+  /*文章content*/
+  .one_block {
+    overflow: hidden;
+  }
+
+  }
+
+  .main.wrap_gray {
+    /*战时解决方案*/
+    background: #f1f1f1;
+  }
+
+  /*looktop*/
+  #toTop {
+    position: fixed;
+    right: 30px;
+    bottom: 60px;
+    cursor: pointer;
+    border: 1px solid #F0F2F5;
+    background: #fff;
+    border-radius: 3px;
+    padding: 10px 7px;
+    opacity: 0.5;
+    z-index: 999;
+
+  /*飞机*/
+  i {
+    display: block;
+    transform: rotate(-90deg);
+    font-size: 24px;
+    color: #32475f;
+  }
+
+  }
+  #toTop:hover {
+    opacity: 1;
+  }
+
   }
 
   #header * {
     position: relative;
-    color:#fff;
-    z-index:3;
+    color: #fff;
+    z-index: 3;
   }
-  #header .txt{
+
+  #header .txt {
     position: absolute;
     top: 70%;
     left: 50%;
@@ -294,8 +312,9 @@
     height: 400px;
     margin: -180px 0 0 -450px;
     text-align: center;
-    font-size:22px;
+    font-size: 22px;
   }
+
   i.fa-angle-double-down {
     margin-left: -5px;
     font-size: 25px;
@@ -307,180 +326,235 @@
   /*箭头动画*/
   @-webkit-keyframes arrow_move {
     to {
-      bottom: $bottom;
+      bottom: $ bottom;
     }
-  }
-  @-moz-keyframes arrow_move {
-    to {
-      bottom: $bottom;
-    }
-  }
-  @-ms-keyframes arrow_move {
-    to {
-      bottom: $bottom;
-    }
-  }
-  @-o-keyframes arrow_move {
-    to {
-      bottom: $bottom;
-    }
-  }
-  @keyframes arrow_move {
-    to {
-      bottom: $bottom;
-    }
-  }
-  /*搜索动画*/
-  .linear_200  {
-    animation: tof .3s linear;
-    animation-fill-mode:forwards;
-  }
-  .linear_0{
-    animation: fto .3s linear;
-    animation-fill-mode:forwards;
   }
 
-  $width_200:200px;
-  $width_0:0px;
+  @-moz-keyframes arrow_move {
+    to {
+      bottom: $ bottom;
+    }
+  }
+
+  @-ms-keyframes arrow_move {
+    to {
+      bottom: $ bottom;
+    }
+  }
+
+  @-o-keyframes arrow_move {
+    to {
+      bottom: $ bottom;
+    }
+  }
+
+  @keyframes arrow_move {
+    to {
+      bottom: $ bottom;
+    }
+  }
+
+  /*搜索动画*/
+  .linear_200 {
+    animation: tof .3s linear;
+    animation-fill-mode: forwards;
+  }
+
+  .linear_0 {
+    animation: fto .3s linear;
+    animation-fill-mode: forwards;
+  }
+
+  $
+  width_200:
+
+  200
+  px
+
+  ;
+  $
+  width_0:
+
+  0
+  px
+
+  ;
   @-webkit-keyframes tof /*Safari and Chrome*/
   {
     /*    from {width:0px;}*/
-    to {width:$width_200;}
-  }
-  @keyframes tof {
-    /*  from {width:0px;}*/
-    to {width:$width_200;}
-  }
-  @-o-keyframes tof {
-    /*from {width:0px;}*/
-    to {width:$width_200;}
-  }
-  @-ms-keyframes tof {
-    /* from {width:0px;}*/
-    to {width:$width_200;}
+    to {
+      width: $ width_200;
+    }
   }
 
+  @keyframes tof {
+    /*  from {width:0px;}*/
+    to {
+      width: $ width_200;
+    }
+  }
+
+  @-o-keyframes tof {
+    /*from {width:0px;}*/
+    to {
+      width: $ width_200;
+    }
+  }
+
+  @-ms-keyframes tof {
+    /* from {width:0px;}*/
+    to {
+      width: $ width_200;
+    }
+  }
 
   @-webkit-keyframes fto /*Safari and Chrome*/
   {
-    from {width:$width_200;}
-    to {width:$width_0;}
+    from {
+      width: $ width_200;
+    }
+    to {
+      width: $ width_0;
+    }
   }
+
   @keyframes fto {
-    from {width:$width_200;}
-    to {width:$width_0;}
+    from {
+      width: $ width_200;
+    }
+    to {
+      width: $ width_0;
+    }
   }
+
   @-o-keyframes fto {
-    from {width:$width_200;}
-    to {width:$width_0;}
+    from {
+      width: $ width_200;
+    }
+    to {
+      width: $ width_0;
+    }
   }
+
   @-ms-keyframes fto {
-    from {width:$width_200;}
-    to {width:$width_0;}
+    from {
+      width: $ width_200;
+    }
+    to {
+      width: $ width_0;
+    }
   }
 
   /*导航条*/
 
-
   .nav {
     text-align: center;
   }
-  .rig *{
+
+  .rig * {
     color: #fff;
   }
-  #nav_box .log,#nav_box .reg,#nav_box .fa-search{
+
+  #nav_box .log, #nav_box .reg, #nav_box .fa-search {
     position: fixed;
-    top:50px;
-    right:30px;
+    top: 50px;
+    right: 30px;
     line-height: 30px;
   }
-  .tool{
+
+  .tool {
     cursor: pointer;
   }
-  .nothing{
-    height:16px;
+
+  .nothing {
+    height: 16px;
   }
-  .opac0{
+
+  .opac0 {
     opacity: 0;
-    width:0;
+    width: 0;
   }
-  .opac{
+
+  .opac {
     opacity: 1;
   }
-  .tool li{
-    box-shadow: 0 2px 5px rgba(13,62,73,0.4);
-    width:200px;
-    margin-left:-133px;
+
+  .tool li {
+    box-shadow: 0 2px 5px rgba(13, 62, 73, 0.4);
+    width: 200px;
+    margin-left: -133px;
     border-radius: 2px;
   }
-  .tool li a{
-    color:#979fa8;
+
+  .tool li a {
+    color: #979fa8;
   }
-  #nav_box .logo{
+
+  #nav_box .logo {
     position: fixed;
-    top:33px;
+    top: 33px;
     width: 220px;
-    height:60px;
+    height: 60px;
     background: url('/static/img/logo2.png');
     background-size: 100%;
     margin-top: -2px;
   }
-  #nav_box .log{
+
+  #nav_box .log {
     right: 80px;
   }
+
   /*搜索*/
-  #nav_box .fa-search{
+  #nav_box .fa-search {
     right: 130px;
     cursor: pointer;
   }
-  .search_input{
+
+  .search_input {
     position: fixed;
-    top:50px;
+    top: 50px;
     width: 0px;
-    right:165px;
+    right: 165px;
     line-height: 30px;
     border-bottom: 1px solid #007aff;
 
-    input{
-      padding:5px;
-      width: 95%;
-      border:0;
-      margin: 0 auto;
-      background: transparent;
-      color: #fff;
-      outline: none;
-    }
-
+  input {
+    padding: 5px;
+    width: 95%;
+    border: 0;
+    margin: 0 auto;
+    background: transparent;
+    color: #fff;
+    outline: none;
   }
 
-
-
-
-
+  }
 
   /*左右两个固定*/
   #nav_box.scrolled .rig * {
-    color:#979fa8;
-    top:14px !important;
+    color: #979fa8;
+    top: 14px !important;
   }
-  #nav_box.scrolled .logo{
-    top:3px !important;
+
+  #nav_box.scrolled .logo {
+    top: 3px !important;
     background: url('/static/img/logo.png');
     width: 220px;
-    height:60px;
+    height: 60px;
     background-size: 100%;
   }
 
-
   .nav * {
-    color:#979fa8;
+    color: #979fa8;
   }
+
   .nav li {
     display: inline-block;
     margin: 0 20px 0;
     transition: margin 0.5s ease;
     position: relative;
   }
+
   .nav li:after {
     content: "";
     position: absolute;
@@ -491,46 +565,52 @@
     background: linear-gradient(to right, #5190ec 8%, #54dcca 90%);
     transition: all 0.3s ease;
   }
-  .nav li:hover:after{
-    width:100%;
-    left:0
+
+  .nav li:hover:after {
+    width: 100%;
+    left: 0
   }
-  .navmenu{
+
+  .navmenu {
     text-align: center;
     /*1*/
     display: none;
   }
-  .navmenu i{
+
+  .navmenu i {
     cursor: pointer;
     text-rendering: auto;
     /*1*/
     display: inline-block;
 
-    border:1px solid #F0F2F5;
-    padding:5px 7px;
+    border: 1px solid #F0F2F5;
+    padding: 5px 7px;
     border-radius: 3px;
     position: relative;
     z-index: 99;
-    font-size:24px;
-    margin:11px auto;
+    font-size: 24px;
+    margin: 11px auto;
   }
-  #nav_box ul li a{
+
+  #nav_box ul li a {
     display: block;
     padding: 0 20px;
   }
-  #nav_box ul li a:hover{
+
+  #nav_box ul li a:hover {
     color: #57c5ff;
   }
+
   /*vue自带点击class*/
-  .router-link-exact-active{
-    color:#83909e;
+  .router-link-exact-active {
+    color: #83909e;
     font-weight: 600;
   }
 
   /*2级导航*/
-  .list{
+  .list {
     display: none;
-    height:246px;
+    height: 246px;
     position: absolute;
     top: 100%;
     left: 0;
@@ -541,49 +621,50 @@
     border-bottom: 1px solid #fff;
     z-index: 3;
   }
-  .list li{
+
+  .list li {
     display: list-item;
     text-align: -webkit-match-parent;
     border-bottom: 1px solid #ddd;
   }
 
-  @media only screen and (min-width:992px){
+  @media only screen and (min-width: 992px) {
     .nav {
       display: block !important;
     }
   }
-  @media only screen and (max-width:992px){
+
+  @media only screen and (max-width: 992px) {
     .nav {
       position: absolute;
       display: none;
-      left:0;
-      top:60px;
-      width:175px;
-      box-shadow:0 1px 5px rgba(13,62,73,.2);
+      left: 0;
+      top: 60px;
+      width: 175px;
+      box-shadow: 0 1px 5px rgba(13, 62, 73, .2);
       z-index: 99;
     }
-    .nav._block{
+
+    .nav._block {
       display: inline-block;
     }
+
     .nav li {
       width: 100%;
-      margin:0;
-      background:#fff;
-      border-bottom:1px solid #f0f2f5;
+      margin: 0;
+      background: #fff;
+      border-bottom: 1px solid #f0f2f5;
     }
-    .navmenu{
+
+    .navmenu {
       display: inline-block;
-      margin-left:70px;
+      margin-left: 70px;
     }
-    #nav_box.scrolled .logo{
-      background:url('/static/img/slogo.png') 6px/60px no-repeat;
+
+    #nav_box.scrolled .logo {
+      background: url('/static/img/slogo.png') 6px/60px no-repeat;
     }
   }
-
-
-
-
-
 
 
 </style>
