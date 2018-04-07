@@ -59,10 +59,10 @@
     <div class="main" :class="reg.test($route.path)?' wrap_gray':'main'">
       <!-- 展示 -->
       <div class="one_block">
-        <!--缓存在dev时不用-->
-        <!--<keep-alive>-->
+        <!--:exclude="regXXX" 匹配正则时v-bind-->
+        <keep-alive exclude="contents">
         <router-view></router-view>
-        <!--</keep-alive>-->
+        </keep-alive>
         <ft></ft>
       </div>
     </div>

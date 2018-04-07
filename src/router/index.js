@@ -18,42 +18,30 @@ const AdminList = r => require.ensure([], () => r(require('@/components/stage/Ad
 Vue.use(Router)
 
 const router = new Router({
-  //以下dev时注释掉
+  //记录历史滚动条位置尚未完善
   mode: 'history',
   saveScrollPosition: true,
   routes: [
     {
       path: '/login',
       name: 'login',
-      component: Login,
-      meta: {
-        keepAlive: true
-      }
+      component: Login
     },
     {
       path: '/',
       name: 'index',
       component: Index,
-      meta: {
-        keepAlive: true
-      },
       redirect: '/home',
       children: [
         {
           path: '/articles',
           name: 'articles',
-          component: Articles,
-          meta: {
-            keepAlive: true
-          },
+          component: Articles
         },
         {
           path: '/cases',
           name: 'cases',
-          component: Case,
-          meta: {
-            keepAlive: true
-          },
+          component: Case
         },
           {
             path: '/novel',
@@ -63,10 +51,7 @@ const router = new Router({
         {
           path: '/home',
           name: 'home',
-          component: Home,
-          meta: {
-            keepAlive: true
-          }
+          component: Home
         },
         {
           path: '/:jump/:random/yuge:id.html',
