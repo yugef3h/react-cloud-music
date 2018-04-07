@@ -59,7 +59,7 @@
     <div class="main" :class="reg.test($route.path)?' wrap_gray':'main'">
       <!-- 展示 -->
       <div class="one_block">
-        <!--缓存在博客中不建议用-->
+        <!--缓存在dev时不用-->
         <!--<keep-alive>-->
         <router-view></router-view>
         <!--</keep-alive>-->

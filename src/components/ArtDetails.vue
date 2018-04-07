@@ -138,7 +138,7 @@
           console.log(error)
         });
       }
-    }
+    },
   }
 </script>
 <style lang="scss" scoped>
