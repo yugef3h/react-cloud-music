@@ -55,7 +55,7 @@
       </div>
     </div>
     <!--路由内容-->
-    <!--正则判断路由中带有yuge的正文 .main 修改背景色-->
+    <!--.main 修改背景色-->
     <div class="main" :class="reg.test($route.path)?' wrap_gray':'main'">
       <!-- 展示 -->
       <div class="one_block">
@@ -66,15 +66,13 @@
         <ft></ft>
       </div>
     </div>
-    <!--看！飞机-->
-    <div id="toTop" @click="getTop" v-show="isShow">
-      <i class="fa fa-space-shuttle" aria-hidden="true"></i>
-    </div>
+      <backtop></backtop>
   </div>
 </template>
 <script>
   import atoms from './vmods/atoms.vue'
   import ft from './vmods/footer.vue'
+  import backtop from './vmods/backtop.vue'
   /* 引入公共方法 */
   export default{
     name: 'index',
@@ -101,14 +99,6 @@
           {name: "NOTE", router_name: "articles", icon: 'fa-list'},
           {name: "CASE", router_name: "cases", icon: 'fa-coffee'},
           {name: "NOVEL", router_name: "novel", icon: 'fa-home'}
-        ],
-        article_kind: [
-          {name: "Vue", path: "articles"},
-          {name: "Node", path: "articles"},
-          {name: "Javascript", path: "articles"},
-          {name: "HTML5", path: "articles"},
-          {name: "CSS3", path: "articles"},
-          {name: "Tools", path: "articles"}
         ]
       }
     },
@@ -117,12 +107,6 @@
       //'$route':'isTab'
     },
     mounted(){
-      //toTop watched
-      if (this.scrollmyself) {
-        this.target = this.$el.parentNode
-      } else {
-        this.target = document.body
-      }
       //nav_box watched
       window.addEventListener('scroll', this.handleScroll)
     },
@@ -158,12 +142,6 @@
         this.$router.push('/users/article')
         console.log('想搜' + this.searchwhat + '_&^361klg*吗...不好意思，喝断片了,下次再帮你搜吧,先给你张【笔记】飞机票...')
       },
-      //飞机
-      getTop () {
-        document.body.scrollTop = 0
-        document.documentElement.scrollTop = 0
-        //https://stackoverflow.com/questions/8917921/cross-browser-javascript-not-jquery-scroll-to-top-animation
-      },
       chopac () {
         clearTimeout(this.t)
         this.opac = !this.opac;
@@ -178,11 +156,11 @@
     },
     components: {
       ft,
-      atoms
+      atoms,
+      backtop
     }
   }
 </script>
-<!-- Add "scoped" attribute to limit CSS to this component only -->
 <style lang="scss" scoped>
 
     $bottom:5px;
