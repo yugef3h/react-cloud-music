@@ -222,30 +222,6 @@
             /*战时解决方案*/
             background:#f1f1f1;
         }
-        /*looktop*/
-        #toTop {
-            position: fixed;
-            right: 30px;
-            bottom: 60px;
-            cursor: pointer;
-            border: 1px solid #F0F2F5;
-            background: #fff;
-            border-radius: 3px;
-            padding: 10px 7px;
-            opacity: 0.5;
-            z-index: 999;
-
-            /*飞机*/
-            i {
-                display: block;
-                transform: rotate(-90deg);
-                font-size: 24px;
-                color: #32475f;
-            }
-        }
-        #toTop:hover {
-            opacity: 1;
-        }
     }
 
     #header * {

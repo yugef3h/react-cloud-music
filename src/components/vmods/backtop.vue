@@ -1,6 +1,6 @@
 <template>
     <div>
-        <button type="button" class="back-top" @click="backTop()" v-show="backTopShow"><i class="fa fa-space-shuttle" aria-hidden="true"></i></button>
+        <button type="button" class="back-top" @click="backTop()" v-show="backTopShow"><i class="fa fa-angle-up" aria-hidden="true"></i></button>
     </div>
 </template>
 <script type="text/ecmascript-6">
@@ -37,23 +37,27 @@
     }
 </script>
 <style lang="scss" scoped>
-    .back-top {
-        position: fixed;
-        right: 30px;
-        bottom: 60px;
-        cursor: pointer;
-        border: 1px solid #F0F2F5;
-        background: #fff;
-        border-radius: 3px;
-        padding: 10px 7px;
-        opacity: 0.5;
-        outline:none;
-        i {
-            display: block;
-            transform: rotate(-90deg);
-            font-size: 24px;
-            color: #32475f;
-        }
-    }
+  .back-top {
+      position: fixed;
+      right: 30px;
+      bottom: 60px;
+
+      cursor: pointer;
+      border: 1px solid #F0F2F5;
+      background: #fff;
+      border-radius: 3px;
+      padding: 4px 10px 8px;
+      opacity: 0.5;
+      outline:none;
+      i {
+          display: block;
+/*            transform: rotate(-90deg);*/
+          font-size: 24px;
+          color: #32475f;
+      }
+  }
+  .back-top:hover {
+    opacity: 1;
+  }
 
 </style>
