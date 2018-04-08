@@ -80,10 +80,7 @@
         opac: false,
         menu: [
           {name: "Home", router_name: "index"},
-          {name: "Note", router_name: "articles"},
-          /*{name: "Tools", router_name: "cases"},
-          {name: "Enjoy", router_name: "novel"},
-          {name: "Features", router_name: "novel"}*/
+          {name: "Note", router_name: "articles"}
         ]
       }
     },
@@ -116,24 +113,6 @@
           this.nav_box = false
           this.isShow = false
         }
-      },
-      //搜索
-      search_handle () {
-        let oMain = document.querySelector('.main')
-        //暴力跳转
-        //oMain.scrollIntoView()
-        this.$router.push('/users/article')
-      },
-      chopac () {
-        clearTimeout(this.t)
-        this.opac = !this.opac;
-        let self = this;
-        this.t = setTimeout(function () {
-          if (document.querySelector('.opac')) {
-            document.querySelector('.opac').className = 'opac0'
-            self.opac = false
-          }
-        }, 3000)
       }
     },
     components: {
