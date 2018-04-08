@@ -8,11 +8,10 @@
           </button>
           <div class="navbar-container">
             <ul class="nav navbar-nav navbar-main">
-              <li>
-                <a href="#">Home</a>
-              </li>
-              <li>
-                <a href="#">Note</a>
+              <li  v-for="(item,index) in menu" :key="index">
+                <router-link :to="{name:item.router_name}">
+                &nbsp;{{item.name}}
+                </router-link>
               </li>
               <li class="dropdown">
                 <a href="#" data-toggle="dropdown">Tools</a>
@@ -33,7 +32,7 @@
               </li>
             </ul>
             <ul class="nav navbar-buttons">
-              <li><a href="#" class="btn btn-outline btn-light">Log In</a></li>
+              <li><router-link to="/login" class="btn btn-outline btn-light">Log In</router-link></li>
               <li><a href="#" class="btn btn-dark">Create Account</a></li>
             </ul>
           </div>
@@ -44,13 +43,20 @@
     <div class="page-banner page-banner-home">
       <br/><br/><br/><br/><br/><br/>
     </div>
-    <div style="height: 1000px;"></div>
-
+    <div>
+      <div>
+        <keep-alive exclude="contents">
+          <router-view></router-view>
+        </keep-alive>
+        <ft></ft>
+      </div>
+    </div>
+    <bp></bp>
   </div>
 </template>
 <script>
   import ft from './vmods/footer.vue'
-  import backtop from './vmods/backtop.vue'
+  import bp from './vmods/backtop.vue'
   /* 引入公共方法 */
   export default{
     name: 'index',
@@ -73,10 +79,11 @@
         bool: true,
         opac: false,
         menu: [
-          {name: "HOME", router_name: "index", icon: 'fa-home'},
-          {name: "NOTE", router_name: "articles", icon: 'fa-list'},
-          {name: "CASE", router_name: "cases", icon: 'fa-coffee'},
-          {name: "NOVEL", router_name: "novel", icon: 'fa-home'}
+          {name: "Home", router_name: "index"},
+          {name: "Note", router_name: "articles"},
+          /*{name: "Tools", router_name: "cases"},
+          {name: "Enjoy", router_name: "novel"},
+          {name: "Features", router_name: "novel"}*/
         ]
       }
     },
@@ -131,7 +138,7 @@
     },
     components: {
       ft,
-      backtop
+      bp
     }
   }
 </script>
