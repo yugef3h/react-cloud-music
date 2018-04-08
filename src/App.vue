@@ -8,7 +8,6 @@
   export default {
     data () {
       return {
-        stage: true
       }
     },
     mounted () {

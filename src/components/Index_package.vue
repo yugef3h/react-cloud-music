@@ -112,7 +112,7 @@
         },
         beforeDestroy () {
             //  组件销毁的时候，需要删除scroll的监听事件。
-            this.target.removeEventListener('scroll', this.showIcon)
+            //this.target.removeEventListener('scroll', this.showIcon)
         },
         // 离开该页面需要移除这个监听的事件，不然会报错
         destroyed () {
