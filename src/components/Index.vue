@@ -24,11 +24,11 @@
               <li class="dropdown">
                 <a href="#" data-toggle="dropdown">Enjoy</a>
                 <ul class="dropdown-menu">
-                  <li class="nov-search"><a href="#">Novel Search</a></li>
+                  <li class="nov-search"><router-link to="/novel">Novel Search</router-link></li>
                 </ul>
               </li>
               <li>
-                <a href="#">Features</a>
+                <router-link to="/home">Features</router-link>
               </li>
             </ul>
             <ul class="nav navbar-buttons">
