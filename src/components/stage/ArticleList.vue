@@ -51,7 +51,7 @@
     methods:{
       //获取文章列表
       getArticleList(page){
-        var _this = this;
+        let _this = this;
         this.$reqs.post('/users/article',{
           page:page,
           rows:5

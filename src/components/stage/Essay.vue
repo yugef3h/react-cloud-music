@@ -59,7 +59,7 @@
     methods: {
       release () {
         //console.log(this.msg.title)
-        var _this = this
+        let _this = this
         _this.$reqs.post("/users/essay",{
           title:this.msg.title,
           content:this.msg.htmlValue
