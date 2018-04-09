@@ -16,6 +16,7 @@
               <li class="dropdown">
                 <a href="#" data-toggle="dropdown">Tools</a>
                 <ul class="dropdown-menu">
+                  <li><a href="http://www.bootcdn.cn/" target="_blank">BootCDN</a></li>
                   <li><a href="https://tinypng.com/" target="_blank">TinyPNG</a></li>
                   <li><a href="http://www.zhangxinxu.com/sp/base64.html" target="_blank">DragIn Base64</a></li>
                   <li><a href="http://www.zhangxinxu.com/sp/css-compress-mini.html" target="_blank">Css Compressor</a></li>
