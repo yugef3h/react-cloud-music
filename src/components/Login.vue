@@ -42,7 +42,7 @@
             path: redirect
           })
         }*/
-        var _this = this;
+        let _this = this;
         this.disablebtn = true;
         this.loginText = "登录中...";
         //this.$reqs就访问到了main.js中绑定的axios

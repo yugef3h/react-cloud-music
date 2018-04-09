@@ -42,7 +42,7 @@
     },
     methods: {
       getCaseList(page){
-        var _this = this;
+        let _this = this;
         this.$reqs.post('/users/case', {
           page: page,
           rows: 8

@@ -117,17 +117,18 @@
     },
     methods: {
       getArtDet () {
-        var url_c = '/users/'+this.$route.params.jump+'/'+this.$route.params.id+'.html'
+        let url_c = '/users/'+this.$route.params.jump+'/'+this.$route.params.id+'.html';
+        let _this = this;
         //console.log(url_c)
         this.$reqs.get(url_c).then(res => {
           //console.log(res);
-          this.det_cont = res.data.data[0];
+          _this.det_cont = res.data.data[0];
         }).catch(err => {
           console.log(err);
         })
       },
       getTitle(){
-        var _this = this;
+        let _this = this;
         this.$reqs.post('/users/article', {
           rows: 8
         }).then(result => {

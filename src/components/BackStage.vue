@@ -119,11 +119,12 @@
         })
       },
       submitPas () { // 修改密码提交
+        let _this = this;
         //console.log(this.alterpass)
         this.$reqs.post('/users/alterpass',this.alterpass)
         .then(res => {
-          this.emptyAdmin()
-          this.showalpass = !this.showalpass
+          _this.emptyAdmin()
+          _this.showalpass = !this.showalpass
           alert('修改成功')
         }).catch(err => {
           console.log(err)

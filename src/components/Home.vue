@@ -74,7 +74,7 @@
     },
     methods:{
       getArticles () {
-        var _this=this;
+        let _this=this;//保险：this 重新赋值给promise 成功的结果 _this.info
         //    post   /users/article
         _this.$reqs.post('/users/article',{
           rows:3

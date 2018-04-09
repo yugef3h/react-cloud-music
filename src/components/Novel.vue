@@ -22,12 +22,13 @@
     },
     methods: {
       search () {
+        let _this = this;
         if (this.keyn) {
           this.$reqs.post('/users/novel', {
             keyn: this.keyn.trim()
           }).then(res => {
-            console.log(res.data)
-          this.menus = res.data.content.split('-');
+            //console.log(res.data)
+            _this.menus = res.data.content.split('-');
         }).catch(err => {
             console.log(err)
         })
