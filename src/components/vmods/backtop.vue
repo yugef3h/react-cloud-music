@@ -58,6 +58,7 @@
   }
   .back-top:hover {
     opacity: 1;
+    background: #3ba3ff;
   }
 
 </style>
