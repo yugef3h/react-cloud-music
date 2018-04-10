@@ -74,7 +74,7 @@
     },
     methods:{
       getArticles () {
-        let _this=this;//保险：this 重新赋值给promise 成功的结果 _this.info
+        let _this=this;//保险：this 重新赋值给promise 成功的结果 _this.info，回过头思考：.vue模块作用域内data数据就是箭头函数的this数据啊...
         //    post   /users/article
         _this.$reqs.post('/users/article',{
           rows:3

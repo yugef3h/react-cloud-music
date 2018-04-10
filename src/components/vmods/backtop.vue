@@ -1,18 +1,22 @@
 <template>
     <div>
-        <button type="button" class="back-top" @click="backTop()" v-show="backTopShow"><i class="fa fa-angle-up" aria-hidden="true"></i></button>
+        <button type="button" class="back-top" @click="backTop()" :class="{active: bTopShow}"><i class="fa fa-angle-up" aria-hidden="true"></i></button>
     </div>
 </template>
 <script type="text/ecmascript-6">
     export default {
         data() {
             return {
-                backTopShow:false
+              bTopShow:false
             }
         },
         components: {},
         mounted() {
-            window.addEventListener('scroll', this.handleScroll)
+          let _this = this
+          window.addEventListener('scroll', function(){
+            this.scrollY > 300 ? _this.bTopShow = true : _this.bTopShow = false
+          })
+          //window.addEventListener('scroll', this.handleScroll)
         },
         methods: {
             backTop() {
@@ -25,40 +29,44 @@
                     }
                 });
             },
-            handleScroll(){
+            /*handleScroll(){
                 if (document.documentElement.scrollTop + document.body.scrollTop > 100) {
-                    this.backTopShow=true;
+                    this.bTopShow=true;
                 }
                 else {
-                    this.backTopShow=false;
+                    this.bTopShow=false;
                 }
-            }
+            }*/
         }
     }
 </script>
 <style lang="scss" scoped>
   .back-top {
-      position: fixed;
+    position: fixed;
+    right: -100px;
+    bottom: 60px;
+    transition: .7s;
+    cursor: pointer;
+    border: 1px solid #F0F2F5;
+    background: #fff;
+    border-radius: 3px;
+    padding: 4px 10px 8px;
+    opacity: 0.5;
+    outline: none;
+    &.active {
       right: 30px;
-      bottom: 60px;
-
-      cursor: pointer;
-      border: 1px solid #F0F2F5;
-      background: #fff;
-      border-radius: 3px;
-      padding: 4px 10px 8px;
-      opacity: 0.5;
-      outline:none;
-      i {
-          display: block;
-/*            transform: rotate(-90deg);*/
-          font-size: 24px;
-          color: #32475f;
-      }
+    }
+    i {
+      display: block;
+      /*            transform: rotate(-90deg);*/
+      font-size: 24px;
+      color: #32475f;
+    }
   }
+
   .back-top:hover {
     opacity: 1;
-    background: #3ba3ff;
+    background: #fff;
   }
 
 </style>

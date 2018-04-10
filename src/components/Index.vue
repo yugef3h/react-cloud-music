@@ -6,6 +6,12 @@
           <button class="navbar-toggle btn btn-link btn-icon" type="button">
             <i><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></i>
           </button>
+          <div class="navbar-header">
+            <a href="/" class="navbar-brand"></a>
+            <a href="http://www.blackatall.cn" class="navbar-login btn btn-link btn-icon">
+                <i class="zmdi zmdi-account-o zmdi-hc-fw"></i>
+            </a>
+          </div>
           <div class="navbar-container">
             <ul class="nav navbar-nav navbar-main">
               <li  v-for="(item,index) in menu" :key="index">
@@ -131,6 +137,91 @@
     margin-right: auto;
     margin-left: auto;
   }
+  @media (min-width: 768px) {
+    .navbar-header {
+      float: left;
+    }
+  }
+  @media (min-width: 768px) {
+    .container > .navbar-header,
+    .container-fluid > .navbar-header,
+    .container > .navbar-collapse,
+    .container-fluid > .navbar-collapse {
+      margin-right: 0;
+      margin-left: 0;
+    }
+  }
+  .navbar-brand {
+    height: 58px;
+    padding: 0;
+    margin: -6px 0 -6px;
+    font-size: 18px;
+    line-height: 20px;
+  }
+  @media (min-width: 768px) {
+    .navbar-brand {
+      float: left;
+    }
+    .navbar > .container .navbar-brand,
+    .navbar > .container-fluid .navbar-brand {
+      margin-left: 0;
+    }
+  }
+  .navbar-brand {
+    height: 58px;
+    width: 167px;
+    background: url(/static/img/vrlogo.svg) no-repeat 0 0;
+    background-size: cover;
+  }
+  @media (max-width: 767px) {
+    .page-navbar .container {
+      padding: 0 10px;
+    }
+    .page-navbar .navbar-header {
+      position: relative;
+      z-index: 2;
+      padding: 0 0 0 36px;
+      margin: 0;
+      text-align: center;
+    }
+    .navbar-header .navbar-brand {
+      display: inline-block;
+      float: none;
+      height: 52px;
+      width: 152px;
+    }
+    .navbar-open .navbar-toggle span {
+      background-color: #1e88e5;
+    }
+    .navbar-brand {
+      margin: -3px 0 -11px;
+    }
+  }
+  @media (min-width: 768px) {
+    .navbar-brand {
+      float: left;
+    }
+    .navbar > .container .navbar-brand,
+    .navbar > .container-fluid .navbar-brand {
+      margin-left: 0;
+    }
+  }
+  .navbar-login {
+    float: right;
+  }
+  .zmdi {
+    display: inline-block;
+    font: normal normal normal 14px/1 'Material-Design-Iconic-Font';
+    font-size: inherit;
+    text-rendering: auto;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+  .zmdi-hc-fw {
+    width: 1.28571429em;
+    text-align: center;
+  }
+
   .btn-link, .btn-link:active, .btn-link.active, .btn-link[disabled], fieldset[disabled] .btn-link {
     background-color: transparent;
     -webkit-box-shadow: none;
@@ -393,11 +484,7 @@
     }
   }
 
-  @media (max-width: 767px){
-    .page-navbar .container {
-      padding: 0 10px;
-    }
-  }
+
   @media (max-width: 767px){
     .container {
       padding-left: 20px;
@@ -783,7 +870,7 @@
   }
 
   .page-banner-home:after {
-    height: 750px;
+    height: 300px;
   }
   @media (max-width: 767px){
     .page-banner-home:after {
