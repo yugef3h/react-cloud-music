@@ -11,7 +11,7 @@
       }
     },
     mounted () {
-      document.addEventListener('visibilitychange', this.changeTitle, false)
+      //document.addEventListener('visibilitychange', this.changeTitle, false)
     },
     methods: {
       changeTitle () {            // 切换标签页后，改变title
