@@ -5,7 +5,7 @@ router-link tobe modify
  -->
 <template>
   <div id="footer">
-      Copyright © 2017-2018 <a href="http://www.blackatall.cn">Yuge Blog</a><span> All Rights Reserved. 闽ICP备17030754号-1</span>
+      Copyright © 2017-2018 <a href="http://www.blackatall.cn">Yuge Blog</a><span> All Rights Reserved. </span><span class="record">闽ICP备17030754号-1</span>
   </div>
 </template>
 <script>
@@ -35,6 +35,12 @@ router-link tobe modify
   @media screen and (max-height:1023px){
     #footer {
       width:98%;
+    }
+  }
+  @media (max-width:767px) {
+    .record {
+      display: block;
+      text-align: center;
     }
   }
 </style>

@@ -186,7 +186,7 @@
     }
     .navbar-header .navbar-brand {
       display: inline-block;
-      float: none;
+      float: right;
       height: 52px;
       width: 152px;
     }
@@ -207,7 +207,7 @@
     }
   }
   .navbar-login {
-    float: right;
+    float: none;
   }
   .zmdi {
     display: inline-block;
