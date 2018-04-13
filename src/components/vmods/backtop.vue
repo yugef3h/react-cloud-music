@@ -54,7 +54,7 @@
     opacity: 0.5;
     outline: none;
     &.active {
-      right: 30px;
+      right: 50px;
     }
     i {
       display: block;

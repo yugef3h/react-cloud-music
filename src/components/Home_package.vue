@@ -1,28 +1,61 @@
 <template>
   <div>
     <!--课程列表-->
-    <article class="article-header">最新文章</article>
-    <article class="article-list">
-      该项目很早以前就开始写了，算是用vue写的第一个项目，所以代码还是有不少问题，但是应该很符合vue入门使用者的写法，比如直接修改state：this.$store.state.xx = xx。
-    </article>
-    <article class="article-list">
-      该项目很早以前就开始写了，算是用vue写的第一个项目，所以代码还是有不少问题，但是应该很符合vue入门使用者的写法，比如直接修改state：this.$store.state.xx = xx。
-    </article>
-    <article class="article-list">
-      该项目很早以前就开始写了，算是用vue写的第一个项目，所以代码还是有不少问题，但是应该很符合vue入门使用者的写法，比如直接修改state：this.$store.state.xx = xx。
-    </article>
-    <article class="article-list">
-      该项目很早以前就开始写了，算是用vue写的第一个项目，所以代码还是有不少问题，但是应该很符合vue入门使用者的写法，比如直接修改state：this.$store.state.xx = xx。
-    </article>
-    <article class="article-list">
-      该项目很早以前就开始写了，算是用vue写的第一个项目，所以代码还是有不少问题，但是应该很符合vue入门使用者的写法，比如直接修改state：this.$store.state.xx = xx。
-    </article>
-    <div class="article-list">
-      <span>
-        加载更多...
-      </span>
+    <div class="main">
+      <div class="one_block">
+        <div class="title">
+          <img src="/static/img/titleimg01.jpg" alt="分区图标">
+          <span>// 01</span><span> Basic</span>
+          <h1>置顶</h1>
+        </div>
+        <ul class="list">
+          <li v-for="(item,index) in info" :key="index">
+            <router-link  :to="{name:'contents',params:{jump:'articles',random:Math.floor(Math.random()*199301),id:item.id}}">
+              <div>
+                <img class="lazy" :src="imghurl+urlarr1[index]" :data-original="imghurl+urlarr1[index]" alt="随机图标">
+              </div>
+              <h4>{{item.title}}</h4>
+              <div class="text">
+                <em>{{item.author}}</em>
+                <i class="fa fa-eye" aria-hidden="true"></i>
+                <span>{{item.see}}查看</span>
+                <i class="fa fa-heart" aria-hidden="true"></i>
+                <span>{{item.chart}}喜欢</span>
+              </div>
+            </router-link>
+          </li>
+        </ul>
+      </div>
+      <div class="one_block">
+        <div class="title">
+          <img src="/static/img/titleimg02.jpg" alt="分区图标">
+          <span>// 02</span><span> Advance</span>
+          <h1>文章随笔</h1>
+        </div>
+        <ul class="list">
+          <li v-for="(item,index) in info"  :key="index">
+            <router-link  :to="{name:'contents',params:{jump:'articles',random:Math.floor(Math.random()*199301),id:item.id}}">
+              <div><img class="lazy" :src="imghurl+urlarr2[index]" :data-original="imghurl+urlarr2[index]" alt="数据库随机图标"></div>
+              <h4>{{item.title}}</h4>
+              <div class="text">
+                <em>{{item.author}}</em>
+                <i class="fa fa-eye" aria-hidden="true"></i>
+                <span>{{item.see}}查看</span>
+                <i class="fa fa-heart" aria-hidden="true"></i>
+                <span>{{item.chart}}喜欢</span>
+              </div>
+            </router-link>
+          </li>
+        </ul>
+      </div>
+      <div class="one_block">
+        <div class="title upda">
+          <img src="/static/img/titleimg03.jpg" alt="分区图标">
+          <span>// 03</span><span> Going on</span>
+          <h1>持续更新中 . . </h1>
+        </div>
+      </div>
     </div>
-
   </div>
 </template>
 <script>
@@ -186,41 +219,4 @@
 
   }
 
-</style>
-<style>
-
-  .article-list{
-    background: #fff;
-    margin: 25px auto;
-    border-radius: 5px;
-    padding:15px;
-    height:160px;
-    border: solid 1px #f7f5fa;
-  }
-
-  .article-list:last-child{
-    height:45px;
-    width:130px;
-    text-align: center;
-    padding: 10px;
-    background: linear-gradient(45deg, #0B4182 1%, #1e88e5 64%, #40BAF5 97%);
-    color:#fff;
-  }
-  .article-header{
-    background: linear-gradient(45deg, #0B4182 1%, #1e88e5 64%, #4FBFFF 97%);
-    padding:8px 15px;
-    border-radius: 5px 5px 0 0;
-    height:40px;
-    margin:25px auto 0;
-    border-bottom: 1px solid #fff;
-    color:#fff;
-  }
-  .article-list:nth-child(2){
-    border-radius: 0 0 5px 5px;
-    margin: 0 auto 25px;
-  }
-  .article-list:hover {
-    z-index: 2;
-    box-shadow: 0px 0px 50px 15px rgba(238, 238, 238, 0.8);
-  }
 </style>

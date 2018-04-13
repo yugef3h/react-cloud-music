@@ -2,22 +2,23 @@
   <div>
     <loading v-show="loading"></loading>
     <div class="cent">
-      <p>1.保存搜索记录功能</p>
-      <p>2.翻页</p>
-      <input type="text" placeholder="请输入书名或作者搜索" v-model="keyn" @keyup.13="search(null,0)">
-      <button type="button" @click="search(null,0)" >Search</button>
+      <div class="rig">
+        <input type="text" placeholder="请输入书名或作者搜索" v-model="keyn" @keyup.13="search(null,0)">
+        <button type="button" @click="search(null,0)" >Search</button>
+      </div>
+
       <p><a href="javascript:" @click="search(null,null)" v-show="tipshow">{{tips}}</a></p>
-      <ul  v-show="menyshow">
-        <li v-for="(item,index) in choics" :key="index">
+      <ul  v-show="menyshow" class="menu">
+        <li v-for="(item,index) in choics" :key="'choics'+ index">
           <a href="javascript:" @click="search(item.split('+')[1],null)">{{item.split('+')[0]}}</a>
         </li>
-        <p><a href="javascript:" @click="search(null,1)"class="meny">都不符合 ? 换一批 =></a></p>
+        <li><a href="javascript:" @click="search(null,1)"class="meny">都不符合 ? 换一批 <i class="fa fa-sign-out"></i></a></li>
       </ul>
 
     </div>
     <ul v-show="menusshow" class="flex">
       <li class="flex-1">《{{name}}》 <span v-html="author"></span>  &nbsp; </li>
-      <li v-for="(item,index) in menus" :key="index" class="flex-4-1">
+      <li v-for="(item,index) in menus" :key="'menus'+ index" class="flex-4-1">
         <a :href="item.split('+')[1]">{{item.split('+')[0]}}</a>
       </li>
     </ul>
@@ -89,14 +90,37 @@
 <style lang="scss" scoped>
   .cent {
     text-align: center;
-    margin: 5px auto;
+    margin: 18px auto;
   }
-  .meny{
-    color:orangered;
-  }
-  .flex{
+
+  .menu {
+    margin: 20px auto;
+    width:35%;
     background: #E9FAFF;
     border: 2px solid #88C6E5;
+    li {
+      border-bottom: 1px dashed #ccc;
+    }
+    .meny{
+      color:#000;
+
+    }
+    li:last-child {
+      background: #C3DFEA;
+    }
+  }
+  .flex{
+    background: #f9f9fc;
+    border: 1px solid #d4d8eb;
+    font-size: 13px;
+    li a {
+      color: #6d93e4;
+    }
+  }
+  input{
+    border: 1px solid #1e88e5;
+    outline: none;
+    padding: 4px;
   }
   button{
     padding: 5px 20px;
@@ -117,10 +141,10 @@
   .flex-1 {
     flex-grow:5;
     width:100%;
-    background: #C3DFEA;
+    background: rgba(229, 230, 241, 0.5);
     text-align: center;
-    color: #000;
-
+    color: #1669ba;
+    font-weight: bold;
   }
   li {
     margin: 2px;
@@ -129,7 +153,7 @@
     .flex {
       display: flex;
       flex-wrap: wrap;
-      margin:5px 30px;
+      margin:5px 5px;
     }
     .flex-4-1 {
       flex-grow:1;
@@ -138,6 +162,9 @@
     }
   }
   @media only screen and (max-width: 767px) {
+    .menu {
+      width: 70%;
+    }
     .flex {
       display: flex;
       flex-wrap: wrap;
@@ -145,6 +172,25 @@
     }
     .flex-4-1 {
       width: 100%;
+    }
+
+  }
+  @media only screen and (max-width: 500px) {
+
+    input {
+      width: 59%;
+    }
+  }
+  @media only screen and (min-width:992px) and (max-width:1199px) {
+    .flex {
+      display: flex;
+      flex-wrap: wrap;
+      margin:5px 5px;
+    }
+    .flex-4-1 {
+      flex-grow:1;
+      width: 45%;
+
     }
   }
 </style>

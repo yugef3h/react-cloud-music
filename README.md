@@ -25,5 +25,9 @@ npm run build --report
 3、更新对应文章title
 4、整体主页homepage变动
 5、后台转elm-ui
+6、novel 的翻页和搜索记录
+7、加载更多
+8、
+9、
 ```
 For a detailed explanation on how things work, check out the [guide](http://vuejs-templates.github.io/webpack/) and [docs for vue-loader](http://vuejs.github.io/vue-loader).

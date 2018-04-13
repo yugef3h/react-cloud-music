@@ -1,49 +1,71 @@
 <template>
-  <div class="fr sidebar-wrap hide-1200px">
-    <div class="sidebar-list" v-if="blogInfo.setExtend.sidebar_notice" :class="{ 'float': bFloat }">
-      <h2 class="title"><i class="iconfont icon-notice1"></i>公告</h2>
-      <div class="list content" v-html="blogInfo.setExtend.sidebar_notice"></div>
+  <div id="sidebar">
+    <div class="sidebar-list">
+      <div class="hd"><h2>Notice</h2></div>
+      <div class="bd">
+      </div>
     </div>
-    <div class="sidebar-list sidebar-new-comment" :class="{ 'float': !blogInfo.setExtend.sidebar_notice && bFloat }">
-      <h2 class="title"><i class="iconfont icon-hot1"></i>最新评论</h2>
-      <ul class="list-wrap new-comment">
-        <li class="list clearfix" v-for="item in blogInfo.newComment" :key="item.key">
-          <div class="fl" v-html="item.avatar"></div>
-          <router-link :to="{ name: 'single', params: { id: item.comment_post_ID } }" :title="item.title" v-html="item.title"></router-link>
-          <p class="link-text f-s-12px">{{ item.countCom }}人发表意见，{{ item.link }}人喜欢</p>
-        </li>
-      </ul>
+    <div class="sidebar-list">
+      <div class="hd"><h2>Recent Posts</h2></div>
+      <div class="bd">
+        <ul class="list-type">
+          <li><a href="#">We’ve Moved to Tumblr!</a></li>
+          <li><a href="#">1</a></li>
+          <li><a href="#">2</a></li>
+          <li><a href="#">3</a></li>
+          <li><a href="#">YUI Gallery Deprecation Announcement</a></li>
+
+        </ul>
+      </div>
     </div>
-    <div class="sidebar-list" v-show="blogInfo.getSidebarCount === 'on'">
-      <h2 class="title"><i class="iconfont icon-count"></i>站点统计</h2>
-      <ul class="sidebar-count">
-        <li class="list">标签：{{ blogInfo.getAllCountTag }}个</li>
-        <li class="list">文章：{{ blogInfo.getAllCountArticle }}篇</li>
-        <li class="list">页面：{{ blogInfo.getAllCountPage }}个</li>
-        <li class="list">评论：{{ blogInfo.getAllCountComment }}条</li>
-        <li class="list">分类：{{ blogInfo.getAllCountCat }}个</li>
-        <li class="list">最后更新：{{ blogInfo.lastUpDate }}</li>
-      </ul>
+    <div class="sidebar-list">
+      <div class="hd"><h2>Archives</h2></div>
+      <div class="bd">
+        <select>
+          <option>Select Month &nbsp;&nbsp;</option>
+          <option>March 2018</option>
+          <option>February 2018</option>
+          <option>January 2018</option>
+        </select>
+      </div>
     </div>
-    <div class="sidebar-list link">
-      <h2 class="title"><i class="iconfont icon-link2"></i>友情链接</h2>
-      <div class="content sidebar-count" v-html="blogInfo.link"></div>
+    <div class="sidebar-list widget-categories">
+      <div class="hd"><h2>Categories</h2></div>
+      <div class="bd">
+        <ul class="list-type">
+          <li><a href="#">Accessibility </a>(25)</li>
+          <li><a href="#">CSS 101 </a>(8)</li>
+          <li><a href="#">Design </a>(51)</li>
+          <li><a href="#">Development </a>(13)</li>
+          <li><a href="#">Frontend Jobs at Yahoo </a>(8)</li>
+          <li><a href="#">Graded Browser Support </a>(81)</li>
+          <li><a href="#">In the Wild  </a>(18)</li>
+          <li><a href="#">Target Environments  </a>(8)</li>
+        </ul>
+      </div>
     </div>
   </div>
 </template>
 <script>
-  import store from '@/vuex/store'
-  import { mapState } from 'vuex'
+
   export default {
     name: 'sidebar',
-    store,
     data: () => ({
-      bFloat: false
+      bFloat: false,
+      blogInfo: {
+        sidebar_notice: `v2版 Blog 发布`,
+        getSidebarCount: 'on',
+        getAllCountTag:94,
+        getAllCountArticle:109,
+        getAllCountPage: 5,
+        getAllCountComment:980,
+        getAllCountCat: 19,
+        lastUpDate:'2018-4-11',
+        link: `<a href='/'>Yuge Blog</a>`
+      }
     }),
     computed: {
-      ...mapState({
-        blogInfo: state => state.info.blogInfo
-      })
+
     },
     mounted () {
       let that = this
@@ -54,81 +76,42 @@
   }
 </script>
 <style lang="scss" scoped>
-  .sidebar-wrap{
-    width: 300px;
+  .sidebar-list{
+    width:300px;
+    background: #f9f9fc;
+    margin: 20px 0;
+    border-radius: 5px;
+    border: 1px solid #d4d8eb;
+  }
+  .sidebar-list:first-child{
+    height:90px;
+    margin: 25px 0 20px;
+  }
 
-    .sidebar-list{
-      box-sizing: border-box;
-      margin-top: 15px;
-      padding: 0 15px 15px;
-      border-radius: 5px;
-      background: #fff;
-      color: $colorGay3;
-      &:first-of-type{
-        margin-top: 0;
-      }
-
-      &.float{
-        position: fixed;
-        top: 80px;
-        width: 300px;
-
-        &.sidebar-new-comment{
-          overflow: hidden;
-          height: 350px;
-        }
-      }
-
-      .list{
-        margin-top: 10px;
-      }
-
-      .title{
-        margin-bottom: 5px;
-        border-bottom: border-1($colorGay1);
-        font-size: 16px;
-        line-height: 40px;
-
-        .iconfont{
-          margin-right: 3px;
-          font-size: 16px;
-          font-weight: lighter;
-        }
-      }
-
-      .ellipsis{
-        width: 80%;
-      }
+  .list-type li {
+    color: #d4d5e3;
+    list-style-type: disc;
+    a {
+      color: #6d93e4;
+      text-decoration: none;
     }
-
-    // 统计
-    .sidebar-count{
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: space-between;
-
-      .list{
-        &:nth-of-type(odd){
-          width: 40%;
-        }
-        &:nth-of-type(even){
-          width: 58%;
-        }
-      }
-    }
-
-    // 评论列表
-    .new-comment{
-      a{
-        display: block;
-        overflow: hidden;
-        text-overflow: ellipsis;
-        white-space: nowrap;
-      }
-      .link-text{
-        margin-top: 5px;
-        color: $main-text-color;
-      }
-    }
+  }
+  h2{
+    color: #1669ba;
+    font-weight: bold;
+  }
+  .hd {
+    background: rgba(229, 230, 241, 0.5);
+    border-radius: 3px 3px 0 0;
+    padding: 4px 7px 5px;
+  }
+  .bd{
+    border-radius: 0 0 3px 3px;
+    padding: 10px 8px 10px;
+  }
+  ul, select{
+    margin: 0;
+    padding-left: 14px;
+    font-size:12px;
   }
 </style>

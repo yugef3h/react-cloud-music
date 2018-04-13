@@ -50,20 +50,24 @@
     <div class="page-banner page-banner-home">
       <br/><br/><br/><br/><br/><br/>
     </div>
-    <div>
-      <div>
+    <section class="wrap">
+      <div class="fl">
         <keep-alive exclude="contents">
           <router-view></router-view>
         </keep-alive>
-        <ft></ft>
       </div>
-    </div>
+
+
+      <sidebar class="fr"></sidebar>
+    </section>
+    <ft></ft>
     <bp></bp>
   </div>
 </template>
 <script>
   import ft from './vmods/footer.vue'
   import bp from './vmods/backtop.vue'
+  import sidebar from './vmods/sidebar.vue'
   /* 引入公共方法 */
   export default{
     name: 'index',
@@ -124,12 +128,12 @@
     },
     components: {
       ft,
-      bp
+      bp,
+      sidebar
     }
   }
 </script>
-<style>
-
+<style scoped>
 
   .container {
     padding-right: 10px;
@@ -905,5 +909,47 @@
     top: 0;
     opacity: 1;
   }
+  .fl{
+    float:left;
+  }
+  .fr{
+    float:right;
+  }
+</style>
+<style scoped>
+  .fl {
+    width:850px;
+    margin: 10px 10px auto 50px;
+  }
 
+
+  .fr{
+
+    margin: 10px 50px 10px 50px;
+  }
+
+  .wrap{
+    display:flex;
+    justify-content:center;
+  }
+  @media only screen and (max-width:991px) {
+    .fr{
+      display: none;
+    }
+    .fl {
+      flex-grow:1;
+      width:90%;
+      margin: 10px 50px 10px;
+    }
+  }
+  @media only screen and (max-width:767px) {
+    .fr{
+      display: none;
+    }
+    .fl {
+      flex-grow:1;
+      width:90%;
+      margin: 0px 20px;
+    }
+  }
 </style>
