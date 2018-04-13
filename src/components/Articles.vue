@@ -1,29 +1,42 @@
 <template>
-  <div class="wrap_w">
-    <div class="content">
-      <div class="clearfix navkind">
-        <span class="blue_block l"></span>
-        笔记
+  <div>
+    <!--课程列表-->
+    <article class="article-header">当前频道: 文章</article>
+    <article class="article-list"  v-for="(item,index) in newest" :key="index">
+      <div class="tag">
+        <a href="#" class="tag-a">标签1</a>
+        <a href="#" class="tag-a">标签2</a>
+        <a href="#" class="tag-a">标签3</a>
       </div>
-      <div class="article_con">
-        <ul class="clearfix list">
-          <li v-for="(item,index) in newest" class="l"  :key="index">
-            <router-link :to="{name:'contents',params:{jump:'articles',random:Math.floor(Math.random()*199301),id:item.id}}">
-              <div class="img_con">
-                <img :src="imgUrl+item.ArticleImg" width="259" height="178"/>
-              </div>
-              <h5 class="tit">{{item.title}}</h5>
-              <div class="clearfix text">
-                <i class="fa fa-eye"  aria-hidden="true"></i><span>{{item.see}}</span>
-                <i class="fa fa-heart"  aria-hidden="true"></i><span>{{item.chart}}</span>
-              </div>
-              <div class="des">{{item.des}}...</div>
-            </router-link>
-          </li>
-        </ul>
+      <router-link  :to="{name:'contents',params:{jump:'articles',random:Math.floor(Math.random()*199301),id:item.id}}">
+        <h4 class="w4">{{item.title}}</h4>
+      </router-link>
+      <div class="summary" v-html="item.content"></div>
+      <router-link  :to="{name:'contents',params:{jump:'articles',random:Math.floor(Math.random()*199301),id:item.id}}" class="c-blue">阅读详情&gt;&gt;</router-link>
+      <div class="art-info">
+        <div class="flex-1 flex-fl">
+          <i class="fa fa-fw fa-user" aria-hidden="true"></i>
+          <span>{{item.author}}</span>
+        </div>
+        <div class="flex-10">
+          <i class="fa fa-fw fa-clock-o" aria-hidden="true"></i>
+          <span>{{item.CreateTime}}</span>
+        </div>
+        <div class="flex-1 flex-fr">
+          <i class="fa fa-fw fa-comments-o" aria-hidden="true"></i>
+          <span>{{item.see}}</span>
+        </div>
+
+
+
       </div>
-      <div class="loading" v-if="loading">加载中...</div>
+    </article>
+    <div class="article-list">
+      <span>
+        加载更多...
+      </span>
     </div>
+
   </div>
 </template>
 <script>
@@ -58,135 +71,80 @@
 </script>
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style lang="scss" scoped>
-  .wrap_w {
-    background-color: #fff;
 
-    .content {
-      width: 1200px;
-      margin: 0 auto;
-    }
+  .article-list{
+    background: #fff;
+    margin: 25px auto;
+    border-radius: 5px;
+    padding:15px;
+    border: solid 1px #f7f5fa;
   }
 
-  .navkind {
-    color: #333;
-    padding: 20px 0 5px;
-    border-bottom: 1px solid #eee;
-    margin-bottom: 10px;
-    text-align: left;
-    text-indent: 15px;
-    font-size: 14px;
-    font-weight: 700;
-
-    .blue_block {
-      /*display: inline-block;*/
-      width: 5px;
-      height: 20px;
-      background-color: #007aff;
-    }
-
-    .l {
-      float: left;
-    }
-  }
-
-  .clearfix:after {
-    content: "";
-    width: 100%;
-    height: 0;
-    display: block;
-    clear: both;
-  }
-
-
-  /*列表*/
-  .article_con{
-    margin: 20px 0 0;
-    padding-bottom: 20px;
-    border:1px solid #f8f8f8;
-  }
-  .article_con ul li{
-    width: 299px;
-    padding: 20px;
-    box-sizing: border-box;
-    transition: all 500ms;
-    text-align: left;
-    font-size: 16px;
-    background-color: #fff;
-    float:left;
-
-    .tit{
-      font-weight: normal;
-      font-size: 18px;
-      height: 20px;
-      line-height: 1.5em;
-      color: #32475f;
-      padding: 5px 0;
-      overflow: hidden;
-      margin-bottom: 5px;
-
-
-    }
-
-    .img_con{
-      height: 180px;
-      overflow: hidden;
-
-      img{
-        max-width: 100%
-      }
-    }
-
-    .des{
-      font-size: 12px;
-      line-height: 1.5em;
-      color: #32475f;
-      overflow: hidden;
-    }
-
-    .text{
-      margin-bottom: 10px;
-
-      i {
-        margin: 0 5px 0 5px;
-      }
-
-      span, i {
-        color: #979fa8;
-        font-size: 12px;
-      }
-    }
-  }
-
-  .article_con ul li:hover{
-    box-shadow: 0 0 10px #ccc;
-    transform: translateY(-2px);
-  }
-
-  .loading {
+  .article-list:last-child{
+    height:45px;
+    width:130px;
     text-align: center;
-    color: #999;
-    font-size: 12px;
-    padding: 20px;
+    padding: 10px;
+    background: linear-gradient(45deg, #0B4182 1%, #1e88e5 64%, #40BAF5 97%);
+    color:#fff;
   }
-
-  /*手机*/
-  @media only screen and (max-width: 1100px) {
-    .content{
-      padding-left: 2%;
-      padding-right: 2%;
-    }
-    .list li{
-      margin:0 100% 0 0;
-      float: left;
-    }
-    .list{
-      padding-left: 0.5%;
-      padding-right: 0;
-    }
-
+  .article-header{
+    background: linear-gradient(45deg, #0B4182 1%, #1e88e5 64%, #4FBFFF 97%);
+    padding:8px 15px;
+    border-radius: 5px 5px 0 0;
+    height:40px;
+    margin:25px auto 0;
+    border-bottom: 1px solid #fff;
+    color:#fff;
   }
-
-
-
-
+  .article-list:nth-child(2){
+    border-radius: 0 0 5px 5px;
+    margin: 0 auto 25px;
+  }
+  .article-list:hover {
+    z-index: 2;
+    box-shadow: 0px 0px 50px 15px rgba(238, 238, 238, 0.8);
+  }
+  .summary {
+    word-wrap: break-word;
+    word-break: break-all;
+    overflow: hidden;
+    line-height: 2;
+    height:120px;
+  }
+  .tag-a{
+    background: #40BAF5;
+    color:#fff;
+    padding:1px 5px;
+    font-size: 11px;
+    line-height: 1.5;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+  .art-info {
+    border-top: solid 1px #f7f5fa;
+    display: flex;
+    margin-top:15px;
+    padding-top:10px;
+  }
+  .flex-1 {
+    flex-grow:1;
+  }
+  .flex-10 {
+    flex-grow:10;
+  }
+  .flex-fr{
+    text-align: right;
+  }
+  .w4{
+    word-wrap: break-word;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    font-weight: bold;
+    color: #000;
+  }
+  .c-blue {
+    color:#40BAF5
+  }
 </style>

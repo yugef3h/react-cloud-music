@@ -2,20 +2,34 @@
   <div>
     <!--课程列表-->
     <article class="article-header">最新文章</article>
-    <article class="article-list">
-      该项目很早以前就开始写了，算是用vue写的第一个项目，所以代码还是有不少问题，但是应该很符合vue入门使用者的写法，比如直接修改state：this.$store.state.xx = xx。
-    </article>
-    <article class="article-list">
-      该项目很早以前就开始写了，算是用vue写的第一个项目，所以代码还是有不少问题，但是应该很符合vue入门使用者的写法，比如直接修改state：this.$store.state.xx = xx。
-    </article>
-    <article class="article-list">
-      该项目很早以前就开始写了，算是用vue写的第一个项目，所以代码还是有不少问题，但是应该很符合vue入门使用者的写法，比如直接修改state：this.$store.state.xx = xx。
-    </article>
-    <article class="article-list">
-      该项目很早以前就开始写了，算是用vue写的第一个项目，所以代码还是有不少问题，但是应该很符合vue入门使用者的写法，比如直接修改state：this.$store.state.xx = xx。
-    </article>
-    <article class="article-list">
-      该项目很早以前就开始写了，算是用vue写的第一个项目，所以代码还是有不少问题，但是应该很符合vue入门使用者的写法，比如直接修改state：this.$store.state.xx = xx。
+    <article class="article-list"  v-for="(item,index) in info" :key="index">
+      <div class="tag">
+        <a href="#" class="tag-a">标签1</a>
+        <a href="#" class="tag-a">标签2</a>
+        <a href="#" class="tag-a">标签3</a>
+      </div>
+      <router-link  :to="{name:'contents',params:{jump:'articles',random:Math.floor(Math.random()*199301),id:item.id}}">
+        <h4 class="w4">{{item.title}}</h4>
+      </router-link>
+      <div class="summary" v-html="item.content"></div>
+      <router-link  :to="{name:'contents',params:{jump:'articles',random:Math.floor(Math.random()*199301),id:item.id}}" class="c-blue">阅读详情&gt;&gt;</router-link>
+      <div class="art-info">
+        <div class="flex-1 flex-fl">
+          <i class="fa fa-fw fa-user" aria-hidden="true"></i>
+          <span>{{item.author}}</span>
+        </div>
+        <div class="flex-10">
+          <i class="fa fa-fw fa-clock-o" aria-hidden="true"></i>
+          <span>{{item.CreateTime}}</span>
+        </div>
+        <div class="flex-1 flex-fr">
+          <i class="fa fa-fw fa-comments-o" aria-hidden="true"></i>
+          <span>{{item.see}}</span>
+        </div>
+
+
+
+      </div>
     </article>
     <div class="article-list">
       <span>
@@ -46,6 +60,7 @@
         _this.$reqs.post('/users/article',{
           rows:3
         }).then(res => {
+          console.log(res.data.data)
           _this.info = res.data.data
         }).catch(err => {
           console.log(err);
@@ -54,139 +69,6 @@
     }
   }
 </script>
-<style lang="scss" scoped>
-  .main {
-    padding-top: 10px;
-    position: relative;
-    background: #fff;
-
-    .one_block {
-      overflow: hidden;
-    }
-  }
-
-  .main .title {
-    padding-top: 80px;
-    border-bottom: 1px solid #979fa8;
-    padding-bottom: 30px;
-    width: 400px;
-    margin: 0 auto;
-    color: #979fa8;
-
-    img {
-      width: 66px;
-      float: left;
-      margin-right: 18px;
-    }
-
-    h1 {
-      color: #32475f;
-      font-size: 32px;
-      font-weight: normal;
-      display: block;
-      -webkit-margin-before: 0.35em;
-    }
-  }
-
-  .upda{
-    border: none;
-    padding-bottom:120px;
-  }
-
-
-
-  .list .text i {
-    margin: 0 5px 0 10px;
-  }
-  .list {
-    padding-top: 36px;
-    width: 100%;
-    margin: 0 auto;
-    padding-left: 4%;
-    padding-right: 1%;
-    overflow: hidden;
-
-    li {
-      width: 30%;
-      margin: 0 1% 2% 1%;
-      transition: all 0.3s ease;
-      border-radius: 6px;
-      overflow: hidden;
-      background: #f5f6f8;
-      padding-bottom: 15px;
-      cursor: pointer;
-      float: left;
-      display: list-item;
-      text-align: -webkit-match-parent;
-
-      h4 {
-        font-weight: normal;
-        font-size: 18px;
-        height: 50px;
-        line-height: 1.5em;
-        color: #32475f;
-        padding: 5px 10px;
-        overflow: hidden;
-        margin-bottom: 10px;
-      }
-    }
-
-    li:hover {
-      box-shadow: 0 2px 40px rgba(13,62,73,0.2);
-      transform: translateY(-3px);
-    }
-  }
-
-  /*以下层级复杂不放*/
-  .list img {
-    width: 100%;
-    max-width: 100%;
-    display: inline;
-  }
-
-  .list .text span, .list .text i {
-    color: #979fa8;
-    font-size: 12px;
-  }
-  .list .text em {
-    float: right;
-    margin-right: 15px;
-    font-style: normal;
-    color: #4187db;
-  }
-  /*大屏幕*/
-  @media only screen and (min-width: 1200px) {
-    .list{
-      width: 1200px;
-    }
-  }
-  @media only screen and (max-width: 992px){
-    .list {
-      padding-left: 2%;
-      padding-right: 2%;
-    }
-  }
-  /*手机*/
-  @media only screen and (max-width: 768px) {
-    .list li{
-      width: 90%;
-      margin:0 2% 4% 2%;
-      float: left;
-    }
-    .list{
-      padding-left: 3%;
-      padding-right: 3%;
-    }
-    .main .title{
-      padding-left: 20px;
-    }
-    #header .btns button{
-      margin: 10px 20px;
-    }
-
-  }
-
-</style>
 <style>
 
   .article-list{
@@ -194,7 +76,6 @@
     margin: 25px auto;
     border-radius: 5px;
     padding:15px;
-    height:160px;
     border: solid 1px #f7f5fa;
   }
 
@@ -222,5 +103,47 @@
   .article-list:hover {
     z-index: 2;
     box-shadow: 0px 0px 50px 15px rgba(238, 238, 238, 0.8);
+  }
+  .summary {
+    word-wrap: break-word;
+    word-break: break-all;
+    overflow: hidden;
+    line-height: 2;
+    height:120px;
+  }
+  .tag-a{
+    background: #40BAF5;
+    color:#fff;
+    padding:1px 5px;
+    font-size: 11px;
+    line-height: 1.5;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+  .art-info {
+    border-top: solid 1px #f7f5fa;
+    display: flex;
+    margin-top:15px;
+    padding-top:10px;
+  }
+  .flex-1 {
+    flex-grow:1;
+  }
+  .flex-10 {
+    flex-grow:10;
+  }
+  .flex-fr{
+    text-align: right;
+  }
+  .w4{
+    word-wrap: break-word;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    font-weight: bold;
+    color: #000;
+  }
+  .c-blue {
+    color:#40BAF5
   }
 </style>

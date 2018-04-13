@@ -14,10 +14,16 @@
           </div>
           <div class="navbar-container">
             <ul class="nav navbar-nav navbar-main">
-              <li  v-for="(item,index) in menu" :key="index">
-                <router-link :to="{name:item.router_name}">
-                &nbsp;{{item.name}}
-                </router-link>
+              <li><router-link :to="{name:'index'}">Home</router-link></li>
+              <li class="dropdown">
+                <a href="#" data-toggle="dropdown">Note</a>
+                <ul class="dropdown-menu">
+                  <li  v-for="(item,index) in menu" :key="index">
+                    <router-link :to="{name:item.name}">
+                    &nbsp;{{item.router_name}}
+                    </router-link>
+                  </li>
+                </ul>
               </li>
               <li class="dropdown">
                 <a href="#" data-toggle="dropdown">Tools</a>
@@ -90,8 +96,10 @@
         bool: true,
         opac: false,
         menu: [
-          {name: "Home", router_name: "index"},
-          {name: "Note", router_name: "articles"}
+          {name: "articles", router_name: "Accessibility"},
+          {name: "articles", router_name: "CSS"},
+          {name: "articles", router_name: "Design"},
+          {name: "articles", router_name: "Frontend Jobs"}
         ]
       }
     },
