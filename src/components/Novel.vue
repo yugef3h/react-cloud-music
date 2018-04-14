@@ -45,19 +45,19 @@
     },
     methods: {
       search(url,newpage) {
-
         //console.log(url);
-        this.loading = true
         this.menusshow = false;
         let _this = this;
-        if (this.keyn) {
+        if (this.keyn !== '') {
+          this.loading = true
           this.$reqs.post('/users/novel', {
             keyn: this.keyn.trim(),
             page: ++newpage,
             depurl: url
           }).then(res => {
+            console.log('响应')
             this.loading = false //获取数据完成后隐藏loading
-            //console.log(res);
+            console.log(res);
             if (res.data.tip) {
               this.tipshow = true;
               this.menyshow = false;
@@ -80,6 +80,8 @@
         } else {
           alert('格式不为空')
         }
+
+
       }
     },
     components: {
