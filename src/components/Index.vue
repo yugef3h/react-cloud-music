@@ -113,6 +113,8 @@
       window.addEventListener('scroll', this.handleScroll)
     },
     beforeDestroy () {
+      clearTimeout(this.t)
+      clearTimeout(this.ts)
     },
     destroyed () {
       window.removeEventListener('scroll', this.handleScroll)
@@ -128,10 +130,10 @@
           addClass(target, 'navbar-open');
         } else {
           addClass(target, 'navbar-closing');
-          setTimeout(function () {
+          this.t = setTimeout(function () {
             addClass(target, 'navbar-bgfade');
           }, 400);
-          setTimeout(function () {
+          this.ts = setTimeout(function () {
             removeClass(btn, 'active');
             removeClass(target, 'navbar-open navbar-closing navbar-bgfade');
           }, 800);

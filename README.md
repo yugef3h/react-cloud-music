@@ -21,7 +21,7 @@ npm run build --report
 >  遗漏与版本更新计划
 ```
 1、完成并优化小说搜索界面
-2、历史滚动条记录，参考/router/index备注
+2、
 3、更新对应文章title
 4、整体主页homepage变动
 5、后台转elm-ui

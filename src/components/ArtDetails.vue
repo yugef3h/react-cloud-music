@@ -3,7 +3,7 @@
     <div class="single">
       <div class="wrap clearfix">
         <!--左边文章详情-->
-        <article class="fl single-article">
+        <article class="single-article">
           <div class="breadcrumbs">
             <span>当前位置：</span>
             <router-link to="/">首页</router-link> &gt; <router-link :to="{name:jump}">{{navpath()}}</router-link> &gt;  {{navtitle()}} </div>
@@ -102,23 +102,21 @@
     overflow: hidden;
     min-height: 490px;
     padding: 0 15px 50px;
+
   /*被迫改白色或者固定死大导航*/
-    background: #f1f1f1;
+    /*background: #f1f1f1;*/
 
     .wrap {
       max-width: 1180px;
-      margin: 20px auto;
+      margin: 25px auto;
 
-      .fl {
-        float: left;
-      }
 
       article {
         box-sizing: border-box;
-        width: 70%;
+/*        width: 70%;*/
         padding: 10px 15px;
         border-radius: 10px;
-        box-shadow: 1px 1px 5px #bdbdbd;
+        border: 1px solid #d4d8eb;
         background: #fff;
       }
     }
@@ -171,9 +169,7 @@
   }
 
 
-  .fr {
-    float: right;
-  }
+
   .new-article.on {
     position: fixed;
     top: 100px;

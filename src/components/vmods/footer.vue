@@ -5,7 +5,7 @@ router-link tobe modify
  -->
 <template>
   <div id="footer">
-      Copyright © 2017-2018 <a href="http://www.blackatall.cn">Yuge Blog</a><span> All Rights Reserved. </span><span class="record">闽ICP备17030754号-1</span>
+      Copyright © 2017-2018 <a href="http://www.blackatall.cn">Yuge Blog</a><span> All Rights Reserved. </span><small class="record">闽ICP备17030754号-1</small>
   </div>
 </template>
 <script>
@@ -42,5 +42,9 @@ router-link tobe modify
       display: block;
       text-align: center;
     }
+  }
+  small {
+    color: #8a9399;
+    font-size: 13px;
   }
 </style>

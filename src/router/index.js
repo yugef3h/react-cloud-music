@@ -17,7 +17,6 @@ const AdminList = r => require.ensure([], () => r(require('@/components/stage/Ad
 Vue.use(Router)
 
 const router = new Router({
-  //记录历史滚动条位置尚未完善
   mode: 'history',
   saveScrollPosition: true,
   routes: [
