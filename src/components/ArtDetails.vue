@@ -101,19 +101,18 @@
   .single {
     overflow: hidden;
     min-height: 490px;
-    padding: 0 15px 50px;
 
   /*被迫改白色或者固定死大导航*/
     /*background: #f1f1f1;*/
 
     .wrap {
-      max-width: 1180px;
+      /*max-width: 1180px;*/
       margin: 25px auto;
 
 
       article {
         box-sizing: border-box;
-/*        width: 70%;*/
+        /*        width: 70%;*/
         padding: 10px 15px;
         border-radius: 10px;
         border: 1px solid #d4d8eb;
@@ -169,12 +168,6 @@
   }
 
 
-
-  .new-article.on {
-    position: fixed;
-    top: 100px;
-    width: 260px;
-  }
 
 
 
