@@ -173,14 +173,22 @@
       margin:5px 30px;
     }
     .flex-4-1 {
-      width: 100%;
+      width: 45%;
     }
 
   }
-  @media only screen and (max-width: 500px) {
+  @media only screen and (max-width: 499px) {
 
     input {
       width: 59%;
+    }
+    .flex {
+      display: flex;
+      flex-wrap: wrap;
+      margin:5px 30px;
+    }
+    .flex-4-1 {
+      width: 100%;
     }
   }
   @media only screen and (min-width:992px) and (max-width:1199px) {

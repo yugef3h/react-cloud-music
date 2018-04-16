@@ -14,9 +14,9 @@
           </div>
           <div class="navbar-container">
             <ul class="nav navbar-nav navbar-main">
-              <li><router-link :to="{name:'index'}">Home</router-link></li>
+              <li><router-link to="/home" @click.native="navtoggle">Home</router-link></li>
               <li class="dropdown">
-                <a href="#" data-toggle="dropdown">Note</a>
+                <router-link to="/articles" @click.native="navtoggle"  data-toggle="dropdown">Note</router-link>
                 <ul class="dropdown-menu">
                   <li  v-for="(item,index) in menu" :key="index">
                     <router-link :to="{name:item.name}">
@@ -35,7 +35,7 @@
                 </ul>
               </li>
               <li class="dropdown">
-                <a href="#" data-toggle="dropdown">Enjoy</a>
+                <router-link to="/novel" @click.native="navtoggle"  data-toggle="dropdown">Enjoy</router-link>
                 <ul class="dropdown-menu">
                   <li class="nov-search"><router-link to="/novel">Novel Search</router-link></li>
                 </ul>

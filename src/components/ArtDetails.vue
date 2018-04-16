@@ -17,11 +17,15 @@
           <div class="content" v-html="jump==='articles'?det_cont.content:det_cont.Content"></div>
 
 
+
+        </article>
+        <article>
           <!-- 作者简介开始 -->
           <div class="article-about-author">
-            <img alt="yuge" src="/static/img/5.jpg" class="avatar avatar-96 photo" height="96" width="96">        <h2>作者专栏：Yuge</h2>
+            <img alt="yuge" src="/static/img/5.jpg" class="avatar avatar-96 photo" height="96" width="96">
+            <h3 class="gray">作者专栏：Yuge</h3>
             <!-- 作者名字 -->
-            <p>一名前端爱好开发者，欢迎我们成为朋友！</p>
+            <p class="gray">一名前端爱好开发者，欢迎我们成为朋友！</p>
             <p class="share-btn">
               <a href="">
                 <i class="fa fa-home"></i> 博客
@@ -31,10 +35,10 @@
               </a>
               <a href="javascript:;">
                 <i class="fa fa-wechat"></i> 微信
-<!--            <span class="wechat-num">
-              微信号：yxl93914              <img src="" width="100%" alt="微信">
-              <i class="iconfont icon-close1"></i>
-            </span>-->
+                <!--            <span class="wechat-num">
+                              微信号：yxl93914              <img src="" width="100%" alt="微信">
+                              <i class="iconfont icon-close1"></i>
+                            </span>-->
               </a>
               <a href="">
                 <i class="fa fa-calendar-o"></i> 留言
@@ -114,9 +118,13 @@
         box-sizing: border-box;
         /*        width: 70%;*/
         padding: 10px 15px;
-        border-radius: 10px;
+        border-radius: 10px 10px 0 0;
         border: 1px solid #d4d8eb;
         background: #fff;
+      }
+      article:last-child {
+        border-radius: 0 0 10px 10px;
+        border-top: transparent;
       }
     }
   }
@@ -174,16 +182,16 @@
 
   /*作者专栏*/
   .article-about-author{
-    margin: 20px 0;
+    margin: 4px 0 4px;
   }
   .article-about-author>img {
     float: left;
     width: 90px;
     height: 90px;
     margin-right: 10px;
+    border-radius:10px;
   }
   .article-about-author p:last-of-type {
-    margin-top: 10px;
   }
   .article-about-author .share-btn a:nth-of-type(1) {
     background: #fc8bd2;
@@ -204,5 +212,8 @@
     padding: 5px 10px;
     border-radius: 5px;
     color: #fff;
+  }
+  .gray{
+    color: #8a9399;
   }
 </style>
