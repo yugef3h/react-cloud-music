@@ -1,9 +1,9 @@
 <template>
   <div class="page-wrapper">
-    <div class="page-navbar">
+    <div class="page-navbar" :class="nav_box === true?' navbar-fixed':''">
       <nav class="navbar">
         <div class="container">
-          <button class="navbar-toggle btn btn-link btn-icon" type="button">
+          <button class="navbar-toggle btn btn-link btn-icon" type="button" @click="navtoggle">
             <i><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></i>
           </button>
           <div class="navbar-header">
@@ -74,6 +74,7 @@
   import ft from './vmods/footer.vue'
   import bp from './vmods/backtop.vue'
   import sidebar from './vmods/sidebar.vue'
+  import {addClass, removeClass, hasClass} from '../../static/js/untils'
   /* 引入公共方法 */
   export default{
     name: 'index',
@@ -95,6 +96,7 @@
         search: false,
         bool: true,
         opac: false,
+        toggle: false,
         menu: [
           {name: "articles", router_name: "Accessibility"},
           {name: "articles", router_name: "CSS"},
@@ -108,23 +110,38 @@
       //'$route':'isTab'
     },
     mounted(){
-      //nav_box watched
-      //window.addEventListener('scroll', this.handleScroll)
+      window.addEventListener('scroll', this.handleScroll)
     },
     beforeDestroy () {
     },
-    // 离开该页面需要移除这个监听的事件，不然会报错
     destroyed () {
-      //window.removeEventListener('scroll', this.handleScroll)
+      window.removeEventListener('scroll', this.handleScroll)
     },
     methods: {
+      // Show navigation menu on button click
+      navtoggle () {
+        let btn = this;
+        //let target = document.body;
+        let target = document.getElementsByClassName('page-wrapper')[0];
+        if (!hasClass(target, 'navbar-open')) {
+          addClass(btn, 'active');
+          addClass(target, 'navbar-open');
+        } else {
+          addClass(target, 'navbar-closing');
+          setTimeout(function () {
+            addClass(target, 'navbar-bgfade');
+          }, 400);
+          setTimeout(function () {
+            removeClass(btn, 'active');
+            removeClass(target, 'navbar-open navbar-closing navbar-bgfade');
+          }, 800);
+        }
+      },
       //双监控
       handleScroll () {
         var scrollTop = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop
-        var oNav_box = document.querySelector('#nav_box')
+        var oNav_box = document.querySelector('.page-navbar')
         var offsetTop = oNav_box.offsetTop
-        //this.nav_box = scrollTop > offsetTop
-        //console.log(scrollTop,offsetTop)
         if (scrollTop > offsetTop) {
           this.nav_box = true
           this.isShow = true
@@ -904,8 +921,8 @@
     background-image: -o-linear-gradient(45deg, #0B4182 1%, #1e88e5 64%, #40BAF5 97%);
     background-image: -webkit-linear-gradient(45deg, #0B4182 1%, #1e88e5 64%, #40BAF5 97%);
     background-image: linear-gradient(45deg, #0B4182 1%, #1e88e5 64%, #40BAF5 97%);
-    -webkit-box-shadow: 0 0 40px rgba(37,45,51, .5);
-    box-shadow: 0 0 40px rgba(37,45,51, .5);
+    -webkit-box-shadow: 0 0 1px rgba(37,45,51, .5);
+    box-shadow: 0 0 1px rgba(37,45,51, .5);
     -webkit-transition: top .1s, background .1s, padding .1s;
     transition: top .1s, background .1s, padding .1s;
   }

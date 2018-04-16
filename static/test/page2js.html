@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>test</title>
+  <!-- Fix chrome language detection -->
+  <meta http-equiv="Content-Language" content="en">
+  <!-- Styles -->
+  <link rel="stylesheet" href="reset.css">
+  <link rel="stylesheet" href="main.css">
+  <script src="./untils.js"></script>
+</head>
+<body>
+
+<div class="page-wrapper">
+  <div class="page-navbar">
+    <nav class="navbar">
+      <div class="container">
+        <button class="navbar-toggle btn btn-link btn-icon" type="button">
+          <i><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></i>
+        </button>
+        <div class="navbar-container">
+          <ul class="nav navbar-nav navbar-main">
+            <li>
+              <a href="#">Home</a>
+            </li>
+            <li>
+              <a href="#">Note</a>
+            </li>
+            <li class="dropdown">
+              <a href="#" data-toggle="dropdown">Tools</a>
+              <ul class="dropdown-menu">
+                <li><a href="https://tinypng.com/">TinyPNG</a></li>
+                <li><a href="http://www.zhangxinxu.com/sp/base64.html">DragIn Base64</a></li>
+                <li><a href="http://www.zhangxinxu.com/sp/css-compress-mini.html">Css Compressor</a></li>
+              </ul>
+            </li>
+            <li class="dropdown">
+              <a href="#" data-toggle="dropdown">Enjoy</a>
+              <ul class="dropdown-menu">
+                <li class="nov-search"><a href="#">Novel Search</a></li>
+              </ul>
+            </li>
+            <li>
+              <a href="#">Features</a>
+            </li>
+          </ul>
+          <ul class="nav navbar-buttons">
+            <li><a href="#" class="btn btn-outline btn-light">Log In</a></li>
+            <li><a href="#" class="btn btn-dark">Create Account</a></li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+  </div>
+
+  <div class="page-banner page-banner-home">
+    <br/><br/><br/><br/><br/><br/>
+  </div>
+  <div style="height: 1000px;"></div>
+
+</div>
+
+<script>
+window.onload = function () {
+  handleMainMenu();
+}
+
+
+
+
+
+  let handleMainMenu = function () {
+    "use strict";
+
+    let mobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+    let menuList = document.getElementsByClassName('navbar-main')[0].children;
+    // Disable floating menu on mobile phones
+    if (!mobile) {
+      navfloat();
+      for (let i=0; i < menuList.length; i++){
+        menuList[i].addEventListener('mouseover', function () {
+          if (hasClass1(this, 'open')) {
+            removeClass1(this, 'open');
+          }
+        })
+      }
+    }
+    else {
+      addClass1(document.getElementsByTagName('html')[0],'mobile');
+    }
+
+
+
+    // Show navigation menu on button click
+    document.getElementsByClassName('navbar-toggle')[0].addEventListener('click', function () {
+      let btn = this;
+      let target = document.body;
+      if (!hasClass1(target, 'navbar-open')) {
+        addClass1(btn, 'active');
+        addClass1(target, 'navbar-open');
+      } else {
+        addClass1(target, 'navbar-closing');
+        setTimeout(function () {
+          addClass1(target, 'navbar-bgfade');
+        }, 400);
+        setTimeout(function () {
+          removeClass1(btn, 'active');
+          removeClass1(target, 'navbar-open navbar-closing navbar-bgfade');
+        }, 800);
+      }
+    });
+    // Floating menu function
+    function navfloat() {
+      let pageNav = document.getElementsByClassName('page-navbar')[0];
+      let prevScroll = '0';
+      let curDir = 'down';
+      let prevDir = 'up';
+
+      window.addEventListener('scroll', function () {
+        let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+        if (scrollTop > 100 && (!hasClass1(pageNav, 'navbar-hidden') && !hasClass1(pageNav, 'navbar-fixed'))) {
+          addClass1(pageNav, 'navbar-hidden');
+        }
+        else if (scrollTop < 100 && (!hasClass1(pageNav, 'navbar-fixed') && !hasClass1(pageNav, 'navbar-hidden'))) {
+          removeClass1(pageNav, 'navbar-hidden');
+        }
+
+
+        if (scrollTop > 300) {
+          if (!hasClass1(pageNav, 'navbar-fixed')) {
+            addClass1(pageNav, 'navbar-fixed');
+          }
+          if (scrollTop >= prevScroll) {
+            curDir = 'down';
+            if (curDir !== prevDir) {
+              prevDir = curDir;
+              removeClass1(pageNav, 'navbar-visible');
+              addClass1(pageNav, 'navbar-hidden')
+            }
+          }
+          else {
+            curDir = 'up';
+            if (curDir !== prevDir) {
+              removeClass1(pageNav, 'navbar-hidden');
+              addClass1(pageNav, 'navbar-visible');
+              prevDir = curDir;
+            }
+          }
+          prevScroll = scrollTop;
+        }
+        if (hasClass1(pageNav, 'navbar-fixed') && scrollTop <= 10) {
+          removeClass1(pageNav, 'navbar-fixed navbar-visible');
+        }
+      });
+    }
+  };
+
+
+</script>
+</body>
+</html>
