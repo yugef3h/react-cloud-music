@@ -27,7 +27,7 @@ npm run build --report
 5、后台转elm-ui
 6、novel 的翻页和搜索记录
 7、加载更多
-8、
+8、新版改变后 keep-alive 需要变动
 9、
 ```
 For a detailed explanation on how things work, check out the [guide](http://vuejs-templates.github.io/webpack/) and [docs for vue-loader](http://vuejs.github.io/vue-loader).

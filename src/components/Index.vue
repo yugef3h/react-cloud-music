@@ -7,10 +7,10 @@
             <i><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></i>
           </button>
           <div class="navbar-header">
-            <a href="/" class="navbar-brand"></a>
-            <a href="http://www.blackatall.cn" class="navbar-login btn btn-link btn-icon">
-                <i class="zmdi zmdi-account-o zmdi-hc-fw"></i>
-            </a>
+            <router-link to="/home"  class="navbar-brand"></router-link>
+            <router-link to="/home"  class="navbar-login btn btn-link btn-icon">
+              <i class="zmdi zmdi-account-o zmdi-hc-fw"></i>
+            </router-link>
           </div>
           <div class="navbar-container">
             <ul class="nav navbar-nav navbar-main">
@@ -74,7 +74,7 @@
   import ft from './vmods/footer.vue'
   import bp from './vmods/backtop.vue'
   import sidebar from './vmods/sidebar.vue'
-  import {addClass, removeClass, hasClass} from '../../static/js/untils'
+  import {addClass, removeClass, hasClass} from '../js/untils'
   /* 引入公共方法 */
   export default{
     name: 'index',
