@@ -853,15 +853,16 @@
       padding: 0 65px 0 8px;
     }
   }
-  @media (max-width: 767px){
-    .page-banner.page-banner-home {
-      padding-bottom: 35px;
-    }
-  }
+
   .page-banner {
     position: relative;
     padding: 115px 0 60px;
     color: #fff;
+  }
+  @media (max-width: 767px){
+    .page-banner.page-banner-home {
+      padding-bottom: 0;
+    }
   }
   @media (max-width: 991px){
     .page-banner {
@@ -942,6 +943,15 @@
   .fr{
     float:right;
   }
+  @media (max-width: 330px) and (min-width: 300px) {
+    .page-navbar .navbar-buttons > li:first-child {
+      padding: 0 8px 0 25px;
+    }
+    .page-navbar .navbar-buttons > li:last-child {
+      padding: 0 25px 0 8px;
+    }
+  }
+
 </style>
 <style scoped>
   .fl {

@@ -3,6 +3,7 @@
 import Vue from 'vue'
 import App from './App'
 import router from './router'
+import store from './store/index'
 
 //ps:这里可以写自定义头
 axios.defaults.withCredentials=true;  // 跨域保存session有用
@@ -48,6 +49,6 @@ axios.interceptors.response.use( res => {
 new Vue({
   el: '#app',
   router,
-  //store,
+  store,
   render: h => h(App)
 })

@@ -3,7 +3,7 @@
     <loading v-show="loading"></loading>
     <div class="cent">
       <div class="rig">
-        <input type="text" placeholder="请输入书名或作者搜索" v-model="keyn" @keyup.13="search(null,0)">
+        <input type="text" placeholder="请输入书名搜索" v-model="keyn" @keyup.13="search(null,0)">
         <button type="button" @click="search(null,0)" >Search</button>
       </div>
 
@@ -45,11 +45,14 @@
 </template>
 <script>
   import loading from './loading/loading'
+  import {mapState} from 'vuex'
+  import BottomNav from './vmods/BottomNav'
 
   export default {
     name: 'novel',
     data() {
       return {
+        bar: false,
         keyn: '',
         menus: [],
         tips: '',
@@ -57,13 +60,13 @@
         menyshow: false,
         menusshow:false,
         loading: false,
+        contentshow: false,
         choics: [],
         name:'',
         author: '',
         content: [],
         pre: '',
         next: '',
-        contentshow: false,
         title:''
       }
     },
@@ -107,13 +110,15 @@
 
       },
       getDetail(url) {
-        this.loading = true
+        this.tipshow = false;
+        this.menyshow = false;
+        this.loading = true;
         this.$reqs.post('/users/novelsc', {
           url: url
         }).then(res => {
+          document.body.scrollTop = 0;
+          document.documentElement.scrollTop = 0;
           this.loading = false
-          this.tipshow = false;
-          this.menyshow = false;
           this.menusshow = false;
           this.contentshow = true;
           this.content = res.data.content.split('-');
@@ -122,8 +127,6 @@
           this.title = res.data.title;
         }).catch(err => {
           this.loading = false
-          this.tipshow = false;
-          this.menyshow = false;
           this.menusshow = true;
           this.contentshow = false;
           this.loading = false
@@ -132,8 +135,14 @@
         })
       }
     },
+    computed: {
+      ...mapState([
+        'font_panel', 'bg_color', 'fz_size', 'bg_night', 'curChapter', 'windowHeight', 'list_panel'
+      ])
+    },
     components: {
-      loading
+      loading,
+      BottomNav
     }
   }
 </script>
@@ -234,7 +243,7 @@
     .flex {
       display: flex;
       flex-wrap: wrap;
-      margin:5px 30px;
+      margin:5px 5px;
     }
     .flex-4-1 {
       width: 100%;

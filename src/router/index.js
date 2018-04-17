@@ -19,6 +19,7 @@ Vue.use(Router)
 const router = new Router({
   mode: 'history',
   saveScrollPosition: true,
+
   routes: [
     {
       path: '/login',
@@ -39,7 +40,8 @@ const router = new Router({
           {
             path: '/novel',
             name: 'novel',
-            component: Novel
+            component: Novel,
+
           },
         {
           path: '/home',

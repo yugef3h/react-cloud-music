@@ -14,7 +14,8 @@ function resolve (dir) {
 module.exports = {
   context: path.resolve(__dirname, '../'),
   entry: {
-    app: ['babel-polyfill','./src/main.js']
+    //app: ['babel-polyfill','./src/main.js']
+    app: ['./src/main.js']
   },
   output: {
     path: config.build.assetsRoot,
@@ -75,7 +76,7 @@ module.exports = {
   externals: {//配置外部模块
     'vue': 'Vue',
     'vue-router': 'VueRouter',
-    'vuex': 'Vuex',
+    //'vuex': 'Vuex',
     'axios': 'axios'
   },
   node: {

@@ -20,14 +20,14 @@ npm run build --report
 
 >  遗漏与版本更新计划
 ```
-1、完成并优化小说搜索界面
+1、完成并优化小说搜索界面,翻页和搜索记录
 2、评论
 3、更新对应文章title
-4、整体主页homepage变动
+4、
 5、后台转elm-ui
-6、novel 的翻页和搜索记录
+6、
 7、加载更多
-8、新版改变后 keep-alive 需要变动
+8、
 9、后台旧文章修改
 ```
 For a detailed explanation on how things work, check out the [guide](http://vuejs-templates.github.io/webpack/) and [docs for vue-loader](http://vuejs.github.io/vue-loader).
