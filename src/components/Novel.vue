@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="novel">
     <loading v-show="loading"></loading>
     <div class="cent">
       <div class="rig">
@@ -19,16 +19,35 @@
     <ul v-show="menusshow" class="flex">
       <li class="flex-1">《{{name}}》 <span v-html="author"></span>  &nbsp; </li>
       <li v-for="(item,index) in menus" :key="'menus'+ index" class="flex-4-1">
-        <a :href="item.split('+')[1]">{{item.split('+')[0]}}</a>
+        <a href="javascript:" @click="getDetail(item.split('+')[1])">{{item.split('+')[0]}}</a>
       </li>
     </ul>
+    <div class="contents" v-show="contentshow">
+      <h1>{{title}}</h1>
+      <div class="con-header">
+
+        <div class="pre"><a href="javascript:" @click="getDetail(pre)">上一章</a></div>
+        <div class="list"><a href="javascript:" @click="search(null,null)">目录</a></div>
+        <div class="next"><a href="javascript:" @click="getDetail(next)">下一章</a></div>
+      </div>
+      <div class="content">
+
+        <p v-for="(c,i) in content" :key="i">&nbsp;&nbsp;&nbsp;&nbsp;{{c}}</p>
+      </div>
+      <div class="con-footer">
+        <div class="pre"><a href="javascript:" @click="getDetail(pre)">上一章</a></div>
+        <div class="list"><a href="javascript:" @click="search(null,null)">目录</a></div>
+        <div class="next"><a href="javascript:" @click="getDetail(next)">下一章</a></div>
+      </div>
+    </div>
+
   </div>
 </template>
 <script>
   import loading from './loading/loading'
 
   export default {
-    name: 'read',
+    name: 'novel',
     data() {
       return {
         keyn: '',
@@ -40,7 +59,12 @@
         loading: false,
         choics: [],
         name:'',
-        author: ''
+        author: '',
+        content: [],
+        pre: '',
+        next: '',
+        contentshow: false,
+        title:''
       }
     },
     methods: {
@@ -55,9 +79,7 @@
             page: ++newpage,
             depurl: url
           }).then(res => {
-            console.log('响应')
             this.loading = false //获取数据完成后隐藏loading
-            console.log(res);
             if (res.data.tip) {
               this.tipshow = true;
               this.menyshow = false;
@@ -75,6 +97,7 @@
               _this.author = res.data[0].author;
             }
           }).catch(err => {
+            this.loading = false
             console.log(err)
           })
         } else {
@@ -82,6 +105,31 @@
         }
 
 
+      },
+      getDetail(url) {
+        this.loading = true
+        this.$reqs.post('/users/novelsc', {
+          url: url
+        }).then(res => {
+          this.loading = false
+          this.tipshow = false;
+          this.menyshow = false;
+          this.menusshow = false;
+          this.contentshow = true;
+          this.content = res.data.content.split('-');
+          this.pre = res.data.previous;
+          this.next = res.data.next;
+          this.title = res.data.title;
+        }).catch(err => {
+          this.loading = false
+          this.tipshow = false;
+          this.menyshow = false;
+          this.menusshow = true;
+          this.contentshow = false;
+          this.loading = false
+          console.log(err)
+          this.search(null,null);
+        })
       }
     },
     components: {
@@ -90,6 +138,9 @@
   }
 </script>
 <style lang="scss" scoped>
+  .novel {
+    font-size: 18px;
+  }
   .cent {
     text-align: center;
     margin: 18px auto;
@@ -111,13 +162,11 @@
       background: #C3DFEA;
     }
   }
-  .flex{
-    background: #f9f9fc;
-    border: 1px solid #d4d8eb;
-    font-size: 13px;
-    li a {
-      color: #6d93e4;
-    }
+
+  .content {
+    letter-spacing: 0.2em;
+    padding: 15px;
+    font-family: 方正启体简体,"Microsoft YaHei",微软雅黑,宋体;
   }
   input{
     border: 1px solid #1e88e5;
@@ -203,4 +252,52 @@
 
     }
   }
+  .flex,.content,.con-footer div,.con-header div,h1{
+    background: #f9f9fc;
+    border: 1px solid #d4d8eb;
+    font-size: 13px;
+    li a {
+      color: #6d93e4;
+    }
+  }
+  p {
+    line-height: 1.8;
+    overflow: hidden;
+    margin: .8em 0;
+    font-size:2rem;
+  }
+  p {
+    word-wrap: break-word;
+    word-break: break-all;
+  }
+  .con-footer,.con-header{
+    display: flex;
+
+    div {
+      flex: 1;
+      text-align: center;
+      padding:5px;
+      border-top:transparent ;
+      a {
+        color:#000;
+      }
+    }
+    div:first-child {
+      border-right: transparent;
+    }
+    div:nth-child(2) {
+      border-right: transparent;
+    }
+  }
+  .con-header div{
+    border: 1px solid #d4d8eb;
+    border-bottom: transparent;
+  }
+  h1{
+    text-align: center;
+    font-size: 18px;
+    padding: 20px;
+    border-bottom: transparent;
+  }
+
 </style>

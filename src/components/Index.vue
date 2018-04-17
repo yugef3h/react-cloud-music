@@ -58,7 +58,7 @@
     </div>
     <section class="wrap">
       <div class="fl">
-        <keep-alive exclude="contents">
+        <keep-alive exclude="contents,novel">
           <router-view></router-view>
         </keep-alive>
       </div>
