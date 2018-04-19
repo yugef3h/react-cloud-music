@@ -1,5 +1,6 @@
 <template>
   <div class="novel">
+    <top-nav></top-nav>
     <loading v-show="loading"></loading>
     <div class="cent">
       <div class="rig">
@@ -7,7 +8,7 @@
         <button type="button" @click="search(null,0)" >Search</button>
       </div>
 
-      <p><a href="javascript:" @click="search(null,null)" v-show="tipshow">{{tips}}</a></p>
+      <p><a href="javascript:" @click="search(null,null)" v-show="tipshow" class="tips"><small>{{tips}}</small></a></p>
       <ul  v-show="menyshow" class="menu">
         <li v-for="(item,index) in choics" :key="'choics'+ index">
           <a href="javascript:" @click="search(item.split('+')[1],null)">{{item.split('+')[0]}}</a>
@@ -19,40 +20,22 @@
     <ul v-show="menusshow" class="flex">
       <li class="flex-1">《{{name}}》 <span v-html="author"></span>  &nbsp; </li>
       <li v-for="(item,index) in menus" :key="'menus'+ index" class="flex-4-1">
-        <a href="javascript:" @click="getDetail(item.split('+')[1])">{{item.split('+')[0]}}</a>
+        <!--+ 'https://www.zwdu.com' -->
+        <router-link :to="{name:'reader',params:{jump:'novel',random:Math.floor(Math.random()*199301),title:keyn.trim(),crawler:item.split('+')[1]}}"
+                     >{{item.split('+')[0]}}</router-link>
       </li>
     </ul>
-    <div class="contents" v-show="contentshow">
-      <h1>{{title}}</h1>
-      <div class="con-header">
-
-        <div class="pre"><a href="javascript:" @click="getDetail(pre)">上一章</a></div>
-        <div class="list"><a href="javascript:" @click="search(null,null)">目录</a></div>
-        <div class="next"><a href="javascript:" @click="getDetail(next)">下一章</a></div>
-      </div>
-      <div class="content">
-
-        <p v-for="(c,i) in content" :key="i">&nbsp;&nbsp;&nbsp;&nbsp;{{c}}</p>
-      </div>
-      <div class="con-footer">
-        <div class="pre"><a href="javascript:" @click="getDetail(pre)">上一章</a></div>
-        <div class="list"><a href="javascript:" @click="search(null,null)">目录</a></div>
-        <div class="next"><a href="javascript:" @click="getDetail(next)">下一章</a></div>
-      </div>
-    </div>
 
   </div>
 </template>
 <script>
   import loading from './loading/loading'
-  import {mapState} from 'vuex'
-  import BottomNav from './vmods/BottomNav'
+
 
   export default {
     name: 'novel',
     data() {
       return {
-        bar: false,
         keyn: '',
         menus: [],
         tips: '',
@@ -135,14 +118,8 @@
         })
       }
     },
-    computed: {
-      ...mapState([
-        'font_panel', 'bg_color', 'fz_size', 'bg_night', 'curChapter', 'windowHeight', 'list_panel'
-      ])
-    },
     components: {
       loading,
-      BottomNav
     }
   }
 </script>
@@ -308,5 +285,8 @@
     padding: 20px;
     border-bottom: transparent;
   }
-
+  .tips{
+    color: #9966cc;
+    font-size: 13px;
+  }
 </style>

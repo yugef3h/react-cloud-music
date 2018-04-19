@@ -4,6 +4,7 @@ const Index = r => require.ensure([], () => r(require('@/components/Index.vue'))
 const Home = r => require.ensure([], () => r(require('@/components/Home.vue')), 'groupfront1')
 const Articles = r => require.ensure([], () => r(require('@/components/Articles.vue')), 'groupfront2')
 const Novel = r => require.ensure([], () => r(require('@/components/Novel.vue')), 'groupfront2')
+const Reader = r => require.ensure([], () => r(require('@/components/Reader.vue')), 'groupfront2')
 const ArtDetails = r => require.ensure([], () => r(require('@/components/ArtDetails.vue')), 'groupfront3')
 const Login = r => require.ensure([], () => r(require('@/components/Login.vue')), 'groupback1')
 const BackStage = r => require.ensure([], () => r(require('@/components/BackStage.vue')), 'groupback2')
@@ -25,6 +26,11 @@ const router = new Router({
       path: '/login',
       name: 'login',
       component: Login
+    },
+    {
+      path:'/:jump/:random/:title/yuge:crawler',
+      name:'reader',
+      component: Reader
     },
     {
       path: '/',

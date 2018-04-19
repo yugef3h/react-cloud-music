@@ -14,6 +14,7 @@ router-link tobe modify
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style lang="scss" scoped>
   #footer {
+
     width:1000px;
     padding-top: 10px;
     text-align: center;

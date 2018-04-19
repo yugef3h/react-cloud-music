@@ -59,7 +59,7 @@
           page: page,
           rows: 8
         }).then(result => {
-          //console.log(result);
+          console.log(result.data.data);
           _this.newest = result.data.data;
           //_this.pageInfo.allpage = Math.ceil(result.data.total / 5);
         }).catch(error => {
