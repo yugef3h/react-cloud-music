@@ -3,10 +3,10 @@
     <top-nav></top-nav>
     <div class="read-container" :class="'bg'+ bg_color" :night="bg_night" ref="fz_size">
       <h4>{{title}}</h4>
-      <div class="chapterContent">
+      <div class="chapterContent"  v-show="!loading">
         <p v-for="(c,i) in content" :key="i">{{c}}</p>
       </div>
-      <div class="btn-bar">
+      <div class="btn-bar" v-show="!loading">
         <ul class="btn-tab">
           <li class="prev-btn" @click="getDetail(pre)">上一章</li>
           <li class="next-btn" @click="getDetail(next)">下一章</li>
@@ -21,6 +21,7 @@
     <bottom-nav></bottom-nav>
     <cover :class="{hide:!list_panel}"></cover>
     <list-panel :class="{show: list_panel}" :bookId="$route.params.id"></list-panel>
+    <load v-show="loading"></load>
   </div>
 </template>
 
@@ -32,6 +33,7 @@
   import FontNav from './vmods/FontNav.vue'
   import ListPanel from './vmods/ListPanel.vue'
   import Cover from './vmods/Cover.vue'
+  import load from './loading/loading'
 
   export default {
     name:'reader',
@@ -45,6 +47,7 @@
         booksReadInfo: {},
         next:'',
         pre:'',
+        loading:false
       }
     },
     components: {
@@ -53,7 +56,7 @@
       FontNav,
       ListPanel,
       Cover,
-      //Loading
+      load
     },
     created() {
       //判断本地是否存储了阅读器文字大小
@@ -72,20 +75,20 @@
       //当前书籍以前读过并有阅读进度
       if (localBookReaderInfo && localBookReaderInfo[id]) {
         this.booksReadInfo = localEvent.StorageGetter('bookreaderinfo')
-        this.getData(id, this.booksReadInfo[id].chapter)
+        //this.getData(id, this.booksReadInfo[id].chapter)
         this.$store.dispatch('curChapter', this.booksReadInfo[id].chapter)
       } else {
         //当前书籍没有读过但是localStorage保存了其他书籍进度
         if (localBookReaderInfo) {
           this.booksReadInfo = localBookReaderInfo
-          this.getData(id, 1)
+          //this.getData(id, 1)
           this.$store.dispatch('curChapter', 1)
         } else {  //第一次进入阅读
           this.booksReadInfo[id] = {
             book: id,
             chapter: 1
           }
-          this.getData(id, 1)
+          //this.getData(id, 1)
           this.$store.dispatch('curChapter', 1)
         }
       }
@@ -97,9 +100,11 @@
     },
     methods: {
       getDetail(url) {
+        this.loading = true;
         this.$reqs.post('/users/novelsc', {
           url: url? url:'https://www.zwdu.com' + this.$route.params.crawler
         }).then(res => {
+          this.loading = false;
           document.body.scrollTop = 0;
           document.documentElement.scrollTop = 0;
           this.content = res.data.content.split('-');
@@ -107,9 +112,11 @@
           this.next = res.data.next;
           this.title = res.data.title;
         }).catch(err => {
+          this.loading = false;
           console.log(err)
           //this.search(null,null);
         })
+        this.$store.state.windowHeight = window.screen.height
       },
       //切换上下工具栏，如果字体面板显示点击也关闭
       clickBar() {
@@ -146,15 +153,15 @@
           }
         }, 1)
       },
-      getData(id, chapter) {
-        this.loading = true
-        axios.get(`${this.common.api}/book?book=${id}&id=${chapter}`).then((data) => {
-          this.loading = false  //获取完毕后隐藏动画
-          this.title = data.data.title
-          this.content = data.data.content.split('-')
-        })
-        this.$store.state.windowHeight = window.screen.height
-      },
+      // getData(id, chapter) {
+      //   this.loading = true
+      //   axios.get(`${this.common.api}/book?book=${id}&id=${chapter}`).then((data) => {
+      //     this.loading = false  //获取完毕后隐藏动画
+      //     this.title = data.data.title
+      //     this.content = data.data.content.split('-')
+      //   })
+      //   this.$store.state.windowHeight = window.screen.height
+      // },
       prevChapter() {
         this.$store.dispatch('prevChapter')
         this.saveBooksInfo()
@@ -203,9 +210,8 @@
       curChapter(val, oldVal) {
         localEvent.StorageSetter('cur_chapter', val)
         this.saveBooksInfo()
-        this.getData(this.$route.params.id, val)
-      },
-      '$route':'getDetail'
+        this.getDetail()
+      }
     }
   }
 </script>

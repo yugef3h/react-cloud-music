@@ -38,14 +38,14 @@
     },
     methods: {
       jumpTo(index,url) {
-        // if (index >= 50) {
-        //   index = 50
-        // }
-        // this.$store.dispatch('curChapter',index + 1)
+        if (index >= 50) {
+          index = 50
+        }
+
+        this.$store.dispatch('curChapter',index + 1)
         this.hideListPanel()
         this.$store.state.bar = false
         this.$router.push({name:'reader',params:{jump:'novel',random:Math.floor(Math.random()*199301),title:this.$route.params.title,crawler:url}})
-        this.$router.go(0)
       },
       hideListPanel() {
         this.$store.state.list_panel = false

@@ -20,7 +20,7 @@ npm run build --report
 
 >  遗漏与版本更新计划
 ```
-1、翻页和搜索记录，listpanel未记录，改成头上的那种加载,keyn。
+1、翻页和搜索记录，listpanel未记录，keyn，在reader设置一个不显示的按钮进行路由跳转。
 2、评论
 3、更新对应文章title
 4、
