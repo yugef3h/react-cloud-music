@@ -47,7 +47,8 @@
         booksReadInfo: {},
         next:'',
         pre:'',
-        loading:false
+        loading:false,
+        listdot:true
       }
     },
     components: {
@@ -333,7 +334,7 @@
   .page-up {
     position: fixed;
     width: 100%;
-    height: 20%;
+    height: 25%;
     top: 0;
     color: rgba(0, 0, 0, .1);
     z-index: 5;
@@ -342,8 +343,8 @@
   .click-mask {
     position: fixed;
     width: 100%;
-    height: 55%;
-    top: 35%;
+    height: 50%;
+    top: 25%;
     color: rgba(0, 0, 0, .1);
   }
 
@@ -351,7 +352,7 @@
     position: fixed;
     width: 100%;
     height: 25%;
-    bottom: 65px;
+    bottom: 65px;/* 上下章*/
     color: rgba(0, 0, 0, .1);
     z-index: 5;
   }
@@ -376,5 +377,6 @@
   .fade-leave-active {
     opacity: 0;
   }
+
 
 </style>

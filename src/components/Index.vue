@@ -579,6 +579,7 @@
       transition: linear background .15s;
       visibility: hidden;
       overflow-y: auto;
+      overflow-x: hidden;
     }
   }
   @media (max-width: 767px){

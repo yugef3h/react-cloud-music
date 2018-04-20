@@ -20,12 +20,13 @@
     <ul v-show="menusshow" class="flex">
       <li class="flex-1">《{{name}}》 <span v-html="author"></span>  &nbsp; </li>
       <li v-for="(item,index) in menus" :key="'menus'+ index" class="flex-4-1">
-        <!--+ 'https://www.zwdu.com' -->
         <router-link :to="{name:'reader',params:{jump:'novel',random:Math.floor(Math.random()*199301),title:keyn.trim(),crawler:item.split('+')[1]}}"
                      >{{item.split('+')[0]}}</router-link>
       </li>
     </ul>
-
+    <div class="search-tags" v-show="tags">
+      <a href="javascript:" v-for="(item,index) in recommend" class="btn-line-gray" @click="search(null,0,item.key)">{{item.tag}}</a>
+    </div>
   </div>
 </template>
 <script>
@@ -41,54 +42,69 @@
         tips: '',
         tipshow: false,
         menyshow: false,
-        menusshow:false,
+        menusshow: false,
         loading: false,
         contentshow: false,
+        tags: true,
         choics: [],
-        name:'',
+        name: '',
         author: '',
         content: [],
         pre: '',
         next: '',
-        title:''
+        title: '',
+        recommend: [
+          {tag: "深夜书屋", key: "深夜书屋"},
+          {tag: "龙王传说", key: "龙王传说"},
+          {tag: "蛊真人", key: "蛊真人"},
+          {tag: "顾道长生", key: "顾道长生"},
+          {tag: "重燃", key: "重燃"},
+          {tag: "他从地狱来", key: "他从地狱来"},
+          {tag: "异化", key: "异化"},
+          {tag: "逆流纯真年代", key: "逆流纯真年代"}
+
+        ]
       }
     },
     methods: {
-      search(url,newpage) {
-        //console.log(url);
+      search(url, newpage, key) {
         this.menusshow = false;
+        this.loading = true
         let _this = this;
-        if (this.keyn !== '') {
-          this.loading = true
-          this.$reqs.post('/users/novel', {
-            keyn: this.keyn.trim(),
-            page: ++newpage,
-            depurl: url
-          }).then(res => {
-            this.loading = false //获取数据完成后隐藏loading
-            if (res.data.tip) {
-              this.tipshow = true;
-              this.menyshow = false;
-              _this.tips = res.data.tip;
-            } else if (res.data.meny){
-              this.menyshow = true;
-              this.tipshow = false;
-              _this.choics = res.data.meny.split('-');
-            } else {
-              this.tipshow = false;
-              this.menyshow = false;
-              this.menusshow = true;
-              _this.menus = res.data[0].titles.split('-');
-              _this.name = res.data[0].name;
-              _this.author = res.data[0].author;
-            }
-          }).catch(err => {
-            this.loading = false
-            console.log(err)
-          })
-        } else {
-          alert('格式不为空')
-        }
+
+
+        if (key) this.keyn = key;
+        if (this.keyn === '') return;
+        this.$reqs.post('/users/novel', {
+
+          keyn: this.keyn.trim(),
+          page: ++newpage,
+          depurl: url
+        }).then(res => {
+
+          this.tags = false;
+          this.loading = false //获取数据完成后隐藏loading
+          if (res.data.tip) {
+            this.tipshow = true;
+            this.menyshow = false;
+
+            _this.tips = res.data.tip;
+          } else if (res.data.meny) {
+            this.menyshow = true;
+            this.tipshow = false;
+            _this.choics = res.data.meny.split('-');
+          } else {
+            this.tipshow = false;
+            this.menyshow = false;
+            this.menusshow = true;
+            _this.menus = res.data[0].titles.split('-');
+            _this.name = res.data[0].name;
+            _this.author = res.data[0].author;
+          }
+        }).catch(err => {
+          this.loading = false
+          console.log(err)
+        })
 
 
       },
@@ -114,7 +130,7 @@
           this.contentshow = false;
           this.loading = false
           console.log(err)
-          this.search(null,null);
+          this.search(null, null);
         })
       }
     },
@@ -287,6 +303,21 @@
   }
   .tips{
     color: #9966cc;
-    font-size: 13px;
+    font-size: 16px;
+  }
+  .search-tags {
+    padding: .25rem .5rem .75rem 1rem;
+  }
+  .btn-line, .btn-line-gray, .btn-tag {
+    font-size: .8125rem;
+    line-height: 1.6875rem;
+    display: inline-block;
+    padding: .125rem .625rem;
+    text-align: center;
+    border: 1px solid #d4d8eb;
+    border-radius: 99px;
+    color:#969ba3;
+    font-size: 16px;
+    margin: .5rem .5rem 0 0;
   }
 </style>

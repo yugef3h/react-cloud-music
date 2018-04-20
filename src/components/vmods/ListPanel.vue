@@ -55,6 +55,7 @@
           this.$reqs.post('/users/novel', {
             keyn: this.$route.params.title
           }).then(res => {
+            console.log('每次都请求')
               _this.chapterList = res.data[0].titles.split('-');
           }).catch(err => {
             console.log(err)
