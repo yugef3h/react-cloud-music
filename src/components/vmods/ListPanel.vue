@@ -7,7 +7,7 @@
       </div>
       <div class="list-content" @touchmove:prevent>
         <ul>
-          <!--<li v-for="(item,index) in chapterList" @click="jumpTo(item.split('+')[1])">· {{index+1}}. {{item.split('+')[0]}}</li>-->
+
           <li v-for="(item,index) in chapterList" @click="jumpTo(index, item.split('+')[1])">
             · {{item.split('+')[0]}}
           </li>
@@ -24,14 +24,13 @@
     data() {
       return {
         chapterList: [],
-        keyn:''
       }
     },
     props: {
       bookId: {
         type:String,
         required: true
-      }
+      },
     },
     created() {
       this.getList()
@@ -53,9 +52,8 @@
       getList() {
         let _this = this;
           this.$reqs.post('/users/novel', {
-            keyn: this.$route.params.title
+            keyn:this.$route.params.title
           }).then(res => {
-            console.log('每次都请求')
               _this.chapterList = res.data[0].titles.split('-');
           }).catch(err => {
             console.log(err)

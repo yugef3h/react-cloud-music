@@ -21,7 +21,7 @@
       <li class="flex-1">《{{name}}》 <span v-html="author"></span>  &nbsp; </li>
       <li v-for="(item,index) in menus" :key="'menus'+ index" class="flex-4-1">
         <router-link :to="{name:'reader',params:{jump:'novel',random:Math.floor(Math.random()*199301),title:keyn.trim(),crawler:item.split('+')[1]}}"
-                     >{{item.split('+')[0]}}</router-link>
+                      >{{item.split('+')[0]}}</router-link>
       </li>
     </ul>
     <div class="search-tags" v-show="tags">
@@ -30,7 +30,8 @@
   </div>
 </template>
 <script>
-  import loading from './loading/loading'
+  import loading from './common/loading'
+
 
 
   export default {
@@ -108,31 +109,8 @@
 
 
       },
-      getDetail(url) {
-        this.tipshow = false;
-        this.menyshow = false;
-        this.loading = true;
-        this.$reqs.post('/users/novelsc', {
-          url: url
-        }).then(res => {
-          document.body.scrollTop = 0;
-          document.documentElement.scrollTop = 0;
-          this.loading = false
-          this.menusshow = false;
-          this.contentshow = true;
-          this.content = res.data.content.split('-');
-          this.pre = res.data.previous;
-          this.next = res.data.next;
-          this.title = res.data.title;
-        }).catch(err => {
-          this.loading = false
-          this.menusshow = true;
-          this.contentshow = false;
-          this.loading = false
-          console.log(err)
-          this.search(null, null);
-        })
-      }
+
+
     },
     components: {
       loading,
@@ -318,6 +296,6 @@
     border-radius: 99px;
     color:#969ba3;
     font-size: 16px;
-    margin: .5rem .5rem 0 0;
+    margin: .5rem .5  rem 0 0;
   }
 </style>

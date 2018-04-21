@@ -28,7 +28,7 @@ const router = new Router({
       component: Login
     },
     {
-      path:'/:jump/:random/:title/yuge:crawler',
+      path:'/:jump/:random/yuge:crawler',
       name:'reader',
       component: Reader
     },

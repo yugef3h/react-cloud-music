@@ -71,7 +71,7 @@
   </div>
 </template>
 <script>
-  import ft from './vmods/footer.vue'
+  import ft from './common/footer.vue'
   import bp from './vmods/backtop.vue'
   import sidebar from './vmods/sidebar.vue'
   import {addClass, removeClass, hasClass} from '../js/untils'

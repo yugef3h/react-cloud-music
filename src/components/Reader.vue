@@ -33,7 +33,8 @@
   import FontNav from './vmods/FontNav.vue'
   import ListPanel from './vmods/ListPanel.vue'
   import Cover from './vmods/Cover.vue'
-  import load from './loading/loading'
+  import load from './common/loading'
+
 
   export default {
     name:'reader',
@@ -48,7 +49,8 @@
         next:'',
         pre:'',
         loading:false,
-        listdot:true
+        listdot:true,
+        keyn:''
       }
     },
     components: {
@@ -98,8 +100,50 @@
       //因为要获取dom元素，所以不能放到created中
       this.$refs.fz_size.style.fontSize = this.fz_size + 'px'
       this.getDetail()
+
     },
     methods: {
+      search(url, newpage, key) {
+        this.menusshow = false;
+        this.loading = true
+        let _this = this;
+
+
+        if (key) this.keyn = key;
+        if (this.keyn === '') return;
+        this.$reqs.post('/users/novel', {
+
+          keyn: this.keyn,
+          page: ++newpage,
+          depurl: url
+        }).then(res => {
+
+          this.tags = false;
+          this.loading = false //获取数据完成后隐藏loading
+          if (res.data.tip) {
+            this.tipshow = true;
+            this.menyshow = false;
+
+            _this.tips = res.data.tip;
+          } else if (res.data.meny) {
+            this.menyshow = true;
+            this.tipshow = false;
+            _this.choics = res.data.meny.split('-');
+          } else {
+            this.tipshow = false;
+            this.menyshow = false;
+            this.menusshow = true;
+            _this.menus = res.data[0].titles.split('-');
+            _this.name = res.data[0].name;
+            _this.author = res.data[0].author;
+          }
+        }).catch(err => {
+          this.loading = false
+          console.log(err)
+        })
+
+
+      },
       getDetail(url) {
         this.loading = true;
         this.$reqs.post('/users/novelsc', {
@@ -154,15 +198,6 @@
           }
         }, 1)
       },
-      // getData(id, chapter) {
-      //   this.loading = true
-      //   axios.get(`${this.common.api}/book?book=${id}&id=${chapter}`).then((data) => {
-      //     this.loading = false  //获取完毕后隐藏动画
-      //     this.title = data.data.title
-      //     this.content = data.data.content.split('-')
-      //   })
-      //   this.$store.state.windowHeight = window.screen.height
-      // },
       prevChapter() {
         this.$store.dispatch('prevChapter')
         this.saveBooksInfo()

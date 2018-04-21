@@ -20,7 +20,7 @@ npm run build
 1、翻页和搜索记录，，在reader设置一个不显示的按钮进行路由跳转，回到novel有bug，novel也分页，list导航bug，自动加载下一章,list导航当前高亮。
 2、评论
 3、更新对应文章title
-4、keyn在url的显示汉字
+4、
 5、后台转elm-ui
 6、小说数据库的更新
 7、加载更多
