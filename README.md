@@ -17,7 +17,7 @@ npm run build
 
 >  遗漏与版本更新计划
 ```
-1、翻页和搜索记录，，在reader设置一个不显示的按钮进行路由跳转，回到novel有bug，novel也分页，list导航bug，自动加载下一章,list导航当前高亮。
+1、在reader设置一个不显示的按钮进行路由跳转，回到novel有bug，novel也50分页，list导航bug，自动加载下一章,list导航当前高亮。
 2、评论
 3、更新对应文章title
 4、
