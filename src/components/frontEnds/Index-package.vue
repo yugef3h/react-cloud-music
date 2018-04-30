@@ -70,9 +70,9 @@
     </div>
 </template>
 <script>
-    import atoms from './common/atoms.vue'
-    import ft from './common/footer.vue'
-    import backtop from './vmods/backtop.vue'
+    import atoms from '../common/atoms.vue'
+    import ft from '../common/footer.vue'
+    import backtop from '../common/backtop.vue'
     /* 引入公共方法 */
     export default{
         name: 'index',

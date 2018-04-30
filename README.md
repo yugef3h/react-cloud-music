@@ -10,21 +10,30 @@ npm install
 
 # serve with hot reload at localhost:8080
 npm run dev
-
-# build for production with minification
-npm run build
 ```
 
->  遗漏与版本更新计划
+>  遗漏与版本更新log
 ```
-1、在reader设置一个不显示的按钮进行路由跳转，回到novel有bug，novel也50分页，list导航bug，自动加载下一章,list导航当前高亮。
-2、评论
-3、更新对应文章title
-4、
-5、后台转elm-ui
-6、小说数据库的更新
-7、加载更多
-8、
-9、后台旧文章修改
+first:
+1.reader实现自动加载下一章，novel也50分页,后端分页
+2.
+3.
+4.list导航bug，list导航当前高亮，点击目录时才加载,store改动。
+5.
+6.小说数据库的更新 
+7.加载更多
+8.
+9.
+
+second:
+1.评论
+2.后台转elm-ui
+3.后台旧文章修改
+4.更新对应文章title，猜测history关联，要生产阶段验证
+5.
+
+log:
+1.0428：解决了连续两次请求，created和mounted重复调用
+2.0428：解决路由跳转的闪烁问题，router-link代替a
 ```
 For a detailed explanation on how things work, check out the [guide](http://vuejs-templates.github.io/webpack/) and [docs for vue-loader](http://vuejs.github.io/vue-loader).
