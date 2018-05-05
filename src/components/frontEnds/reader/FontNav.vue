@@ -19,7 +19,7 @@
 </template>
 <script type="text/ecmascript-6">
   import {mapState} from 'vuex'
-  import localEvent from '../../store/local'
+  import localEvent from '../../../store/local'
 
   export default {
     data() {

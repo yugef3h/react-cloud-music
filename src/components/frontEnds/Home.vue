@@ -60,7 +60,7 @@
         _this.$reqs.post('/users/article',{
           rows:3
         }).then(res => {
-          console.log(res.data.data)
+          //console.log(res.data.data)
           _this.info = res.data.data
         }).catch(err => {
           console.log(err);

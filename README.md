@@ -15,10 +15,10 @@ npm run dev
 >  遗漏与版本更新log
 ```
 first:
-1.reader实现自动加载下一章，novel也50分页,后端分页
-2.
-3.
-4.list导航bug，list导航当前高亮，点击目录时才加载,store改动。
+1.list导航bug，list导航当前高亮，store改动，刷新后 key 没了。
+2.tip倒计时并自动跳转
+3.reader实现自动加载下一章，novel也50分页,后端分页与加载
+4.
 5.
 6.小说数据库的更新 
 7.加载更多

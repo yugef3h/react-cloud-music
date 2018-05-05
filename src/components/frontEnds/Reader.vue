@@ -27,13 +27,13 @@
 
 <script>
   import {mapState} from 'vuex'
-  import localEvent from '../store/local'
-  import TopNav from './vmods/TopNav'
-  import BottomNav from './vmods/BottomNav.vue'
-  import FontNav from './vmods/FontNav.vue'
-  import ListPanel from './vmods/ListPanel.vue'
-  import Cover from './vmods/Cover.vue'
-  import load from './common/loading'
+  import localEvent from '../../store/local'
+  import TopNav from './reader/TopNav'
+  import BottomNav from './reader/BottomNav.vue'
+  import FontNav from './reader/FontNav.vue'
+  import ListPanel from './reader/ListPanel.vue'
+  import Cover from './reader/Cover.vue'
+  import load from '../common/loading'
 
 
   export default {
@@ -99,7 +99,6 @@
     mounted() {
       //因为要获取dom元素，所以不能放到created中
       this.$refs.fz_size.style.fontSize = this.fz_size + 'px'
-      this.getDetail()
 
     },
     methods: {
@@ -145,6 +144,7 @@
 
       },
       getDetail(url) {
+        //console.log(this.$route.params.title)
         this.loading = true;
         this.$reqs.post('/users/novelsc', {
           url: url? url:'https://www.zwdu.com' + this.$route.params.crawler
@@ -224,7 +224,7 @@
       },
       page(e) {
         if (e.keyCode === 39) {
-          console.log(this.nextChapter)
+          //console.log(this.nextChapter)
           this.nextChapter()
         } else if (e.keyCode === 37) {
           this.prevChapter()

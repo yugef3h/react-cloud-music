@@ -2,28 +2,32 @@
   <div class="list-panel" @touchmove:prevent>
     <div class="list">
       <div class="list-nav">
-        <i @click="hideListPanel" class="fa fa-chevron-left"></i>
-        <h3>目录</h3>
+        <!--<i @click="hideListPanel" class="fa fa-chevron-left"></i>-->
+        <!--目录会跟着跑bug-->
+        <h3 class="btn-group-cell">目录</h3>
       </div>
       <div class="list-content" @touchmove:prevent>
         <ul>
-
-          <li v-for="(item,index) in chapterList" @click="jumpTo(index, item.split('+')[1])">
-            · {{item.split('+')[0]}}
+          <li class="chapter-bar">正文卷</li>
+          <li v-for="(item,index) in chapterList" @click="jumpTo(index, item.title.split('+')[1])">
+            {{item.title.split('+')[0]}}
           </li>
         </ul>
       </div>
     </div>
+    <load  v-show="loadingList"></load>
   </div>
 </template>
 
 <script type="text/ecmascript-6">
   import {mapState} from  'vuex'
+  import load from '../../common/loading-2'
 
   export default {
     data() {
       return {
         chapterList: [],
+        loadingList: false,
       }
     },
     props: {
@@ -32,8 +36,20 @@
         required: true
       },
     },
-    created() {
-      this.getList()
+    computed: {
+      ...mapState([
+         'list_panel'
+      ])
+    },
+    created () {
+    },
+    //监控 list_panel 的前提是要时刻计算computed  mapState的 list_panel，可能需要缓存 title
+    watch: {
+      list_panel :function () {
+        console.log(this.$store.state.list_panel)
+        if (this.$store.state.list_panel === true)
+        this.getList()
+      }
     },
     methods: {
       jumpTo(index,url) {
@@ -49,12 +65,16 @@
       hideListPanel() {
         this.$store.state.list_panel = false
       },
+      //获取小说目录，请求表booktitles，无需优化
       getList() {
+        this.loadingList = true;
         let _this = this;
           this.$reqs.post('/users/novel', {
             keyn:this.$route.params.title
           }).then(res => {
-              _this.chapterList = res.data[0].titles.split('-');
+            console.log(res);
+            this.loadingList = false;
+            _this.chapterList = res.data;
           }).catch(err => {
             console.log(err)
           })
@@ -67,61 +87,63 @@
   .list-panel {
     position: fixed;
     transition: all .3s;
-    left: 0;
+    left: 40px;
     top: 0;
     bottom: 0;
-    right: 50px;
+    right: 0;
     z-index: 10;
     overflow: auto;
-    transform: translateX(-100%);
+    overflow-x: hidden;
+    background: #fff;
+    transform: translateX(200%);
     &.show {
       transform: translateX(0);
     }
     .list {
-      position: absolute;
-      left: 0;
-      top: 0;
-      bottom: 0;
-      width:100%;
+      position: relative;
       background-color: #fff;
-      opacity: 1;
       .list-nav {
-        position: fixed;
+        display: table;
+        table-layout: fixed;
         height: 50px;
         line-height: 50px;
-        text-align: left;
-        top: 0;
-        left: 20px;
-        right: 50px;
+        width: 100%;
+        margin-right: auto;
+        margin-left: auto;
         color: #ed424b;
-        background-color: #fff;
         border-bottom: 1px solid #ed424b;
-        .back {
-          position: absolute;
-          left: 10px;
-          top: 10px;
-          width: 30px;
-          height: 30px;
-        }
-        h3 {
-          margin: 0 50px;
-          display: inline-block;
+        .btn-group-cell{
+          font-size: 100%;
+          font-weight: 400;
+          display: table-cell;
+          text-align: center;
         }
       }
       .list-content {
         background-color: #fff;
-        margin-top: 50px;
         ul {
           padding: 0 15px;
         }
         li {
           color: #333;
-          height: 50px;
-          line-height: 50px;
-          border-bottom: 1px solid #ccc;
+          border-bottom: 1px solid #f0f1f2;
           white-space: nowrap;
           overflow: hidden;
           text-overflow: ellipsis;
+          font-weight: 400;
+          font-size: 12px/20px;
+          padding:8px 1rem;
+        }
+        li:last-child {
+          border-bottom: 1px solid transparent;
+        }
+        .chapter-bar {
+          color: #969ba3;
+          background-color: #f6f7f9;
+          padding: 5px 1rem;
+          width:200%;
+          text-indent: 50px;
+          margin-left: -50px;
         }
       }
     }

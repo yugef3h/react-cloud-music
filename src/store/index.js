@@ -18,7 +18,7 @@ const state = {
   curBookDetailId: 1,
   curBookContentId: 1,
 }
-
+//state 树的对象 store
 export default new Vuex.Store({
   state,
   mutations,

@@ -5,33 +5,52 @@
     <div class="cent">
       <div class="rig">
         <input type="text" placeholder="请输入书名搜索" v-model="keyn" @keyup.13="search(null,0)">
-        <button type="button" @click="search(null,0)" >Search</button>
+        <button type="button" @click="search(null,0)"  :disabled="disabled || time > 0">Search</button>
       </div>
 
-      <p><a href="javascript:" @click="search(null,null)" v-show="tipshow" class="tips"><small>{{tips}}</small></a></p>
+      <!--倒计时并自动跳转-->
+      <p><a href="javascript:" @click="toZero" v-show="tipshow" class="tips"   v-cloak><small>{{tips}}</small></a></p>
+
+
+      <!--同名书籍新的api-->
       <ul  v-show="menyshow" class="menu">
         <li v-for="(item,index) in choics" :key="'choics'+ index">
-          <a href="javascript:" @click="search(item.split('+')[1],null)">{{item.split('+')[0]}}</a>
+          <a href="javascript:" @click="crawlerMenu(item.split('+')[1], item.split('+')[0])">{{item.split('+')[0]}}</a>
         </li>
         <li><a href="javascript:" @click="search(null,1)"class="meny">都不符合 ? 换一批 <i class="fa fa-sign-out"></i></a></li>
       </ul>
 
     </div>
+    <!--小说目录-->
     <ul v-show="menusshow" class="flex">
       <li class="flex-1">《{{name}}》 <span v-html="author"></span>  &nbsp; </li>
-      <li v-for="(item,index) in menus" :key="'menus'+ index" class="flex-4-1">
-        <router-link :to="{name:'reader',params:{jump:'novel',random:Math.floor(Math.random()*199301),title:keyn.trim(),crawler:item.split('+')[1]}}"
-                      >{{item.split('+')[0]}}</router-link>
+      <li v-for="(item,index) in menus" :key="'menus'+ index" class="flex-4-1" v-if="pclist">
+        <router-link :to="{name:'reader',params:{jump:'novel',random:Math.floor(Math.random()*199301),title:keyn.trim(),crawler:item.title.split('+')[1]}}"
+                      >{{item.title.split('+')[0]}}</router-link>
+      </li>
+      <li v-for="(item,index) in menus" :key="'menus'+ index" class="flex-4-1"  v-else>
+        <router-link :to="{name:'reader',params:{jump:'novel',random:Math.floor(Math.random()*199301),title:keyn.trim(),crawler:item.title.split('+')[1]}}"
+        >{{item.title.split('+')[0]}}</router-link>
+
+<!--location change!!-->
+        <!--<pagebar-->
+        <!--v-if="ifpage"-->
+        <!--:current="pageInfo.current"-->
+        <!--:showItem="pageInfo.showItem"-->
+        <!--:allpage="pageInfo.allpage"-->
+        <!--@on-gopage="gopage">-->
+        <!--</pagebar>-->
       </li>
     </ul>
     <div class="search-tags" v-show="tags">
       <a href="javascript:" v-for="(item,index) in recommend" class="btn-line-gray" @click="search(null,0,item.key)">{{item.tag}}</a>
     </div>
+
   </div>
 </template>
 <script>
-  import loading from './common/loading'
-
+  import loading from '../common/loading'
+  import pagebar from '../common/pagebar.vue'
 
 
   export default {
@@ -44,10 +63,11 @@
         tipshow: false,
         menyshow: false,
         menusshow: false,
+        pclist:true,
         loading: false,
-        contentshow: false,
         tags: true,
         choics: [],
+
         name: '',
         author: '',
         content: [],
@@ -67,7 +87,29 @@
         ]
       }
     },
+
     methods: {
+      toZero () {
+        this.loading = true
+        setTimeout(this.search, 5000)
+      },
+      //menu爬取加载
+      crawlerMenu(url,keyn) {
+        this.$reqs.post('/users/crawler', {
+          url:url,
+          keyn:keyn
+        }).then(res => {
+
+          this.menyshow = false;
+
+          this.tips = res.data.tip;
+          this.tipshow = true;
+        }).catch(err => {
+          console.log(err)
+        })
+      },
+
+      //搜书分两种，一已收录，二未收录。
       search(url, newpage, key) {
         this.menusshow = false;
         this.loading = true
@@ -85,22 +127,23 @@
 
           this.tags = false;
           this.loading = false //获取数据完成后隐藏loading
-          if (res.data.tip) {
-            this.tipshow = true;
-            this.menyshow = false;
-
-            _this.tips = res.data.tip;
-          } else if (res.data.meny) {
+          if  (res.data.section){
             this.menyshow = true;
             this.tipshow = false;
-            _this.choics = res.data.meny.split('-');
+            _this.choics = res.data.section.split('-');
           } else {
+
             this.tipshow = false;
             this.menyshow = false;
             this.menusshow = true;
-            _this.menus = res.data[0].titles.split('-');
-            _this.name = res.data[0].name;
-            _this.author = res.data[0].author;
+            // if (document.body.clientWidth <= 500) {
+            //   this.pclist = false;
+            // }
+            //获取目录
+             _this.menus = res.data;
+             _this.name = res.data[0].novelname;
+             _this.author = res.data[0].author;
+
           }
         }).catch(err => {
           this.loading = false
@@ -109,7 +152,24 @@
 
 
       },
-
+      //获取文章列表
+      // getArticleList(page){
+      //   let _this = this;
+      //   this.$reqs.post('/users/article',{
+      //     page:page,
+      //     rows:5
+      //   }).then(result =>{
+      //     _this.listData = result.data.data;
+      //     _this.pageInfo.allpage = Math.ceil( result.data.total[0].count/5 );
+      //   }).catch(error => {
+      //     console.log(error)
+      //   });
+      // },
+      // gopage(index){
+      //   this.pageInfo.current = index;
+      //   //查询数据
+      //   this.getArticleList(index)
+      // },
 
     },
     components: {
@@ -118,6 +178,7 @@
   }
 </script>
 <style lang="scss" scoped>
+  [v-cloak]{ display:none}
   .novel {
     font-size: 18px;
   }
@@ -296,6 +357,6 @@
     border-radius: 99px;
     color:#969ba3;
     font-size: 16px;
-    margin: .5rem .5  rem 0 0;
+    margin: .5rem .5rem 0 0;
   }
 </style>

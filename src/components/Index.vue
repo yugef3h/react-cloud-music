@@ -32,6 +32,7 @@
                   <li><a href="https://tinypng.com/" target="_blank">TinyPNG</a></li>
                   <li><a href="http://www.zhangxinxu.com/sp/base64.html" target="_blank">DragIn Base64</a></li>
                   <li><a href="http://www.zhangxinxu.com/sp/css-compress-mini.html" target="_blank">Css Compressor</a></li>
+                  <li><a href="https://www.processon.com/" target="_blank">ProcessOn</a></li>
                 </ul>
               </li>
               <li class="dropdown">
@@ -58,7 +59,7 @@
     </div>
     <section class="wrap">
       <div class="fl">
-        <keep-alive exclude="contents,novel">
+        <keep-alive exclude="contents,reader">
           <router-view></router-view>
         </keep-alive>
       </div>
@@ -72,8 +73,8 @@
 </template>
 <script>
   import ft from './common/footer.vue'
-  import bp from './vmods/backtop.vue'
-  import sidebar from './vmods/sidebar.vue'
+  import bp from './common/backtop.vue'
+  import sidebar from './common/sidebar.vue'
   import {addClass, removeClass, hasClass} from '../js/untils'
   /* 引入公共方法 */
   export default{

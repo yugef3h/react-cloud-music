@@ -1,7 +1,7 @@
 <template>
   <div class="top-nav" v-show="bar">
     <div class="icon-back">
-      <a href="" @click="back"></a>
+      <router-link to="/novel"></router-link>
     </div>
     <div class="nav-title">返回搜索</div>
   </div>
@@ -12,7 +12,6 @@
   export default {
     methods: {
       back() {
-        console.log(this)
         this.$router.push('/novel')
       }
     },

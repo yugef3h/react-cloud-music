@@ -32,7 +32,7 @@
       keyname:"ComTelephone"
     }
   ];
-  import grid from '../vmods/grid.vue'
+  import grid from '../common/grid.vue'
   export default {
     name: 'adminList',
     data () {
@@ -58,7 +58,7 @@
           page:page
         }).then(result => {
           //成功
-          //console.log(result.data.total[0].count)
+          console.log(result.data)
           //console.log(result.data.data[0]);
           _this.listData = result.data.data;
           _this.pageInfo.allpage = Math.ceil( result.data.total[0].count/5 );
