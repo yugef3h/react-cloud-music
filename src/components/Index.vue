@@ -59,7 +59,7 @@
     </div>
     <section class="wrap">
       <div class="fl">
-        <keep-alive exclude="contents,reader">
+        <keep-alive exclude="contents,novel,reader">
           <router-view></router-view>
         </keep-alive>
       </div>

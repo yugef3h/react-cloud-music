@@ -144,11 +144,20 @@
 
       },
       getDetail(url) {
-        //console.log(this.$route.params.title)
+        let keyn = this.$route.params.title
+        //this.$route.params.title 刷新后无
+        console.log('this.$route.params.title:')
+        console.log(keyn)
+        if ( keyn !== undefined ) {
+          if (localEvent.StorageGetter('list_key') !== keyn) localEvent.StorageSetter('list_key', keyn)
+          this.$store.state.list_key = localEvent.StorageGetter('list_key')
+        }
+
         this.loading = true;
         this.$reqs.post('/users/novelsc', {
           url: url? url:'https://www.zwdu.com' + this.$route.params.crawler
         }).then(res => {
+          console.log(res)
           this.loading = false;
           document.body.scrollTop = 0;
           document.documentElement.scrollTop = 0;
@@ -233,7 +242,7 @@
     },
     computed: {
       ...mapState([
-        'font_panel', 'bg_color', 'fz_size', 'bg_night', 'curChapter', 'windowHeight', 'list_panel'
+        'font_panel', 'bg_color', 'fz_size', 'bg_night', 'curChapter', 'windowHeight', 'list_panel','list_key'
       ])
     },
     watch: {
@@ -247,6 +256,7 @@
         localEvent.StorageSetter('cur_chapter', val)
         this.saveBooksInfo()
         this.getDetail()
+        console.log('watchman')
       }
     }
   }

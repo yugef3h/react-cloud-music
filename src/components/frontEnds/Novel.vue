@@ -95,11 +95,12 @@
       },
       //menu爬取加载
       crawlerMenu(url,keyn) {
+        this.loading = true
         this.$reqs.post('/users/crawler', {
           url:url,
           keyn:keyn
         }).then(res => {
-
+          this.loading = false
           this.menyshow = false;
 
           this.tips = res.data.tip;

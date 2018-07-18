@@ -34,8 +34,8 @@
     position: relative;
   }
   .progress-bar {
-    animation-duration: 6s;
-    -webkit-animation-duration:6s;
+    animation-duration: 3s;
+    -webkit-animation-duration:3s;
     animation-name: width;
     background-image: linear-gradient(to right, #4cd964, #5ac8fa, #007aff, #34aadc, #5856d6, #ff2d55);
     /*background-size: 24em 0.25em;*/

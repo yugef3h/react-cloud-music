@@ -63,9 +63,7 @@
   .number li:hover{
     color: #173859;
   }
-  .number a:hover{
 
-  }
   .number i{
     transition: all 0.3s ease-out;
     padding-left: 10px;

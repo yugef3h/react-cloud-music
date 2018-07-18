@@ -22,6 +22,7 @@
 <script type="text/ecmascript-6">
   import {mapState} from  'vuex'
   import load from '../../common/loading-2'
+  import localEvent from '../../../store/local'
 
   export default {
     data() {
@@ -38,7 +39,7 @@
     },
     computed: {
       ...mapState([
-         'list_panel'
+         'list_panel','list_key'
       ])
     },
     created () {
@@ -67,10 +68,15 @@
       },
       //获取小说目录，请求表booktitles，无需优化
       getList() {
+        let keyn = this.$route.params.title
+        if (localEvent.StorageGetter('list_key')) this.$store.state.list_key = localEvent.StorageGetter('list_key')
+
         this.loadingList = true;
         let _this = this;
+
+        //刷新后无this.$route.params.title
           this.$reqs.post('/users/novel', {
-            keyn:this.$route.params.title
+            keyn: keyn ? keyn : this.$store.state.list_key
           }).then(res => {
             console.log(res);
             this.loadingList = false;

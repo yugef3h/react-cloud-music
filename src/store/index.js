@@ -12,6 +12,7 @@ const state = {
   bg_color: 1,
   bg_night: false,
   fz_size: 18,
+  list_key: '',
   curChapter: 1,
   windowHeight: '',
   list_panel: false,

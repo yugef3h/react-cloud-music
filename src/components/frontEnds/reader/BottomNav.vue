@@ -43,6 +43,7 @@
     },
     methods: {
       showListPanel() {
+        //bug
         console.log(this.$route.params.title)
         //分发 action
         this.$store.dispatch('showListPanel')

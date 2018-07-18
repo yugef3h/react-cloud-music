@@ -13,6 +13,7 @@
     "axios": "latest",
     "babel-polyfill": "^6.26.0",
     "better-scroll": "latest",
+    "element-ui": "^2.4.4",
     "marked": "^0.3.12",
     "node-sass": "^4.7.2",
     "vue": "^2.5.2",

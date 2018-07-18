@@ -1,4 +1,4 @@
-import Vue from 'vue'
+import  Vue from 'vue'
 import Router from 'vue-router'
 const Index = r => require.ensure([], () => r(require('@/components/Index.vue')), 'groupfront1')
 const Home = r => require.ensure([], () => r(require('@/components/frontEnds/Home.vue')), 'groupfront1')
@@ -6,12 +6,14 @@ const Articles = r => require.ensure([], () => r(require('@/components/frontEnds
 const Novel = r => require.ensure([], () => r(require('@/components/frontEnds/Novel.vue')), 'groupfront2')
 const Reader = r => require.ensure([], () => r(require('@/components/frontEnds/Reader.vue')), 'groupfront2')
 const ArtDetails = r => require.ensure([], () => r(require('@/components/frontEnds/ArtDetails.vue')), 'groupfront3')
-const Login = r => require.ensure([], () => r(require('@/components/frontEnds/Login.vue')), 'groupback1')
-const BackStage = r => require.ensure([], () => r(require('@/components/backStage/BackStage.vue')), 'groupback2')
+
+const Login = r => require.ensure([], () => r(require('@/components/backStage/Login.vue')), 'groupback1')
+const BackIndex = r => require.ensure([], () => r(require('@/components/backStage/Index.vue')), 'groupback2')
 const IndexContent = r => require.ensure([], () => r(require('@/components/backStage/IndexContent.vue')), 'groupback2')
 const Essay = r => require.ensure([], () => r(require('@/components/backStage/Essay.vue')), 'groupback3')
 const ArticleList = r => require.ensure([], () => r(require('@/components/backStage/ArticleList.vue')), 'groupback3')
 const AdminList = r => require.ensure([], () => r(require('@/components/backStage/AdminList.vue')), 'groupback2')
+const BackHome = r => require.ensure([], () => r(require('@/components/backStage/Home.vue')), 'groupback2')
 
 
 
@@ -62,32 +64,38 @@ const router = new Router({
       ]
     },
     {
-      path: '/backStage',
-      name: 'backStage',
+      path: '/index',
+      name: 'backindex',
       meta: {
         requireAuth: true// 添加该字段，表示进入这个路由是需要登录的
       },
-      component: BackStage,
+      redirect: '/index/home',
+      component: BackIndex,
       children: [
+        // {
+        //   path: '/backStage/indexContent',
+        //   name: 'indexContent',
+        //   component: IndexContent
+        // },
+        // {
+        //   path: '/backStage/adminList',
+        //   name: 'adminList',
+        //   component: AdminList
+        // },
+        // {
+        //   path: '/backStage/articleList',
+        //   name: 'articleList',
+        //   component: ArticleList
+        // },
+        // {
+        //   path:'/backStage/essay',
+        //   name:'essay',
+        //   component:Essay
+        // },
         {
-          path: '/backStage/indexContent',
-          name: 'indexContent',
-          component: IndexContent
-        },
-        {
-          path: '/backStage/adminList',
-          name: 'adminList',
-          component: AdminList
-        },
-        {
-          path: '/backStage/articleList',
-          name: 'articleList',
-          component: ArticleList
-        },
-        {
-          path:'/backStage/essay',
-          name:'essay',
-          component:Essay
+          path: '/index/home',
+          name: 'backhome',
+          component: BackHome
         }
       ]
     }
