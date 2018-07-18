@@ -15,7 +15,7 @@
         <template slot="title"><i class="el-icon-setting"></i>系统设置</template>
         <el-menu-item-group>
           <template slot="title">分组一</template>
-          <el-menu-item index="/index">&nbsp;选项1</el-menu-item>
+          <el-menu-item index="/index">&nbsp;基础设置</el-menu-item>
           <el-menu-item index="/index">&nbsp;选项2</el-menu-item>
         </el-menu-item-group>
         <el-menu-item-group title="分组2">
@@ -26,8 +26,8 @@
         <template slot="title"><i class="el-icon-tickets"></i>博文管理</template>
         <el-menu-item-group>
           <template slot="title">分组二</template>
-          <el-menu-item index="/index/basic/foodcate">&nbsp;菜品分类</el-menu-item>
-          <el-menu-item index="/index/basic/foodmanage">&nbsp;菜品管理</el-menu-item>
+          <el-menu-item index="/index/blog/blogcate">&nbsp;博文分类</el-menu-item>
+          <el-menu-item index="/index/blog/blogmanage">&nbsp;博文管理</el-menu-item>
         </el-menu-item-group>
       </el-submenu>
       <li role="menuitem" aria-haspopup="true" class="el-submenu" style="position: relative;">

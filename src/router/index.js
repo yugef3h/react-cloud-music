@@ -15,6 +15,9 @@ const ArticleList = r => require.ensure([], () => r(require('@/components/backSt
 const AdminList = r => require.ensure([], () => r(require('@/components/backStage/AdminList.vue')), 'groupback2')
 const BackHome = r => require.ensure([], () => r(require('@/components/backStage/Home.vue')), 'groupback2')
 
+const BlogCate = r => require.ensure([], () => r(require('@/components/backblog/BlogCate.vue')), 'backblog')
+const BlogManage = r => require.ensure([], () => r(require('@/components/backblog/BlogManage.vue')), 'backblog')
+
 
 
 Vue.use(Router)
@@ -96,7 +99,17 @@ const router = new Router({
           path: '/index/home',
           name: 'backhome',
           component: BackHome
-        }
+        },
+        {
+          path: '/index/blog/blogcate',
+          name: 'blog-cate',
+          component: BlogCate
+        },
+        {
+          path: '/index/blog/blogmanage',
+          name: 'blog-manage',
+          component: BlogManage
+        },
       ]
     }
   ]

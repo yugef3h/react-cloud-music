@@ -85,5 +85,20 @@
     font-weight: normal !important;
     color: #606266 !important;
   }
+
+  /* backblog */
+  .el-col-14 {
+    padding-right: 0 !important;
+  }
+
+  .el-table .single {
+    background-color: rgba(248,248,248,.5);
+  }
+
+  .el-table th{
+    background: linear-gradient(to bottom, #f9f9f9 0%,#eaeaea 100%) !important;
+    box-shadow: 0 0 2px #bbb;
+    border-top: 0 solid #FFF;
+  }
 </style>
 
