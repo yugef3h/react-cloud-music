@@ -17,43 +17,56 @@
           <!-- <el-form-item label="公告栏" prop="name">
             <el-input v-model="ruleForm.name"></el-input>
           </el-form-item> -->
-          <el-form-item label="公告栏:" prop="desc">
-            <el-input type="textarea" v-model="ruleForm.desc"></el-input>
+          <el-form-item label="公告栏:" prop="notice">
+            <el-input type="textarea" v-model="ruleForm.notice"></el-input>
           </el-form-item>
           <el-form-item label="登录用户名:" prop="">
             <span class=infobox>超级管理员</span> 
-            <a href="#" @click="!_username">[修改登录用户名]</a>
+            <a href="#" @click="show = !show">[修改登录用户名]</a>
           </el-form-item>
-          <el-form-item label="新登录用户名:" prop="">
-            <el-input></el-input>
-          </el-form-item>
+
+          <transition name="fade">
+            <div v-if="show">
+              <el-form-item label="新登录用户名:" prop="user">
+                <el-input v-model="ruleForm.user"></el-input>
+              </el-form-item>
+            </div>
+          </transition>
 
 
           <el-form-item label="密码:" prop="">
             <span class=infobox>********</span> 
-            <a href="#">[修改密码]</a>
+            <a href="#"  @click="show1 = !show1">[修改密码]</a>
           </el-form-item>
-          <el-form-item label="旧密码:" prop="">
-            <el-input></el-input>
-          </el-form-item>
-          <el-form-item label="新密码:" prop="pass">
-            <el-input type="password" v-model="ruleForm.pass" auto-complete="off"></el-input>
-          </el-form-item>
-          <el-form-item label="确认密码:" prop="checkPass">
-            <el-input type="password" v-model="ruleForm.checkPass" auto-complete="off"></el-input>
-          </el-form-item>
+          <transition name="fade">
+            <div v-if="show1">
+              <el-form-item label="旧密码:" prop="oldpass">
+                <el-input type="password" v-model="ruleForm.oldpass" auto-complete="off"></el-input>
+              </el-form-item>
+              <el-form-item label="新密码:" prop="pass">
+                <el-input type="password" v-model="ruleForm.pass" auto-complete="off"></el-input>
+              </el-form-item>
+              <el-form-item label="确认密码:" prop="checkPass">
+                <el-input type="password" v-model="ruleForm.checkPass" auto-complete="off"></el-input>
+              </el-form-item>
+            </div>
+          </transition>
 
 
           <el-form-item label="Email:" prop="">
             <span class=infobox>245868066@qq.com</span> 
-            <a href="#">[修改Email]</a>
+            <a href="#"  @click="show2 = !show2">[修改Email]</a>
           </el-form-item>
-          <el-form-item label="账户密码:" prop="">
-            <el-input></el-input>
-          </el-form-item>
-          <el-form-item label="新注册邮箱:" prop="">
-            <el-input></el-input>
-          </el-form-item>
+          <transition name="fade">
+            <div v-if="show2">
+              <el-form-item label="账户密码:" prop="oldpass">
+                <el-input type="password" v-model="ruleForm.oldpass" auto-complete="off"></el-input>
+              </el-form-item>
+              <el-form-item label="新注册邮箱:" prop="email">
+                <el-input v-model="ruleForm.email"></el-input>
+              </el-form-item>
+            </div>
+          </transition>
           <!-- <el-form-item label="活动区域" prop="region">
             <el-select v-model="ruleForm.region" placeholder="请选择活动区域">
               <el-option label="区域一" value="shanghai"></el-option>
@@ -113,16 +126,16 @@
 		
     },
      data() {
-       var validatePass = (rule, value, callback) => {
-        if (value === '') {
-          callback(new Error('请输入密码'));
-        } else {
-          if (this.ruleForm2.checkPass !== '') {
-            this.$refs.ruleForm2.validateField('checkPass');
-          }
-          callback();
-        }
-      };
+      //  var validatePass = (rule, value, callback) => {
+      //   if (value === '') {
+      //     callback(new Error('请输入密码，长度在 6 到 20 个字符'));
+      //   } else {
+      //     if (this.ruleForm2.checkPass !== '') {
+      //       this.$refs.ruleForm2.validateField('checkPass');
+      //     }
+      //     callback();
+      //   }
+      // };
       var validatePass2 = (rule, value, callback) => {
         if (value === '') {
           callback(new Error('请再次输入密码'));
@@ -133,48 +146,37 @@
         }
       };
       return {
-        _username: false,
+        show: false,
+        show1: false,
+        show2: false,
         ruleForm: {
-          name: '',
-          region: '',
-          date1: '',
-          date2: '',
-          delivery: false,
-          type: [],
-          resource: '',
-          desc: '',
+          user: '',
+          notice: '',
+          oldpass: '',
           pass: '',
           checkPass: '',
+          email: '',
         },
         rules: {
-          name: [
-            { required: true, message: '请输入活动名称', trigger: 'blur' },
-            { min: 3, max: 5, message: '长度在 3 到 5 个字符', trigger: 'blur' }
+          user: [
+            { required: true, message: '请输入新用户名', trigger: 'blur' },
+            { message: '字母或汉字开头，可使用数字及下划线', trigger: 'blur'}
           ],
-          region: [
-            { required: true, message: '请选择活动区域', trigger: 'change' }
-          ],
-          date1: [
-            { type: 'date', required: true, message: '请选择日期', trigger: 'change' }
-          ],
-          date2: [
-            { type: 'date', required: true, message: '请选择时间', trigger: 'change' }
-          ],
-          type: [
-            { type: 'array', required: true, message: '请至少选择一个活动性质', trigger: 'change' }
-          ],
-          resource: [
-            { required: true, message: '请选择活动资源', trigger: 'change' }
-          ],
-          desc: [
-            { required: true, message: '请填写活动形式', trigger: 'blur' }
+          oldpass: [
+            { required: true, message: '请输入旧密码', trigger: 'blur' },
+            { min: 6, max: 20, message: '长度在 6 到 20 个字符', trigger: 'blur' }
           ],
           pass: [
-            { required: true, validator: validatePass, trigger: 'blur' }
+            { required: true, message: '请输入密码', trigger: 'blur' },
+            { min: 6, max: 20, message: '长度在 6 到 20 个字符', trigger: 'blur' }
           ],
           checkPass: [
             { required: true, validator: validatePass2, trigger: 'blur' }
           ],
+          email: [
+            { required: true, message: '请输入邮箱地址', trigger: 'blur' },
+            { type: 'email', message: '请输入正确的邮箱地址', trigger: ['blur', 'change'] }
+          ]
         }
       };
     },
@@ -233,6 +235,14 @@
     border-bottom: solid 1px #000;
   }
 
+  a:hover {color: #409EFF}
 
+  /* 条件渲染 */
+  .fade-enter-active, .fade-leave-active {
+    transition: opacity 1s;
+  }
+  .fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
+    opacity: 0;
+  }
 
 </style>

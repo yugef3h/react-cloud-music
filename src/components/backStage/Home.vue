@@ -29,7 +29,7 @@
     name: "backhome",
     data() {
       return {
-        dynamicTags: ['订单管理', '菜品管理', '标签三'],
+        dynamicTags: ['公告设置', '博文发布', '标签三'],
         inputVisible: false,
         inputValue: ''
       };

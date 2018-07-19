@@ -1,11 +1,48 @@
 <template>
   <div class="panel">
+    <!-- Form -->
+    <el-dialog
+     title="新增用户信息" 
+     :visible.sync="dialogFormVisible"
+     width="30%" >
+      <el-form :label-position="labelPosition" label-width="80px" :model="formLabelAlign">
+        <el-form-item label="用户名">
+          <el-input v-model="formLabelAlign.name"></el-input>
+        </el-form-item>
+        <el-form-item label="手机号">
+          <el-input v-model="formLabelAlign.region"></el-input>
+        </el-form-item>
+        <el-form-item label="用户类型">
+          <el-select v-model="formLabelAlign.type" placeholder="请选择">
+            <el-option label="类型一" value="admin"></el-option>
+            <el-option label="类型二" value="user"></el-option>
+          </el-select>
+        </el-form-item>
+        <!-- 头像上传 -->
+        <label class="el-form-item__label">上传头像</label>
+        <el-upload
+          class="avatar-uploader"
+          action="https://jsonplaceholder.typicode.com/posts/"
+          :show-file-list="false"
+          :on-success="handleAvatarSuccess"
+          :before-upload="beforeAvatarUpload">
+          <img v-if="imageUrl" :src="imageUrl" class="avatar">
+          <i v-else class="el-icon-plus avatar-uploader-icon"></i>
+        </el-upload>
+      </el-form>
+      <div slot="footer" class="dialog-footer">
+        <el-button @click="dialogFormVisible = false">取 消</el-button>
+        <el-button type="primary" @click="dialogFormVisible = false">确 定</el-button>
+      </div>
+    </el-dialog>
+
+
     <div class="panel-heading">
       <el-row :gutter="20">
         <el-col :span="6"><div class="lf" style="font-size: 20px;">用户管理</div></el-col>
         <el-col :span="6" :offset="12">
           <div class="rg">
-            <el-button class="btn-pink">新增<i class="el-icon-plus el-icon--right"></i></el-button>
+            <el-button class="btn-pink" @click="dialogFormVisible = true">新增<i class="el-icon-plus el-icon--right"></i></el-button>
             <el-button type="success">导出<i class="el-icon-upload el-icon--right"></i></el-button>
           </div>
         </el-col>
@@ -112,6 +149,26 @@
         address: '上海市'
       };
       return {
+        imageUrl: '',
+        dialogFormVisible: false,
+        form: {
+          name: '',
+          region: '',
+          date1: '',
+          date2: '',
+          delivery: false,
+          type: [],
+          resource: '',
+          desc: ''
+        },
+        formLabelWidth: '120px',
+
+        labelPosition: 'top',
+        formLabelAlign: {
+          name: '',
+          region: '',
+          type: ''
+        },
         tableData: Array(10).fill(item),
         formInline: {
           user: '',
@@ -126,6 +183,22 @@
       },
       handleSelectionChange(val) {
         this.multipleSelection = val;
+      },
+      // 头像
+      handleAvatarSuccess(res, file) {
+        this.imageUrl = URL.createObjectURL(file.raw);
+      },
+      beforeAvatarUpload(file) {
+        const isJPG = file.type === 'image/jpeg';
+        const isLt2M = file.size / 1024 / 1024 < 2;
+
+        if (!isJPG) {
+          this.$message.error('上传头像图片只能是 JPG 格式!');
+        }
+        if (!isLt2M) {
+          this.$message.error('上传头像图片大小不能超过 2MB!');
+        }
+        return isJPG && isLt2M;
       }
     },
     components: {
@@ -170,6 +243,19 @@
     color: #ffffff;
   }
 
-
+  /* 头像 */
+  .avatar-uploader-icon {
+    font-size: 28px;
+    color: #8c939d;
+    width: 160px;
+    height: 160px;
+    line-height: 160px;
+    text-align: center;
+  }
+  .avatar {
+    width: 160px;
+    height: 160px;
+    display: block;
+  }
 
 </style>

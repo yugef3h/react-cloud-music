@@ -1,11 +1,31 @@
 <template>
   <div class="panel">
+
+
+
+        <!-- Form -->
+    <el-dialog
+     title="新增分类" 
+     :visible.sync="dialogFormVisible"
+     width="30%" >
+      <el-form :label-position="labelPosition" label-width="80px" :model="formLabelAlign">
+        <el-form-item label="分类名称">
+          <el-input v-model="formLabelAlign.name"></el-input>
+        </el-form-item>
+      </el-form>
+      <div slot="footer" class="dialog-footer">
+        <el-button @click="dialogFormVisible = false">取 消</el-button>
+        <el-button type="primary" @click="dialogFormVisible = false">确 定</el-button>
+      </div>
+    </el-dialog>
+
+
     <div class="panel-heading">
       <el-row :gutter="20">
         <el-col :span="6"><div class="lf" style="font-size: 20px;">博文分类</div></el-col>
         <el-col :span="6" :offset="12">
           <div class="rg">
-            <el-button class="btn-pink">新增<i class="el-icon-plus el-icon--right"></i></el-button>
+            <el-button class="btn-pink"  @click="dialogFormVisible = true">新增<i class="el-icon-plus el-icon--right"></i></el-button>
           </div>
         </el-col>
       </el-row>
@@ -53,7 +73,7 @@
           label="操作"
           width="200">
           <template slot-scope="scope">
-            <el-button type="text" size="small">查看</el-button>
+            <!-- <el-button type="text" size="small">查看</el-button> -->
             <el-button type="text" size="small">编辑</el-button>
             <el-button type="text" size="small" style="color: #ff6264;">删除</el-button>
 
@@ -86,6 +106,25 @@
         address: '上海市'
       };
       return {
+        dialogFormVisible: false,
+        form: {
+          name: '',
+          region: '',
+          date1: '',
+          date2: '',
+          delivery: false,
+          type: [],
+          resource: '',
+          desc: ''
+        },
+        formLabelWidth: '120px',
+
+        labelPosition: 'top',
+        formLabelAlign: {
+          name: '',
+          region: '',
+          type: ''
+        },
         tableData: Array(10).fill(item),
         formInline: {
           user: '',
@@ -100,7 +139,8 @@
       },
       handleSelectionChange(val) {
         this.multipleSelection = val;
-      }
+      },
+
     },
     components: {
       pg,
@@ -148,4 +188,5 @@
     margin: 10px;
   }
 
+  
 </style>

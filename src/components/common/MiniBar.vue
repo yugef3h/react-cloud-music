@@ -3,7 +3,7 @@
     <el-breadcrumb separator-class="el-icon-arrow-right">
       <el-breadcrumb-item :to="{ path: '/index/home' }"><i class="el-icon-location"></i>首页</el-breadcrumb-item>
       <el-breadcrumb-item v-show="basicTtile !== '首页'">{{basicTtile}}</el-breadcrumb-item>
-      <el-breadcrumb-item v-show="basicTtile !== '首页'"><strong>{{pageTitle}}</strong></el-breadcrumb-item>
+      <el-breadcrumb-item v-show="basicTtile !== '首页'"><strong style="font-weight: 600;">{{pageTitle}}</strong></el-breadcrumb-item>
     </el-breadcrumb>
   </div>
 </template>

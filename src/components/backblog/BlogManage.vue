@@ -1,5 +1,7 @@
 <template>
   <div class="panel">
+
+
     <div class="panel-heading">
       <el-row :gutter="20">
         <el-col :span="6"><div class="lf" style="font-size: 20px;">博文管理</div></el-col>
@@ -81,7 +83,7 @@
           label="操作"
           width="200">
           <template slot-scope="scope">
-            <el-button type="text" size="small">查看</el-button>
+            <!-- <el-button type="text" size="small">查看</el-button> -->
             <el-button type="text" size="small">编辑</el-button>
             <el-button type="text" size="small" style="color: #ff6264;">删除</el-button>
 
@@ -114,6 +116,7 @@
         address: '上海市'
       };
       return {
+     
         tableData: Array(10).fill(item),
         formInline: {
           user: '',
@@ -128,7 +131,8 @@
       },
       handleSelectionChange(val) {
         this.multipleSelection = val;
-      }
+      },
+
     },
     components: {
       pg,
@@ -171,6 +175,7 @@
     background-color: #9c3fbf;
     color: #ffffff;
   }
+
 
 
 
