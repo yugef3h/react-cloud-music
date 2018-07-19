@@ -1,7 +1,7 @@
 <template>
   <div id="aside">
-    <!-- <el-menu :default-openeds="['1', '3']"> -->
     <el-menu
+      :default-openeds="['1', '2']"
       class=""
       @open="handleOpen"
       @close="handleClose"
