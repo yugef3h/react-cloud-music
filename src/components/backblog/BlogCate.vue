@@ -21,7 +21,7 @@
         @selection-change="handleSelectionChange"
         stripe
         size="mini"
-        style="width: 651px">
+        style="width: 881px">
 
         <el-table-column
           type="index"
@@ -36,17 +36,17 @@
         <el-table-column
           prop="name"
           label="分类名称"
-          width="150">
+          width="200">
         </el-table-column>
         <el-table-column
           prop="date"
           label="创建人"
-          width="100">
+          width="200">
         </el-table-column>
         <el-table-column
           prop="date"
           label="创建时间"
-          width="120">
+          width="200">
         </el-table-column>
         <el-table-column
           fixed="right"

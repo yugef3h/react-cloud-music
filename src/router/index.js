@@ -19,6 +19,7 @@ const BlogCate = r => require.ensure([], () => r(require('@/components/backblog/
 const BlogManage = r => require.ensure([], () => r(require('@/components/backblog/BlogManage.vue')), 'backblog')
 
 const Settings = r => require.ensure([], () => r(require('@/components/backset/Settings.vue')), 'backset')
+const UserList = r => require.ensure([], () => r(require('@/components/backset/UserList.vue')), 'backset')
 
 Vue.use(Router)
 
@@ -115,6 +116,11 @@ const router = new Router({
           path: '/index/sys/settings',
           name: 'settings',
           component: Settings
+        },
+        {
+          path: '/index/sys/userlist',
+          name: 'userlist',
+          component: UserList
         }
       ]
     }

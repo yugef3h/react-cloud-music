@@ -16,6 +16,7 @@
     "blogmanage": "博文管理",
     "blogcate": "博文分类",
     "settings": "基础设置",
+    "userlist": "用户管理",
   };
 
   export default {

@@ -2,10 +2,10 @@
   <div class="panel">
     <div class="panel-heading">
       <el-row :gutter="20">
-        <el-col :span="6"><div class="lf" style="font-size: 20px;">博文管理</div></el-col>
+        <el-col :span="6"><div class="lf" style="font-size: 20px;">用户管理</div></el-col>
         <el-col :span="6" :offset="12">
           <div class="rg">
-            <el-button class="btn-pink">添加新随笔<i class="el-icon-plus el-icon--right"></i></el-button>
+            <el-button class="btn-pink">新增<i class="el-icon-plus el-icon--right"></i></el-button>
             <el-button type="success">导出<i class="el-icon-upload el-icon--right"></i></el-button>
           </div>
         </el-col>
@@ -16,10 +16,13 @@
       <el-row :gutter="20">
         <el-col :span="24" style="text-align: left;margin: 10px;">
           <el-form :inline="true" :model="formInline" class="">
-            <el-form-item label="标题:">
+            <el-form-item label="用户名:">
               <el-input v-model="formInline.user"></el-input>
             </el-form-item>
-            <el-form-item label="分类:">
+            <el-form-item label="手机:">
+              <el-input v-model="formInline.user"></el-input>
+            </el-form-item>
+            <el-form-item label="用户类型:">
               <el-select v-model="formInline.region">
                 <el-option label="随笔" value="essay"></el-option>
                 <el-option label="文章" value="article"></el-option>
@@ -40,7 +43,7 @@
         @selection-change="handleSelectionChange"
         stripe
         size="mini"
-        style="width: 1181px">
+        style="width: 1001px">
 
         <el-table-column
           type="index"
@@ -53,23 +56,18 @@
         <!--</el-table-column>-->
         <el-table-column
           prop="date"
-          label="标题"
-          width="400">
+          label="用户名"
+          width="200">
         </el-table-column>
         <el-table-column
           prop="name"
-          label="分类"
-          width="100">
+          label="手机号"
+          width="200">
         </el-table-column>
         <el-table-column
           prop="address"
-          label="评论数"
-          width="100">
-        </el-table-column>
-        <el-table-column
-          prop="address"
-          label="阅读数"
-          width="100">
+          label="用户类型"
+          width="120">
         </el-table-column>
         <el-table-column
           prop="date"
@@ -81,7 +79,7 @@
           label="操作"
           width="200">
           <template slot-scope="scope">
-            <el-button type="text" size="small">查看</el-button>
+            <el-button type="text" size="small">头像</el-button>
             <el-button type="text" size="small">编辑</el-button>
             <el-button type="text" size="small" style="color: #ff6264;">删除</el-button>
 
@@ -106,7 +104,7 @@
 <script>
   import pg from '../common/Pagination.vue'
   export default {
-    name: "blog-manage",
+    name: "userlist",
     data() {
       const item = {
         date: '2016-05-02',

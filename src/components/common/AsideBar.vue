@@ -17,10 +17,11 @@
           <template slot="title">分组一</template>
           <el-menu-item index="/index/sys/settings">&nbsp;基础设置</el-menu-item>
           <el-menu-item index="/index">&nbsp;个人资料</el-menu-item>
+          <el-menu-item index="/index/sys/userlist">&nbsp;用户管理</el-menu-item>
         </el-menu-item-group>
-        <el-menu-item-group title="分组2">
-          <el-menu-item index="/index">&nbsp;选项3</el-menu-item>
-        </el-menu-item-group>
+        <!-- <el-menu-item-group title="分组2">
+          <el-menu-item index="/index">&nbsp;用户管理</el-menu-item>
+        </el-menu-item-group> -->
       </el-submenu>
       <el-submenu index="2">
         <template slot="title"><i class="el-icon-tickets"></i>博文管理</template>
