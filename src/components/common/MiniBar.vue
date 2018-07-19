@@ -17,6 +17,8 @@
     "blogcate": "博文分类",
     "settings": "基础设置",
     "userlist": "用户管理",
+    "blogcomment": "评论管理",
+    "personal": "个人资料"
   };
 
   export default {

@@ -16,7 +16,7 @@
         <el-menu-item-group>
           <template slot="title">分组一</template>
           <el-menu-item index="/index/sys/settings">&nbsp;基础设置</el-menu-item>
-          <el-menu-item index="/index">&nbsp;个人资料</el-menu-item>
+          <el-menu-item index="/index/sys/personal">&nbsp;个人资料</el-menu-item>
           <el-menu-item index="/index/sys/userlist">&nbsp;用户管理</el-menu-item>
         </el-menu-item-group>
         <!-- <el-menu-item-group title="分组2">
@@ -29,6 +29,7 @@
           <template slot="title">分组二</template>
           <el-menu-item index="/index/blog/blogcate">&nbsp;博文分类</el-menu-item>
           <el-menu-item index="/index/blog/blogmanage">&nbsp;博文管理</el-menu-item>
+          <el-menu-item index="/index/blog/blogcomment">&nbsp;评论管理</el-menu-item>
         </el-menu-item-group>
       </el-submenu>
       <li role="menuitem" aria-haspopup="true" class="el-submenu" style="position: relative;">

@@ -17,9 +17,11 @@ const BackHome = r => require.ensure([], () => r(require('@/components/backStage
 
 const BlogCate = r => require.ensure([], () => r(require('@/components/backblog/BlogCate.vue')), 'backblog')
 const BlogManage = r => require.ensure([], () => r(require('@/components/backblog/BlogManage.vue')), 'backblog')
+const BlogComment = r => require.ensure([], () => r(require('@/components/backblog/BlogComment.vue')), 'backblog')
 
-const Settings = r => require.ensure([], () => r(require('@/components/backset/Settings.vue')), 'backset')
-const UserList = r => require.ensure([], () => r(require('@/components/backset/UserList.vue')), 'backset')
+const Settings = r => require.ensure([], () => r(require('@/components/backsys/Settings.vue')), 'backsys')
+const UserList = r => require.ensure([], () => r(require('@/components/backsys/UserList.vue')), 'backsys')
+const Personal = r => require.ensure([], () => r(require('@/components/backsys/Personal.vue')), 'backsys')
 
 Vue.use(Router)
 
@@ -121,6 +123,16 @@ const router = new Router({
           path: '/index/sys/userlist',
           name: 'userlist',
           component: UserList
+        },
+        {
+          path: '/index/sys/personal',
+          name: 'personal',
+          component: Personal
+        },
+        {
+          path: '/index/blog/blogcomment',
+          name: 'comment',
+          component: BlogComment
         }
       ]
     }

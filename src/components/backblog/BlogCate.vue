@@ -7,7 +7,7 @@
     <el-dialog
      title="新增分类" 
      :visible.sync="dialogFormVisible"
-     width="30%" >
+     width="16%" >
       <el-form :label-position="labelPosition" label-width="80px" :model="formLabelAlign">
         <el-form-item label="分类名称">
           <el-input v-model="formLabelAlign.name"></el-input>
