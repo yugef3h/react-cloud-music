@@ -18,7 +18,7 @@ const BackHome = r => require.ensure([], () => r(require('@/components/backStage
 const BlogCate = r => require.ensure([], () => r(require('@/components/backblog/BlogCate.vue')), 'backblog')
 const BlogManage = r => require.ensure([], () => r(require('@/components/backblog/BlogManage.vue')), 'backblog')
 
-
+const Settings = r => require.ensure([], () => r(require('@/components/backset/Settings.vue')), 'backset')
 
 Vue.use(Router)
 
@@ -110,6 +110,12 @@ const router = new Router({
           name: 'blog-manage',
           component: BlogManage
         },
+
+        {
+          path: '/index/sys/settings',
+          name: 'settings',
+          component: Settings
+        }
       ]
     }
   ]

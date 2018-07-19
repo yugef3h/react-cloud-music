@@ -1,20 +1,17 @@
 <template>
   <div id="hd">
     <div  class="adm" style="">
-      <el-menu
-        :default-active="activeIndex"
-        class=""
-        mode="horizontal"
-        router
-        @select="handleSelect">
-        <el-submenu  index="1">
-          <template slot="title">超级管理员</template>
-          <el-menu-item index="2-1"><i class="el-icon-setting"></i>系统设置</el-menu-item>
-          <el-menu-item index="2-2"><i class="el-icon-edit-outline"></i>个人资料</el-menu-item>
-          <el-menu-item index="2-3"><i class="el-icon-info"></i>帮助文档</el-menu-item>
-          <el-menu-item index="/"><i class="el-icon-sold-out"></i>退出系统</el-menu-item>
-        </el-submenu>
-      </el-menu>
+      <!-- 无新消息时隐藏 -->
+      <div class="el-badge item" @click="getnews">
+        <i class="el-icon-bell" style="font-size: 22px; float: right;"></i>
+        <sup class="el-badge__content is-fixed" style="display: block;">{{belltext}}</sup>
+      </div>
+      
+      <a href="#" class="set" style="cursor: default;">超级管理员</a>
+      ·
+      <router-link to="/index/sys/settings" class="set">设置</router-link>
+      ·
+      <router-link to="/" class="set">退出</router-link>
     </div>
   </div>
 </template>
@@ -25,22 +22,18 @@
     name: "header-bar",
     data() {
       return {
-        activeIndex: '1',
+        belltext: "new"
       };
     },
     methods: {
-      handleSelect(key, keyPath) {
-        console.log(key, keyPath);
+      getnews () {
+        // 跳转路由
       }
     }
   }
 </script>
 
 <style>
-  .el-menu--horizontal>.el-submenu .el-submenu__title {
-    height: 40px !important;
-    line-height: 40px !important;
-  }
 
   #hd {
     position: relative;
@@ -49,11 +42,27 @@
   .adm {
     position: absolute;
     right: 0;
+    height: 40px;
+    line-height: 40px;
   }
 
-  .el-menu--horizontal {
-    border-bottom: inherit !important;
+  .item {
+    margin-top: 7px;
+    margin-right: 25px;
   }
 
+  .el-badge__content.is-fixed {
+    position: absolute;
+    top: 0;
+    right: 14px;
+    -webkit-transform: translateY(-50%) translateX(100%);
+    transform: translateY(-50%) translateX(100%);
+   
+  }
+
+  a.set {
+    font-size: 13px;
+    color: #000;
+  }
 
 </style>

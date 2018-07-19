@@ -12,20 +12,58 @@
     </div>
 
     <div class="panel-body">
-      <el-table :data="tableData" border @selection-change="handleSelectionChange" stripe size="mini">
-        <el-table-column type="index" label="#"></el-table-column>
-        <el-table-column prop="name" label="分类名称"></el-table-column>
-        <el-table-column prop="nameEn" label="英文名称"></el-table-column>
-        <el-table-column prop="creater" label="创建人"></el-table-column>
-        <el-table-column prop="date" label="创建时间"></el-table-column>
-        <el-table-column label="操作">
+
+
+
+      <el-table
+        :data="tableData"
+        border
+        @selection-change="handleSelectionChange"
+        stripe
+        size="mini"
+        style="width: 651px">
+
+        <el-table-column
+          type="index"
+          label="#"
+          width="80">
+        </el-table-column>
+        <!--<el-table-column-->
+          <!--type="selection"-->
+          <!--width="55">-->
+        <!--</el-table-column>-->
+
+        <el-table-column
+          prop="name"
+          label="分类名称"
+          width="150">
+        </el-table-column>
+        <el-table-column
+          prop="date"
+          label="创建人"
+          width="100">
+        </el-table-column>
+        <el-table-column
+          prop="date"
+          label="创建时间"
+          width="120">
+        </el-table-column>
+        <el-table-column
+          fixed="right"
+          label="操作"
+          width="200">
           <template slot-scope="scope">
             <el-button type="text" size="small">查看</el-button>
             <el-button type="text" size="small">编辑</el-button>
             <el-button type="text" size="small" style="color: #ff6264;">删除</el-button>
+
+
           </template>
         </el-table-column>
       </el-table>
+
+
+
 
       <el-row :gutter="20">
         <el-col :span="14" :offset="10">
@@ -41,36 +79,31 @@
   import pg from '../common/Pagination.vue'
   export default {
     name: "blog-cate",
-    components: {
-      pg
-    },
     data() {
+      const item = {
+        date: '2016-05-02',
+        name: '王小虎',
+        address: '上海市'
+      };
       return {
-        tableData: [],
+        tableData: Array(10).fill(item),
+        formInline: {
+          user: '',
+          region: ''
+        },
         multipleSelection: []
       }
     },
-    mounted:function(){
-
-    },
-    created:function(){
-			this.findRestaurantMenuCategoryPage();
-    },
     methods: {
-      // 加载分类信息
-      findRestaurantMenuCategoryPage () {
-        this.$axios.get(global.APIPATH + "/restaurant/findRestaurantMenuCategoryPage", {
-              headers: {'X-Authorization': 'Bearer ' + localStorage.getItem("token")}
-           }
-        ).then(function(res){
-
-        }.bind(this)).catch(function(error){
-            console.info(error);
-        });
+      onSubmit() {
+        console.log('submit!');
       },
       handleSelectionChange(val) {
         this.multipleSelection = val;
       }
+    },
+    components: {
+      pg,
     }
   }
 </script>
@@ -108,8 +141,11 @@
 
   .btn-pink:hover {
     background-color: #9c3fbf;
-    text-color: #ffffff;
+    color: #ffffff;
   }
 
+  .panel-body {
+    margin: 10px;
+  }
 
 </style>

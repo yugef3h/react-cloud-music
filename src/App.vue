@@ -52,7 +52,7 @@
   }
 
   /* login */
-  .el-form-item__content {
+  #login .el-form-item__content {
     margin-left: 0 !important;
   }
 

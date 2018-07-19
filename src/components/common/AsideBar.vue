@@ -15,8 +15,8 @@
         <template slot="title"><i class="el-icon-setting"></i>系统设置</template>
         <el-menu-item-group>
           <template slot="title">分组一</template>
-          <el-menu-item index="/index">&nbsp;基础设置</el-menu-item>
-          <el-menu-item index="/index">&nbsp;选项2</el-menu-item>
+          <el-menu-item index="/index/sys/settings">&nbsp;基础设置</el-menu-item>
+          <el-menu-item index="/index">&nbsp;个人资料</el-menu-item>
         </el-menu-item-group>
         <el-menu-item-group title="分组2">
           <el-menu-item index="/index">&nbsp;选项3</el-menu-item>

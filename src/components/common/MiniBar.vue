@@ -11,8 +11,11 @@
 <script>
 
   let pageTitleObj = {
-    "user": "系统设置",
+    "sys": "系统设置",
     "blog": "博文管理",
+    "blogmanage": "博文管理",
+    "blogcate": "博文分类",
+    "settings": "基础设置",
   };
 
   export default {

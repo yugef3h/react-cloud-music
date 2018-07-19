@@ -15,22 +15,15 @@
     <div class="panel-body">
       <el-row :gutter="20">
         <el-col :span="24" style="text-align: left;margin: 10px;">
-          <el-form :inline="true" :model="formInline" class="demo-form-inline">
-            <el-form-item label="菜名:">
-              <el-input v-model="formInline.user"></el-input>
-            </el-form-item>
-            <el-form-item label="编号:">
+          <el-form :inline="true" :model="formInline" class="">
+            <el-form-item label="标题:">
               <el-input v-model="formInline.user"></el-input>
             </el-form-item>
             <el-form-item label="分类:">
               <el-select v-model="formInline.region">
-                <el-option label="热销" value="hot"></el-option>
-                <el-option label="海鲜" value="seafood"></el-option>
-                <el-option label="汤类" value="soup"></el-option>
-                <el-option label="主食类" value="staple"></el-option>
-                <el-option label="甜品" value="sweetmeats"></el-option>
-                <el-option label="素菜" value="vegetarian"></el-option>
-                <el-option label="肉类" value="meat"></el-option>
+                <el-option label="随笔" value="essay"></el-option>
+                <el-option label="文章" value="article"></el-option>
+                <el-option label="日记" value="diary"></el-option>
               </el-select>
             </el-form-item>
             <el-form-item>
@@ -46,11 +39,13 @@
         border
         @selection-change="handleSelectionChange"
         stripe
-        size="mini">
+        size="mini"
+        style="width: 1101px">
+
         <el-table-column
           type="index"
           label="#"
-          width="50">
+          width="80">
         </el-table-column>
         <!--<el-table-column-->
           <!--type="selection"-->
@@ -58,28 +53,33 @@
         <!--</el-table-column>-->
         <el-table-column
           prop="date"
-          label="菜品编号"
-          width="180">
+          label="标题"
+          width="400">
         </el-table-column>
         <el-table-column
           prop="name"
-          label="菜品名称"
-          width="180">
+          label="分类"
+          width="100">
         </el-table-column>
         <el-table-column
           prop="address"
-          label="分类"
-          width="180">
+          label="评论数"
+          width="100">
+        </el-table-column>
+        <el-table-column
+          prop="address"
+          label="阅读数"
+          width="100">
         </el-table-column>
         <el-table-column
           prop="date"
           label="创建时间"
-          width="180">
+          width="120">
         </el-table-column>
         <el-table-column
-
+          fixed="right"
           label="操作"
-          width="180">
+          width="200">
           <template slot-scope="scope">
             <el-button type="text" size="small">查看</el-button>
             <el-button type="text" size="small">编辑</el-button>
@@ -169,7 +169,7 @@
 
   .btn-pink:hover {
     background-color: #9c3fbf;
-    text-color: #ffffff;
+    color: #ffffff;
   }
 
 
