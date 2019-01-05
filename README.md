@@ -1,49 +1,68 @@
-# ygblog
+This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-> A Vue.js project
+## Available Scripts
 
-## Build Setup
+In the project directory, you can run:
 
-``` bash
-# install dependencies
-npm install
+### `yarn start`
 
-# serve with hot reload at localhost:8080
-npm run dev
-```
+Runs the app in the development mode.<br />
+Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
->  遗漏与版本更新log
-```
-first:
-1.list导航bug，list导航当前高亮，store改动，刷新后 key 没了。
-2.tip倒计时并自动跳转
-3.reader实现自动加载下一章，novel也50分页,后端分页与加载
-4.章节无法显示
-5.刷新后undefined  buttonnav    
-6.小说数据库的更新 
-7.加载更多
-8.close chrome 后重开list undefined 未storage
-9.localStorage
+The page will reload if you make edits.<br />
+You will also see any lint errors in the console.
 
-second:
-1.评论
-2.后台转elm-ui
-3.后台旧文章修改
-4.更新对应文章title，猜测history关联，要生产阶段验证
-5.通知机制
-6.log or report
-7.密码防钩子
-8.长链接
-9.订阅发送
-10.ssr
-11.文件上传，修改头像等
-12.jsonp
-13.邮件系统
-14.语音系统&即时通讯
-15.由于主页是海蓝色调，后台偏黑，故打算采用动画由蓝变幻到黑色
+### `yarn test`
 
-log:
-1.0428：解决了连续两次请求，created和mounted重复调用
-2.0428：解决路由跳转的闪烁问题，router-link代替a
-```
-For a detailed explanation on how things work, check out the [guide](http://vuejs-templates.github.io/webpack/) and [docs for vue-loader](http://vuejs.github.io/vue-loader).
+Launches the test runner in the interactive watch mode.<br />
+See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+
+### `yarn build`
+
+Builds the app for production to the `build` folder.<br />
+It correctly bundles React in production mode and optimizes the build for the best performance.
+
+The build is minified and the filenames include the hashes.<br />
+Your app is ready to be deployed!
+
+See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+
+### `yarn eject`
+
+**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+
+If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+
+Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+
+You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+
+## Learn More
+
+You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+
+To learn React, check out the [React documentation](https://reactjs.org/).
+
+### Code Splitting
+
+This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
+
+### Analyzing the Bundle Size
+
+This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
+
+### Making a Progressive Web App
+
+This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
+
+### Advanced Configuration
+
+This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
+
+### Deployment
+
+This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
+
+### `yarn build` fails to minify
+
+This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
