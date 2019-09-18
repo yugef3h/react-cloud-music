@@ -1,5 +1,5 @@
 var express = require('express')
-var compression = require('compression')
+var compression = require('compression') // gzip
 
 
 // var port = process.env.PORT || config.build.port
