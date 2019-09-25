@@ -10,6 +10,7 @@ import "./fix.css";
 
 function App() {
   return (
+    // Provider 包裹路由组件，这样 react router 就可以访问到 store
     <Provider store={store}>
       <HashRouter>
         <GlobalStyle></GlobalStyle>

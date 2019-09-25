@@ -8,7 +8,7 @@ const border = ({
       radius = 0
 }) => {
       return styled()
-      `
+  `
     position: relative;
     border-width: ${ width };
     border-radius: ${ radius + 'px' };
