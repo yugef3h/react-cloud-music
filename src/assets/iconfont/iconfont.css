@@ -27,6 +27,10 @@
   content: "\e7bd";
 }
 
+.icon-paihangbang:before {
+  content: "\e7bd"
+}
+
 .icon-shanchu:before {
   content: "\e63d";
 }
