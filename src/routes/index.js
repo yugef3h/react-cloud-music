@@ -4,6 +4,7 @@ import HomeLayout from "../layouts/HomeLayout";
 import BlankLayout from "../layouts/BlankLayout";
 
 const SuspenseComponent = Component => props => {
+  // 在 Component 组件处于加载阶段时显示一个 spinner，e.g. fallback={<Spinner />}
   return (
     <Suspense fallback={null}>
       <Component {...props}></Component>
