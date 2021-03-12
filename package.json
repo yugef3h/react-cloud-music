@@ -10,7 +10,7 @@
     "react-dom": "^16.13.1",
     "react-scripts": "3.4.3",
     "react-app-polyfill": "^1.0.5",
-    "react-dev-utils": "^9.1.0",
+    "react-dev-utils": "^11.0.4",
     "react-keep-alive": "^2.3.0",
     "react-keeper": "^2.1.12",
     "react-lazyload": "^2.6.5",
